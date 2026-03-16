@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Life Church — Connection Team Playbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --bg-callout-broadcast: #f2f8f3;
+      --bg-callout-receiving: #f9f9f9;
+      --border-broadcast: #589a61;
+      --border-receiving: #c4c4c4;
+      --navy:       #000000;
+      --navy-light: #222222;
+      --accent:     #589a61;
+      --accent-dim: #d6ecd9;
+      --radius:     4px;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ─── Typography ───────────────────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-weight: 900; line-height: 1.15; color: var(--black); font-family: var(--font); }
+
+    h1 { font-size: 2.8rem; letter-spacing: -1px; text-transform: uppercase; }
+    h2 { font-size: 1.6rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: -0.3px; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; font-weight: 700; }
+    h4 { font-size: 0.75rem; margin-bottom: 0.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+
+    p { margin-bottom: 1rem; font-size: 0.97rem; }
+    strong { font-weight: 700; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
+
+    ul { padding-left: 1.4rem; margin-bottom: 1rem; }
+    ul li { font-size: 0.97rem; margin-bottom: 0.35rem; }
+    ul ul { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+
+    /* ─── Layout ───────────────────────────────────────────────────────────── */
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ─── Cover ────────────────────────────────────────────────────────────── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover h1 {
+      color: var(--white);
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── Table of Contents ────────────────────────────────────────────────── */
+    nav.toc {
+      background: var(--gray-bg);
+      border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+    }
+    nav.toc h4 {
+      margin-bottom: 0.75rem;
+      color: var(--black);
+    }
+    nav.toc ol {
+      padding-left: 1.2rem;
+      column-count: 2;
+      column-gap: 2rem;
+    }
+    nav.toc ol li {
+      font-size: 0.88rem;
+      margin-bottom: 0.3rem;
+      break-inside: avoid;
+    }
+    nav.toc ol li a {
+      color: var(--text);
+      font-weight: 600;
+    }
+    nav.toc ol li a:hover { color: var(--green); text-decoration: none; }
+
+    /* ─── Section Labels ───────────────────────────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.3rem;
+    }
+
+    /* ─── Intro Block ──────────────────────────────────────────────────────── */
+    .intro-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--green);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+    .intro-block p:last-child { margin-bottom: 0; }
+
+    /* ─── Attributes / Cards Grid ──────────────────────────────────────────── */
+    .attributes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .attr-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--black);
+      padding: 1.25rem 1.4rem;
+    }
+    .attr-card h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--green);
+      margin-bottom: 0.3rem;
+    }
+    .attr-card p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .attr-card ul { padding-left: 1.2rem; }
+    .attr-card ul li { font-size: 0.88rem; }
+
+    /* ─── Wins Cards ───────────────────────────────────────────────────────── */
+    .wins-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .win-card {
+      background: var(--bg-section);
+      border-top: 4px solid var(--green);
+      padding: 1.25rem 1.2rem;
+    }
+    .win-card .win-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .win-card p { font-size: 0.88rem; color: var(--text); margin-bottom: 0; }
+
+    /* ─── Responsibility Blocks ────────────────────────────────────────────── */
+    .responsibility-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--black);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .responsibility-block h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--black);
+      margin-bottom: 0.6rem;
+    }
+    .responsibility-block ul li { font-size: 0.92rem; }
+
+    /* ─── Order of Service Table ───────────────────────────────────────────── */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+    }
+    .schedule-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.6rem 0.9rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.9rem;
+      text-align: center;
+      vertical-align: top;
+    }
+    .schedule-table .time-cell {
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+    .schedule-table .label-cell {
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    /* ─── Pathway Table ────────────────────────────────────────────────────── */
+    .pathway-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .pathway-table tr { border-bottom: 1px solid var(--border); }
+    .pathway-table td {
+      padding: 0.85rem 1rem;
+      vertical-align: middle;
+    }
+    .pathway-table .step-cell {
+      background: var(--black);
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-align: center;
+      width: 90px;
+    }
+    .pathway-table .step-cell.secondary {
+      background: var(--bg-section);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+    .pathway-table .action-cell {
+      font-weight: 700;
+      font-size: 1rem;
+      padding-left: 1.5rem;
+      width: 180px;
+    }
+    .pathway-table .detail-cell {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ─── Role Cards (3-col) ───────────────────────────────────────────────── */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .role-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .role-card-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .role-card-body {
+      padding: 1rem;
+    }
+    .role-card-body h4 {
+      font-size: 0.72rem;
+      color: var(--green);
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+      margin-top: 0.6rem;
+    }
+    .role-card-body h4:first-child { margin-top: 0; }
+    .role-card-body ul {
+      padding-left: 1.1rem;
+      margin-bottom: 0;
+    }
+    .role-card-body ul li { font-size: 0.85rem; margin-bottom: 0.25rem; }
+
+    /* ─── Guideline Sections ───────────────────────────────────────────────── */
+    .guideline-intro {
+      font-size: 0.97rem;
+      margin-bottom: 1.5rem;
+    }
+    .guideline-subsection {
+      margin-bottom: 1.5rem;
+    }
+    .guideline-subsection h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--green);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── Tip Blocks ───────────────────────────────────────────────────────── */
+    .tip-block {
+      background: var(--bg-callout-broadcast);
+      border-left: 4px solid var(--green);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+    }
+    .tip-block h4 {
+      font-size: 0.75rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+    .tip-block ul { padding-left: 1.2rem; margin-bottom: 0; }
+    .tip-block ul li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .tip-block ul ul { margin-top: 0.2rem; }
+    .tip-block ul ul li { font-size: 0.87rem; color: var(--muted); }
+
+    /* ─── Tour Talking Points ──────────────────────────────────────────────── */
+    .tour-area {
+      margin-bottom: 1.25rem;
+    }
+    .tour-area h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+    .tour-area ul { padding-left: 1.2rem; }
+    .tour-area ul li { font-size: 0.9rem; font-style: italic; color: var(--muted); margin-bottom: 0.3rem; }
+
+    /* ─── Leadership Org Table ─────────────────────────────────────────────── */
+    .org-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .org-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+    }
+    .org-table .role-name {
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-align: center;
+      width: 40%;
+    }
+    .org-table .role-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: var(--bg-section);
+      width: 30%;
+    }
+
+    /* ─── Vision & Values ──────────────────────────────────────────────────── */
+    .vision-statement {
+      font-size: 1.05rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text);
+      border-left: 5px solid var(--green);
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      background: var(--bg-section);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .value-item {
+      padding: 0.85rem 1rem;
+      background: var(--bg-section);
+      border-left: 4px solid var(--black);
+    }
+    .value-item .value-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--green);
+      margin-bottom: 0.15rem;
+    }
+    .value-item .value-desc {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    /* ─── Purpose Block ────────────────────────────────────────────────────── */
+    .purpose-block {
+      background: var(--black);
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .purpose-block .purpose-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .purpose-block p {
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+
+    /* ─── Note Block ───────────────────────────────────────────────────────── */
+    .note-block {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--black);
+      padding: 0.75rem 1.25rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .cover h1 { font-size: 2.4rem; }
+      nav.toc ol { column-count: 1; }
+      .attributes-grid { grid-template-columns: 1fr; }
+      .wins-grid { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .cover h1 { font-size: 2rem; }
+      .page-wrap { padding: 0 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  COVER                                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Connection Team<br>Playbook</h1>
+    <p class="subtitle">Guest Experience &amp; Hospitality Guide</p>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- ─── Table of Contents ──────────────────────────────────────────────── -->
+    <nav class="toc">
+      <h4>Table of Contents</h4>
+      <ol>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#expectations">Expectations</a></li>
+        <li><a href="#wins">Wins</a></li>
+        <li><a href="#responsibilities">Responsibilities</a></li>
+        <li><a href="#order-of-service">Order of Service</a></li>
+        <li><a href="#connection-pathway">Connection Pathway Overview</a></li>
+        <li><a href="#positions-roles">Team Positions &amp; Roles</a></li>
+        <li><a href="#outdoor-host">Outdoor Host Guidelines</a></li>
+        <li><a href="#door-greeter">Door Greeter Guidelines</a></li>
+        <li><a href="#guest-experience">Guest Experience Guidelines</a></li>
+        <li><a href="#leadership">Leadership Support Structure</a></li>
+        <li><a href="#vision-values">Vision &amp; Values</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  INTRODUCTION                                                        -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="intro">
+      <div class="section-label">Welcome</div>
+      <h2>Introduction</h2>
+      <div class="intro-block">
+        <p>We're so excited to have you on the team! All of our serve teams are vital in making people feel welcome and comfortable at our church. Please take some time to review this playbook. The information listed here is designed to equip you to host with hospitality and excellence.</p>
+        <p>Our hope is that your smile, friendly face and sincere personality contribute to the life-giving atmosphere we want every person to experience at The Life Church.</p>
+      </div>
+      <p>We lead more effectively when we know what is expected of us. Clarifying expectations reduces stress, brings focus to action and makes teams more productive. These expectations are laid out in three key areas: <strong>Expectations</strong>, <strong>Wins</strong> and <strong>Responsibilities</strong>.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  EXPECTATIONS                                                        -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="expectations">
+      <div class="section-label">Standards</div>
+      <h2>Expectations</h2>
+      <div class="attributes-grid">
+
+        <div class="attr-card">
+          <h3>Personal</h3>
+          <p>Consistently seek personal growth and development:</p>
+          <ul>
+            <li>Pursue a relationship with God strengthened by daily Bible reading and prayer.</li>
+            <li>Commit to attending one service and serving one service.</li>
+            <li>Commit to ongoing team training and active participation in the life of the campus.</li>
+          </ul>
+        </div>
+
+        <div class="attr-card">
+          <h3>Team</h3>
+          <p>Faithfully serve God's House and others:</p>
+          <ul>
+            <li>Show up on time, with a great attitude and meet someone new.</li>
+            <li>Stay focused on guests when serving.</li>
+            <li>Pray for your team members, leaders and pastors.</li>
+            <li>Be open to building genuine relationships with others on the team.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  WINS                                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="wins">
+      <div class="section-label">Goals</div>
+      <h2>Wins</h2>
+      <p>Every person works together to create an amazing guest experience. When one team member wins, the whole team wins! By accomplishing at least one of these things each weekend, you help the team win.</p>
+      <div class="wins-grid">
+
+        <div class="win-card">
+          <div class="win-label">Meaningful Connection</div>
+          <p>Engage in a meaningful connection with someone new each week — a first time guest or someone new to the church you haven't met before.</p>
+        </div>
+
+        <div class="win-card">
+          <div class="win-label">Wow Moment</div>
+          <p>Create a WOW MOMENT for someone. Go the extra mile to make their experience genuinely memorable.</p>
+        </div>
+
+        <div class="win-card">
+          <div class="win-label">Info Card</div>
+          <p>Capture contact information on an INFO CARD to bring new guests into the Connection Pathway or help sign up a guest to take their Next Step.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  RESPONSIBILITIES                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="responsibilities">
+      <div class="section-label">Commitments</div>
+      <h2>Responsibilities</h2>
+      <p>The responsibilities outlined below clarify the "what" and "when" of each role and when executed help create productive and healthy teams. Team members should be fully committed to and comfortable with the expectations below.</p>
+
+      <div class="responsibility-block">
+        <h3>During the Week</h3>
+        <ul>
+          <li>Read weekly Team Leader communication regarding rosters, service flow, weekend elements and upcoming events.</li>
+          <li>Use Planning Center Online to confirm or decline your rostered position for the weekend. Communicate with your Team Leader if your schedule changes.</li>
+          <li>Connect with your Team Leader weekly for updates and any information you may need to make the weekend great.</li>
+          <li>Send follow-up communication to guests that you interacted with during the weekend service <em>(Fresh Start and Discovery potentials)</em>.</li>
+        </ul>
+      </div>
+
+      <div class="responsibility-block">
+        <h3>On the Weekend</h3>
+        <ul>
+          <li>Attend a service and serve in a service.</li>
+          <li>Check in with your Team Leader upon arrival and participate in the team touchdown.</li>
+          <li>Make sure your area of the church is in excellent order and ready for guests 30 minutes before the start of service.</li>
+          <li>Dress appropriately by being neat and clean in your appearance.</li>
+          <li>Smile a lot!</li>
+          <li>Proactively initiate conversations with people you don't know and look for opportunities to serve them.</li>
+          <li>Share good reports to encourage your team.</li>
+        </ul>
+      </div>
+
+      <div class="responsibility-block">
+        <h3>Ongoing — Monthly / Quarterly</h3>
+        <ul>
+          <li>Quarterly 1-on-1s with your Team Leader.</li>
+          <li>Attend monthly campus all-team volunteer rallies.</li>
+          <li>Attend all team training sessions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  ORDER OF SERVICE                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="order-of-service">
+      <div class="section-label">Timeline</div>
+      <h2>Order of Service</h2>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th colspan="2">Before Service</th>
+            <th colspan="4">During Service</th>
+            <th>After Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-cell">1 hr before</td>
+            <td class="time-cell">30 mins before</td>
+            <td class="time-cell">21 mins</td>
+            <td class="time-cell">40–45 mins</td>
+            <td class="time-cell">5 mins</td>
+            <td class="time-cell">—</td>
+            <td class="time-cell">15 mins</td>
+          </tr>
+          <tr>
+            <td class="label-cell">Check In</td>
+            <td class="label-cell">Guest Interactions</td>
+            <td class="label-cell">Worship Begins</td>
+            <td class="label-cell">Welcome / Offering / Message</td>
+            <td class="label-cell">Fresh Start Prayer</td>
+            <td class="label-cell">—</td>
+            <td class="label-cell">Service Ends / Exits</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  CONNECTION PATHWAY OVERVIEW                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="connection-pathway">
+      <div class="section-label">Framework</div>
+      <h2>Connection Pathway Overview</h2>
+      <p>The Connection Pathway is a series of predetermined, authentic experiences designed to help guests feel welcomed, find community and take their next step into a Life Group or Discovery.</p>
+
+      <table class="pathway-table">
+        <tbody>
+          <tr>
+            <td class="step-cell">1st<br>Visit</td>
+            <td class="action-cell">Show Hospitality</td>
+            <td class="detail-cell">Identify guests, tour the building, capture info</td>
+          </tr>
+          <tr>
+            <td class="step-cell secondary">Follow Up</td>
+            <td class="action-cell" style="font-size:0.9rem; font-weight:500;">Text from Campus Pastor inviting to 2nd visit and gift</td>
+            <td class="detail-cell">Text from team member to follow up and give details for 2nd visit</td>
+          </tr>
+          <tr>
+            <td class="step-cell">2nd<br>Visit</td>
+            <td class="action-cell">Connect to Community</td>
+            <td class="detail-cell">Give them a gift, meet team members, talk about Next Steps</td>
+          </tr>
+          <tr>
+            <td class="step-cell secondary">Next Steps</td>
+            <td class="action-cell" style="font-size:0.9rem; font-weight:500;">Once 2nd visit is completed, moved into Next Steps pathway</td>
+            <td class="detail-cell">Next Steps team will communicate about the upcoming Discovery classes</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  TEAM POSITIONS AND ROLES                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="positions-roles">
+      <div class="section-label">Structure</div>
+      <h2>Team Positions &amp; Roles</h2>
+      <div class="role-grid">
+
+        <div class="role-card">
+          <div class="role-card-header">Outdoor Host</div>
+          <div class="role-card-body">
+            <h4>Locations</h4>
+            <ul>
+              <li>Parking lot entrances</li>
+              <li>Preferred parking areas</li>
+              <li>Crosswalks &amp; driveways</li>
+              <li>Parking lot attendants</li>
+            </ul>
+            <h4>Responsibilities</h4>
+            <ul>
+              <li>Smile and wave as people enter the parking lot</li>
+              <li>Direct guests to preferred parking areas</li>
+              <li>Manage traffic flow upon entrance/exit</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="role-card-header">Door Greeter</div>
+          <div class="role-card-body">
+            <h4>Locations</h4>
+            <ul>
+              <li>Main entry/exit doors</li>
+              <li>Auditorium doors</li>
+            </ul>
+            <h4>Responsibilities</h4>
+            <ul>
+              <li>Greeting everyone with a smile</li>
+              <li>Opening doors for our guests</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="role-card-header">Guest Experience</div>
+          <div class="role-card-body">
+            <h4>Locations</h4>
+            <ul>
+              <li>"New Here" Stations</li>
+              <li>High-traffic areas such as entrances and café</li>
+            </ul>
+            <h4>Responsibilities</h4>
+            <ul>
+              <li>Provide a 5-star hosting experience for First Time Guests and those who are new</li>
+              <li>Capture guest info</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  OUTDOOR HOST GUIDELINES                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="outdoor-host">
+      <div class="section-label">Role Guide</div>
+      <h2>Outdoor Host Guidelines</h2>
+      <p class="guideline-intro">Outdoor Hosts have the unique opportunity to be the first contact for our guests, as well as the last team members our guests interact with as they leave. We want both impressions to be positive and memorable.</p>
+
+      <div class="guideline-subsection">
+        <h3>Positions</h3>
+        <p>Outdoor Hosts will be positioned in strategic locations around the parking lot to greet guests as they arrive and walk in and out of the church.</p>
+        <ul>
+          <li>Entrance/Exit, Parking Lot Attendants, Preferred Parking, Crosswalks &amp; Driveways</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Provide a Welcoming Environment</h3>
+        <p>We greet our guests first with a friendly smile and a wave before we direct them where to go.</p>
+        <ul>
+          <li>Be available to address any questions that guests may have as they drive or walk through the parking lot.</li>
+          <li>Be proactive. Ask if a guest needs assistance. Be the first person to initiate a conversation as they exit their vehicle.</li>
+          <li>On rainy days, we serve our guests by assisting those that do not have umbrellas. If it is raining, meet guests in their car, hold an umbrella and walk them to the door. We may get wet, but it is important that our guests stay dry.</li>
+          <li>Provide a clean and safe environment in the areas outside the church building by collecting any trash or debris in the parking lot.</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Traffic Control</h3>
+        <p>Outdoor Hosts serve to improve the experience of our guests by safely and efficiently directing cars as they arrive and exit our lot. We direct guests with a friendly voice and body language and then with clear hand motions or light wands.</p>
+        <ul>
+          <li>As cars arrive, direct them into open parking spots. As the lot fills, coordinate with the team to direct cars to overflow parking.</li>
+          <li>Control the flow of cars through walking areas for the safety of our guests on foot as they enter and exit the building.</li>
+          <li>Manage cars as they exit to control the flow of traffic in the parking lot.</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Monitor and Control of Parking Lot</h3>
+        <p>Outdoor Hosts serve to identify and resolve any problems or concerns that may impact our guest experience as they arrive at church.</p>
+        <ul>
+          <li>Maintain awareness of any situations that guests may have in the parking lot such as flat tires or dead batteries, and be ready to assist.</li>
+          <li>Provide visibility to any safety concerns around the outside of the church.</li>
+          <li>Inform Safety Team of any suspicious or unusual behavior in the parking lot.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  DOOR GREETER GUIDELINES                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="door-greeter">
+      <div class="section-label">Role Guide</div>
+      <h2>Door Greeter Guidelines</h2>
+      <p class="guideline-intro">One of the primary roles of the Connection Team is to greet our guests with a smile at the exterior doors of the building and welcome guests into the auditorium. Many times, Door Greeters may be the first impression or only personal interaction for a guest.</p>
+
+      <div class="guideline-subsection">
+        <h3>Positions</h3>
+        <ul>
+          <li>Door Greeters are positioned at the <strong>main entry/exit doors</strong> to greet our guests and serve in conjunction with our Outdoor Hosts. On rainy days, Door Greeters assist our Outdoor Hosts with umbrellas to ensure our guests stay dry until they enter the building.</li>
+          <li>Door Greeters are positioned at the <strong>auditorium doors</strong> to greet our guests, assist ushers in managing entry points and hand out pre/post service handouts when needed (invite cards, event cards and special elements).</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Provide a Welcoming Environment</h3>
+        <ul>
+          <li>We greet guests with a friendly smile as they enter our building.</li>
+          <li>Guest Experience Hosts &amp; Next Steps Team members are also positioned in strategic locations inside the building to help welcome our guests.</li>
+          <li>Be proactive and initiate conversations. Ask guests if they need assistance. Go the extra mile to create a WOW moment.</li>
+          <li>It is important to keep our phones in our pockets so that we are not distracted. We keep our eyes up and focused on guests that are arriving.</li>
+          <li>It's great to catch up with friends on the team but our primary focus is on guests. While serving, refrain from huddling up with other team members or having deep conversations that could distract you from welcoming guests as they arrive.</li>
+          <li>Door Greeters are typically the last team members our guests see when they exit the building. We want the last impression to be a positive and memorable one.</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Tips for Interacting with Guests &amp; Attenders</h3>
+
+        <div class="tip-block">
+          <h4>Before Service</h4>
+          <ul>
+            <li>Be on the lookout for first-time guests. New guests may:
+              <ul>
+                <li>Park in the preferred parking areas.</li>
+                <li>Look lost or confused.</li>
+                <li>Be overdressed.</li>
+                <li>Be holding a child(ren) and not know where to go.</li>
+              </ul>
+            </li>
+            <li>Enthusiastically welcome guests by using phrases like:
+              <ul>
+                <li>"Welcome to The Life Church!"</li>
+                <li>"We are so glad you are here with us!"</li>
+              </ul>
+            </li>
+            <li>Initiate conversation by greeting guests appropriately. Introduce yourself and ask questions:
+              <ul>
+                <li>"How long have you been coming to The Life Church?"</li>
+                <li>"Is there anything we can help you find?"</li>
+              </ul>
+            </li>
+            <li>Always be on the lookout for an opportunity to create a WOW moment:
+              <ul>
+                <li>Offer to buy them a drink at Press Café.</li>
+                <li>Help them get comfortable checking their children into Kids Life.</li>
+                <li>Introduce them to someone else that might have something in common with them.</li>
+              </ul>
+            </li>
+            <li>Instead of pointing, we always walk with guests to their location.</li>
+          </ul>
+        </div>
+
+        <div class="tip-block">
+          <h4>After Service</h4>
+          <ul>
+            <li>Be on the lookout for guests you met before service to follow up with them. Ask them:
+              <ul>
+                <li>"What did you think about your experience with us today?"</li>
+                <li>"Did you get a chance to let us know you were here by filling out one of our info cards?"</li>
+              </ul>
+            </li>
+            <li>Send guests off enthusiastically. Use phrases like:
+              <ul>
+                <li>"Thanks for joining us today!"</li>
+                <li>"See you next week!"</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  GUEST EXPERIENCE GUIDELINES                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="guest-experience">
+      <div class="section-label">Role Guide</div>
+      <h2>Guest Experience Guidelines</h2>
+      <p class="guideline-intro">The Guest Experience role is specifically focused on connecting with those who are new. We want to steward the guests that God sends to us by hosting them on the weekends and making them feel like part of the family. Our main goal is to help guests become contributors by making The Life Church their home.</p>
+
+      <div class="guideline-subsection">
+        <h3>Positions</h3>
+        <ul>
+          <li>Guest Experience Hosts are positioned just inside or outside the <strong>main entry/exit doors</strong> to greet our guests and serve in conjunction with our Door Greeters. If a greeter identifies a First Time Guest, they will make a "handoff" by introducing them to a Guest Experience Host who will connect with them, help them fill out an info card, provide a tour and help them find seats.</li>
+          <li>Guest Experience Hosts are positioned at the <strong>"New Here" Stations</strong>. When a guest stops at a "New Here" Station, the Guest Experience Host greets them, escorts them to Kids Life Guest Services (if applicable), helps them fill out an info card and then walks them into the auditorium to find seats.</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Provide a Welcoming Environment</h3>
+        <ul>
+          <li>We want to try to identify as many new people as possible on their <strong>first visit</strong> so that we can provide a first-class service experience to them and their family. They may self-identify by parking in the preferred parking area or coming to the "New Here" Station. You may also identify a first time guest by initiating a conversation with them.</li>
+          <li>Our goal for guests on their <strong>second visit</strong> is to help them get connected to a community by taking a Next Step. On this visit, we want to make sure our guest receives their gift and we want to connect them to others by helping them sign up for a Life Group or Discovery.</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Tips for Hosting a Guest on the First Visit</h3>
+
+        <div class="tip-block">
+          <h4>Initiate Conversation</h4>
+          <ul>
+            <li>Lead with a compliment — they can be disarming and make room for a conversation to start on a positive note:
+              <ul>
+                <li>"Good morning, you have such a beautiful family! We are so glad to have you with us this morning."</li>
+                <li>"Hey, I'm ___. It's nice to meet you. I really like your [shirt/shoes]. Where did you get them?"</li>
+              </ul>
+            </li>
+            <li>Ask open-ended questions that allow guests to tell you whether it is their first time or not. Look for "tell me more" opportunities and let the guest do as much of the talking as possible.</li>
+            <li>"Good morning, we are so glad to have you with us today. I don't believe I've had the opportunity to meet you yet. I'm [name] — how long have you been a part of the church?"</li>
+          </ul>
+        </div>
+
+        <div class="tip-block">
+          <h4>Give Them a Tour</h4>
+          <ul>
+            <li>Once you have identified the person as a guest, offer to give them a tour of the building. The goal is to show the guests around common spaces and to connect/introduce them to at least one staff member and/or one volunteer.</li>
+            <li>As you learn things about the guest, be thinking about someone to connect them with based on what you are learning. When you see that person, introduce them.</li>
+          </ul>
+        </div>
+
+        <div class="tip-block">
+          <h4>Ask Them to Fill Out an Info Card</h4>
+          <ul>
+            <li>Once you have a meaningful conversation with our guests, ask them to fill out an info card so we know that they visited today.</li>
+            <li>"Would you mind taking a moment to fill out an info card to let our team know that you were here with us today?"</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Tips for Hosting a Guest on the Second Visit</h3>
+        <ul>
+          <li>Each week, there is a list of people who are set to return or have acknowledged they are returning for their second visit.</li>
+          <li>Ensure there are gifts available at the "New Here" Stations.</li>
+          <li>Be on the lookout for people you met last week. Some returning guests may stop by the "New Here" Stations on their own, but not all of them will.</li>
+          <li>On your way to the "New Here" Station or after connecting with the guest and presenting the gift, continue having a conversation to identify what Next Step is best for the guest:
+            <ul>
+              <li>"Have you heard about any Life Groups that interest you?"</li>
+              <li>"Has anyone taken a moment to talk with you about Discovery?"</li>
+              <li>"Hey [name], I would like to introduce you to my new friend [name]. He/she is really interested in signing up for or learning more about Discovery or Life Groups."</li>
+            </ul>
+          </li>
+          <li>The win is to help them get signed up, so they can experience community.</li>
+        </ul>
+      </div>
+
+      <div class="guideline-subsection">
+        <h3>Talking Points on the Tour</h3>
+        <p>As you walk a guest through the building, use these statements to highlight important areas of the building along with our Vision and Values.</p>
+
+        <div class="tour-area">
+          <h4>Commons / Press Café</h4>
+          <ul>
+            <li>Our commons area is a great space to hang out and connect with friends and new people. We actually encourage people to arrive early and stay awhile after service ends.</li>
+            <li>Feel free to bring your drinks into the auditorium and enjoy them during our services.</li>
+          </ul>
+        </div>
+
+        <div class="tour-area">
+          <h4>Next Generation Area</h4>
+          <ul>
+            <li>One of our core values is the Next Generation.</li>
+            <li>All of our classrooms have age-specific lessons so children can learn and experience God in a safe and fun environment, at a level they can understand.</li>
+            <li>Our teachers have background checks, are interviewed and well-trained before they serve in a classroom. Safety team members are assigned to this area to provide an added layer of safety.</li>
+            <li>When kids are checked in, each child receives a name tag and their parent/guardian receives a matching tag used at pick up to ensure that each child is safely connected back to their family once service ends.</li>
+            <li>On Wednesdays, Axis — our student ministry for 6th–12th graders — meets at (location).</li>
+          </ul>
+        </div>
+
+        <div class="tour-area">
+          <h4>Auditorium</h4>
+          <ul>
+            <li>We try to keep our services to about an hour and fifteen minutes because we value your time.</li>
+            <li>Our worship is passionate and responsive because we believe that God deserves our passion and zeal.</li>
+            <li>Our services are high-energy and have special lighting elements because we are Next Generation focused. We want our services to be engaging for young people so they are excited to come to church and bring their friends.</li>
+            <li>We teach in relevant topical series that are Bible-based and life-giving because our hope is that people walk away saying "I'm glad I came to church today."</li>
+          </ul>
+        </div>
+
+        <div class="tour-area">
+          <h4>Discovery</h4>
+          <ul>
+            <li>We have dedicated a space at each of our locations where hundreds of people throughout the year learn more about The Life Church, meet our leaders and other new people and find out how to get involved.</li>
+          </ul>
+        </div>
+
+        <div class="tour-area">
+          <h4>Outreach</h4>
+          <ul>
+            <li>On Thursdays, our outreach team uses this space to fill bags full of food. We partner with local area schools to distribute the bags in zip codes where there is a high rate of food insecurity.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  LEADERSHIP SUPPORT STRUCTURE                                        -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="leadership">
+      <div class="section-label">Organization</div>
+      <h2>Leadership Support Structure</h2>
+      <p>Everyone plays a role in the leadership of the church — from the Lead Pastors to the congregation. Our desire is that every person is connected in relationship to a leader who provides care and support as well as ongoing development.</p>
+
+      <table class="org-table">
+        <tbody>
+          <tr>
+            <td class="role-desc">"Lead &amp; Feed" — Set the Vision, Establish Culture, Communicate</td>
+            <td class="role-name">Lead Pastor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-name">Campus Pastor</td>
+            <td class="role-desc">Carry the Culture, Care for the Community, Grow the Church</td>
+          </tr>
+          <tr>
+            <td class="role-desc">Establish the direction within a ministry area at a campus (Connection, Kids Life, Worship, Axis)</td>
+            <td class="role-name">Campus Ministry Director</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-name">Captain</td>
+            <td class="role-desc">Assist Campus Ministry Director within a ministry area; provide coaching, care &amp; development to Team Leaders at a service</td>
+          </tr>
+          <tr>
+            <td class="role-desc">Building the team, caring for volunteers, leading the charge within a ministry area at a service</td>
+            <td class="role-name">Team Leader &amp; Assistant Team Leads</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-name">Team Members</td>
+            <td class="role-desc">Execute consistently excellent and inspiring services</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="purpose-block">
+        <div class="purpose-label">Your Leader</div>
+        <p>Connection Team Leader</p>
+      </div>
+      <div class="purpose-block" style="margin-top:-1rem;">
+        <div class="purpose-label">Your Purpose</div>
+        <p>Care for the guests that God sends to us by hosting them on the weekends, making them feel like part of the family and being life-giving and encouraging.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  VISION & VALUES                                                     -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="vision-values">
+      <div class="section-label">Foundation</div>
+      <h2>Our Vision</h2>
+      <div class="vision-statement">
+        We are one church in many locations — dynamic, Spirit-filled and diverse — serving people, developing leaders and impacting generations.
+      </div>
+
+      <div class="section-label">Foundation</div>
+      <h2>Our Aligning Values</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-name">Integrity</div>
+          <div class="value-desc">We serve Jesus and his church with integrity.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Diversity</div>
+          <div class="value-desc">We are building a house that looks like Heaven.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Hospitality</div>
+          <div class="value-desc">We make room for new people.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Generosity</div>
+          <div class="value-desc">We give generously to invest in changed lives.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Vision</div>
+          <div class="value-desc">We are more focused on where we're going than where we've been.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Passion</div>
+          <div class="value-desc">We put our heart and soul into all we do.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Excellence</div>
+          <div class="value-desc">We always bring our best.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Honor</div>
+          <div class="value-desc">We honor all people.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Prayer</div>
+          <div class="value-desc">We make prayer a priority.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-name">Gratitude</div>
+          <div class="value-desc">We enjoy the journey.</div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.page-wrap -->
+
+</body>
+</html>
