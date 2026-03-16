@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Life Church — Worship Playbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --bg-callout-broadcast: #f2f8f3;
+      --bg-callout-receiving: #f9f9f9;
+      --border-broadcast: #589a61;
+      --border-receiving: #c4c4c4;
+      --navy:       #000000;
+      --navy-light: #222222;
+      --accent:     #589a61;
+      --accent-dim: #d6ecd9;
+      --radius:     4px;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ─── Typography ───────────────────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-weight: 900; line-height: 1.15; color: var(--black); font-family: var(--font); }
+
+    h1 { font-size: 2.8rem; letter-spacing: -1px; text-transform: uppercase; }
+    h2 { font-size: 1.6rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: -0.3px; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; font-weight: 700; }
+    h4 { font-size: 0.75rem; margin-bottom: 0.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+
+    p { margin-bottom: 1rem; font-size: 0.97rem; }
+    strong { font-weight: 700; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
+
+    /* ─── Layout ───────────────────────────────────────────────────────────── */
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ─── Cover ────────────────────────────────────────────────────────────── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover h1 {
+      color: var(--white);
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .cover .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── Table of Contents ────────────────────────────────────────────────── */
+    .toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.75rem 2rem;
+      margin-bottom: 3rem;
+    }
+    .toc h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gray); margin-bottom: 1rem; }
+    .toc ol { padding-left: 1.25rem; }
+    .toc li { margin-bottom: 0.4rem; font-size: 0.93rem; }
+    .toc a { color: var(--black); font-weight: 600; }
+    .toc a:hover { color: var(--green); }
+    .toc .sub { padding-left: 1rem; list-style: disc; margin-top: 0.3rem; }
+    .toc .sub li { font-size: 0.86rem; color: var(--muted); }
+    .toc .sub a { color: var(--muted); font-weight: 400; }
+    .toc .sub a:hover { color: var(--green); }
+
+    /* ─── Vision Table ─────────────────────────────────────────────────────── */
+    .vision-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .vision-table td {
+      padding: 1.2rem 1.5rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+    .vision-table tr:last-child td { border-bottom: none; }
+    .vision-table .label {
+      font-weight: 900;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      white-space: nowrap;
+      width: 130px;
+      background: var(--black);
+    }
+    .vision-table .value { color: var(--text); font-size: 0.95rem; }
+
+    /* ─── Attributes Grid ──────────────────────────────────────────────────── */
+    .attributes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .attr-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--black);
+      padding: 1.1rem 1.2rem;
+    }
+    .attr-card strong { display: block; font-size: 0.9rem; font-weight: 900; color: var(--black); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.3px; }
+    .attr-card span { font-size: 0.86rem; color: var(--muted); }
+    .attr-card ul { padding-left: 1.1rem; margin-top: 0.4rem; }
+    .attr-card li { font-size: 0.84rem; color: var(--muted); margin-bottom: 0.25rem; }
+
+    /* ─── Role Cards ───────────────────────────────────────────────────────── */
+    .role-card {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .role-card .role-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 1.4rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .role-card .role-header h3 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+    .role-card .role-body { padding: 1.3rem 1.5rem; }
+    .role-card .role-body > p { font-size: 0.92rem; margin-bottom: 0.75rem; color: var(--gray); font-family: var(--font-serif); font-style: italic; font-weight: 300; }
+    .role-card ul { padding-left: 1.2rem; }
+    .role-card li { font-size: 0.91rem; margin-bottom: 0.4rem; }
+
+    /* ─── Training Table ───────────────────────────────────────────────────── */
+    .training-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.92rem;
+    }
+    .training-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .training-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .training-table tr:last-child td { border-bottom: none; }
+    .training-table tr:nth-child(even) td { background: var(--bg-section); }
+    .training-table .week { font-weight: 700; color: var(--black); white-space: nowrap; }
+
+    /* ─── Callout Blocks ───────────────────────────────────────────────────── */
+    .callout {
+      padding: 0.9rem 1.2rem;
+      margin: 0.75rem 0;
+      font-size: 0.88rem;
+    }
+    .callout-broadcast {
+      background: var(--bg-callout-broadcast);
+      border-left: 5px solid var(--green);
+    }
+    .callout-receiving {
+      background: var(--bg-section);
+      border-left: 5px solid var(--gray-light);
+    }
+    .callout strong { display: block; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.35rem; }
+    .callout-broadcast strong { color: var(--green-dark); }
+    .callout-receiving strong { color: var(--gray); }
+    .callout ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+    .callout li { margin-bottom: 0.2rem; }
+
+    /* ─── Inline note ──────────────────────────────────────────────────────── */
+    .note-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 0.8rem 1.1rem;
+      font-size: 0.87rem;
+      color: var(--text);
+      margin: 1rem 0;
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+
+    /* ─── Section Headings ─────────────────────────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── Sub-section heading ──────────────────────────────────────────────── */
+    .sub-heading {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      background: var(--green);
+      padding: 5px 12px;
+      display: inline-block;
+      margin: 1.5rem 0 1rem;
+    }
+
+    /* ─── Content list ─────────────────────────────────────────────────────── */
+    .content-list { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .content-list li { font-size: 0.93rem; margin-bottom: 0.5rem; line-height: 1.6; }
+    .content-list li ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+    .content-list li ul li { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.2rem; }
+
+    /* ─── Ordered steps ────────────────────────────────────────────────────── */
+    .steps-list { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .steps-list li { font-size: 0.93rem; margin-bottom: 0.4rem; }
+
+    /* ─── Dress code two-col ───────────────────────────────────────────────── */
+    .dress-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .dress-col {
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--black);
+      padding: 1rem 1.2rem;
+    }
+    .dress-col h4 { font-size: 0.75rem; color: var(--black); margin-bottom: 0.6rem; }
+    .dress-col ul { padding-left: 1.1rem; }
+    .dress-col li { font-size: 0.86rem; color: var(--muted); margin-bottom: 0.2rem; }
+
+    /* ─── Print ────────────────────────────────────────────────────────────── */
+    @media print {
+      body { font-size: 11pt; }
+      .cover { background: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .toc { break-after: page; }
+      .vision-table .label { background: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .sub-heading { background: #589a61 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: inherit; }
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      .attributes-grid { grid-template-columns: 1fr; }
+      .dress-grid { grid-template-columns: 1fr; }
+      .cover { padding: 3rem 1.5rem; }
+      .page-wrap { padding: 0 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  COVER                                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Worship Playbook</h1>
+    <p class="subtitle">Worship Team Guide</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  TABLE OF CONTENTS                                                      -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#cultural-identities">Cultural Identities</a></li>
+      <li><a href="#team-expectations">Team Expectations</a></li>
+      <li><a href="#team-roles">Team Roles</a>
+        <ul class="sub">
+          <li><a href="#campus-worship-leadership">Campus Worship Leadership</a></li>
+          <li><a href="#service-worship-leadership">Service Worship Leadership</a></li>
+        </ul>
+      </li>
+      <li><a href="#planning-development">Planning &amp; Development</a>
+        <ul class="sub">
+          <li><a href="#onboarding">Onboarding &amp; Team Development</a></li>
+          <li><a href="#workflow">Workflow &amp; Dashboard</a></li>
+          <li><a href="#equip">Equip</a></li>
+          <li><a href="#setlists">Setlists</a></li>
+          <li><a href="#planning-center">Planning Center Online</a></li>
+          <li><a href="#rostering">Rostering</a></li>
+          <li><a href="#rehearsals">Rehearsals</a></li>
+          <li><a href="#vitec">Vitec (Mid-South Only)</a></li>
+        </ul>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  INTRODUCTION                                                           -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="intro">
+    <div class="section-label">Introduction</div>
+    <h2>The Life Church Worship</h2>
+    <p>
+      Our hope is that everyone that walks through the doors of The Life Church would have a real encounter with God. We strive to create environments of spirit-filled worship and excellence to glorify God, through songs that are inspired by His word. We reflect the vision of our church through diversity, leadership, and passion.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  01. CULTURAL IDENTITIES                                                -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="cultural-identities">
+    <div class="section-label">01</div>
+    <h2>Cultural Identities</h2>
+    <p>Our goal is that every member of our Life Church Worship Team would embody these Cultural Identities. When planning, preparing and executing services or events, these attributes shape our approach and define our expectations for success.</p>
+
+    <div class="attributes-grid">
+
+      <div class="attr-card">
+        <strong>We Create Space for God to Create Moments</strong>
+        <ul>
+          <li>Through passion and creativity we create opportunities for people to experience God's presence.</li>
+          <li>Our goal is for people in any of our environments to feel inspired, encouraged, and refreshed. Every moment matters.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Life-Giving Atmosphere</strong>
+        <ul>
+          <li>On and off the platform, we cultivate a life-giving atmosphere through relationships. We say — "Ministry flows out of relationships." We are very intentional about creating moments for team members to connect and feel a sense of belonging.</li>
+          <li>Our culture is positive, respectful, and fun! We enjoy what we get to do each week and have fun doing it together.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>God's Presence</strong>
+        <ul>
+          <li>Every service represents an opportunity for someone to encounter God. We believe addictions can be broken, peace can be given, love can be felt, and people can be restored.</li>
+          <li>All worship team members live a life that is exemplary as a believer and pursue God's presence daily.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Humility</strong>
+        <ul>
+          <li>We leave drama and strife at the door. We believe it is a privilege to be on the stage and we thank God for choosing us.</li>
+          <li>Humility allows us to stay flexible. We are more focused on the overall vision of our church than our personal opinion.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Passion</strong>
+        <ul>
+          <li>We are more passionate about Jesus and the local church than anything else.</li>
+          <li>We put all of our heart into everything we do out of the overflow of a thriving relationship with Jesus Christ.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Creativity</strong>
+        <ul>
+          <li>God created us to be creative — creativity is a key part of what we do as a worship team.</li>
+          <li>We desire to keep things fresh, new and relevant by developing new ideas and tweaking old ideas for our worship experiences.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Grit</strong>
+        <ul>
+          <li>We commit as a team to hustle hard. We have a no-excuse mindset in everything we do.</li>
+          <li>There is an expectation every week that the team has exhausted every resource to pour themselves into our worship services. Listening, practicing, communicating — all part of making the weekend the best it can be.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Excellence</strong>
+        <ul>
+          <li>We give attention to detail for each instrument and vocal part. Our goal is to execute worship in a professional and God-honoring manner.</li>
+          <li>Excellence is not perfection, but requires us to bring our best.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Diversity</strong>
+        <ul>
+          <li>We are intentional about celebrating and including all kinds of people.</li>
+          <li>The goal of diversity is that your church reflects the community that you're in.</li>
+        </ul>
+      </div>
+
+      <div class="attr-card">
+        <strong>Development</strong>
+        <ul>
+          <li>We are proactive about improving our skills and execution. We also make a commitment to help others on our team to continue to grow and develop as musicians, singers and worship leaders.</li>
+          <li>Feedback is a tool for development. Culture is what you allow.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  02. TEAM EXPECTATIONS                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="team-expectations">
+    <div class="section-label">02</div>
+    <h2>Team Expectations</h2>
+    <p>As a worship team, we value each team member as a leader in our church. We get the opportunity to be on the platform each week leading people in worship. With that comes a set of expectations for everyone who serves on the worship team.</p>
+
+    <!-- Leadership Mindset -->
+    <div class="role-card">
+      <div class="role-header"><h3>Leadership Mindset</h3></div>
+      <div class="role-body">
+        <p>We hold ourselves to a higher standard — on and off stage. Leadership is a privilege, not an entitlement.</p>
+        <ul>
+          <li>Living above reproach — we desire that our team live what we teach by watching what we speak, social media posts, and how we live outside the church</li>
+          <li>Tithing and serving are essential components to being a leader at The Life Church</li>
+          <li>Completed Discovery</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Prioritize Weekly Rehearsals -->
+    <div class="role-card">
+      <div class="role-header"><h3>Prioritize Weekly Rehearsals</h3></div>
+      <div class="role-body">
+        <p>Rehearsal is how we honor the weekend and honor each other. Keep it open, come prepared.</p>
+        <ul>
+          <li>We ask that all worship team members keep rehearsal evenings open — this helps ensure the team is prepared and the weekend is strong</li>
+          <li>From time to time we may not have a rehearsal, but keep the mindset that we <strong>are</strong> meeting unless notified otherwise</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Planning Center Engagement -->
+    <div class="role-card">
+      <div class="role-header"><h3>Planning Center Engagement</h3></div>
+      <div class="role-body">
+        <p>Planning Center is how we communicate, schedule, and resource the team. Engage with it promptly and consistently.</p>
+        <ul>
+          <li><strong>Accepting and declining</strong> — please make every effort to accept or decline on Planning Center as soon as possible. If you decline, please give your reason</li>
+          <li>Set lists and resources are posted on Planning Center. Come prepared to rehearsal and/or service by knowing the lyrics and/or chord charts for that week's songs</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Campus Placement -->
+    <div class="role-card">
+      <div class="role-header"><h3>Open to Campus Placement Within Region</h3></div>
+      <div class="role-body">
+        <p>We are one team across multiple campuses. Flexibility is part of the role.</p>
+        <ul>
+          <li>We ask that you be flexible on what campus you serve</li>
+          <li>The need for vocals and band is different from campus to campus</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Dress Code -->
+    <div class="role-card">
+      <div class="role-header"><h3>Dress Code</h3></div>
+      <div class="role-body">
+        <p>Our standard is look professional. We're representing The Life Church and most importantly, God. We want to be full of life, casual, fun, stylish and sharp — never losing a sense of respect for the opportunity to be upfront. As leaders we never want our clothes to be a distraction.</p>
+
+        <div class="dress-grid">
+          <div class="dress-col">
+            <h4>Ladies</h4>
+            <ul>
+              <li>Clean clothes and shoes</li>
+              <li>No large holes</li>
+              <li>No flip flops or bare feet</li>
+              <li>No hats that cover your face</li>
+              <li>No t-shirts</li>
+              <li>No armpits showing</li>
+              <li>No tank tops or sleeveless shirts</li>
+              <li>No low cut shirts</li>
+              <li>No tight/clingy clothes</li>
+              <li>No sheer fabrics (without layers)</li>
+              <li>No midsection skin showing</li>
+              <li>No undergarments showing</li>
+              <li>No dresses or skirts (short or long)</li>
+              <li>If wearing leggings, wear a long shirt or dress that hits past your hips</li>
+              <li>Hair should be natural looking and not distracting</li>
+              <li>No distracting nail polish or over-embellishments</li>
+            </ul>
+          </div>
+          <div class="dress-col">
+            <h4>Men</h4>
+            <ul>
+              <li>Clean clothes and shoes</li>
+              <li>No large holes</li>
+              <li>No hats that cover your face</li>
+              <li>No flip flops or bare feet</li>
+              <li>No hats for vocals (band may wear hats)</li>
+              <li>No t-shirts</li>
+              <li>No armpits showing</li>
+              <li>No boxers or mid-section showing</li>
+              <li>Hair should be natural looking and not distracting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dress-col" style="margin-top:0.75rem;">
+          <h4>Other Things to Avoid</h4>
+          <ul>
+            <li>Busy or distracting patterns</li>
+            <li>T-shirts with large or inappropriate graphics</li>
+          </ul>
+        </div>
+
+        <div class="note-block" style="margin-top:1rem;">
+          For Axis and other events, there may be exceptions to the above guidelines. It's each person's responsibility to touch base with their leader for these events. If there's any doubt in your mind, it's probably a good idea not to wear it. Have a "Plan B" option available and be intentional.
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  03. TEAM ROLES                                                         -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="team-roles">
+    <div class="section-label">03</div>
+    <h2>Team Roles</h2>
+
+    <!-- Campus Worship Leadership -->
+    <h3 id="campus-worship-leadership" style="margin-top:1.5rem; margin-bottom:1rem;">Campus Worship Leadership</h3>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Campus Worship Director</h3></div>
+      <div class="role-body">
+        <p>The point person for everything in the auditorium that affects the in-person service experience at a location. Their goal and responsibility is to own the service flow and ensure smooth transitions and great quality in the execution of services.</p>
+        <ul>
+          <li>Responsible for the look and feel of the worship service, including connecting with the media team on lighting, audio, and transitions with Vitec and/or MC moments</li>
+          <li>Coordinates with team leaders for each area — worship, media and audio — and connects with central teams as needed</li>
+          <li>Also responsible for AXIS worship and EQUIP training at their campus</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Campus Vocal Coordinator</h3></div>
+      <div class="role-body">
+        <p>Given the task of scheduling vocals by the campus worship leader. Also asked to coach during Equip. Can also be rostered as the Service Vocal Coordinator.</p>
+        <ul>
+          <li><strong>Diversity</strong> — make sure your team looks different from one another; think through diversity in age, ethnicity, gender, and development level</li>
+          <li><strong>Stage Presence &amp; Vocal Ability</strong> — blend your team based on strengths and style</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Campus Band Coordinator</h3></div>
+      <div class="role-body">
+        <p>Given the task of scheduling a band by the campus worship leader. Also a coach in Equip, working with other band coaches at a campus.</p>
+        <ul>
+          <li>Work with campus worship leader to develop new musicians</li>
+          <li>Think about creative music moments in the worship set</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Equip Coaches</h3></div>
+      <div class="role-body">
+        <p>People given the responsibility of leading and developing others in Equip. They serve by carrying the culture and heart of the worship team and imparting that into upcoming worship team members.</p>
+        <ul>
+          <li>Meeting one-on-one with their people in Equip</li>
+          <li>Providing life-giving feedback</li>
+          <li>Here to develop people, give opportunities, and set people up for a win</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Axis Worship Coordinator</h3></div>
+      <div class="role-body">
+        <p>Carries the same responsibilities and functions as the weekend team leads. This can be the Campus Worship Director or another leader in development that serves on the campus worship team.</p>
+      </div>
+    </div>
+
+    <!-- Service Worship Leadership -->
+    <h3 id="service-worship-leadership" style="margin-top:2rem; margin-bottom:1rem;">Service Worship Leadership</h3>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Worship Leader</h3></div>
+      <div class="role-body">
+        <p>Worship leaders at a campus are responsible for leading songs when scheduled by the campus worship director. They come prepared — knowing songs and how they want to execute them, whether that's changing keys, leading moments within a song, transitions, etc.</p>
+        <ul>
+          <li>May also be given additional responsibilities by the campus worship director for their campus</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Service Vocal Coordinator</h3></div>
+      <div class="role-body">
+        <p>Responsible for communicating details to the frontline vocalists for a service. Rostered by the Campus Vocal Coordinator for each service.</p>
+        <ul>
+          <li>Prepared by knowing vocal parts and working through parts with other frontline vocalists</li>
+          <li>Works through placement of vocals on the stage</li>
+          <li>Able to speak to other vocals in a positive and life-giving way</li>
+          <li>Knowledgeable of the songs and can speak up when something doesn't sound right</li>
+          <li>Can stay focused on the task at hand whether in rehearsal or in a service</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header"><h3>Service Music Director</h3></div>
+      <div class="role-body">
+        <p>The Music Director (MD) for a service is responsible for communicating details to the band. Must be prepared by knowing the dynamics of songs and able to walk the band through it.</p>
+        <ul>
+          <li>Able to speak to other musicians in a positive and life-giving way</li>
+          <li>Comes knowing their parts ahead of time with a good understanding of how songs are to be played overall</li>
+          <li>Knowledgeable of the songs and can speak up when something doesn't sound right</li>
+          <li>Can stay focused on the task at hand whether in rehearsal or in a service</li>
+          <li>Able to watch the worship leader for directions during songs while staying engaged in worship</li>
+          <li>Knows worship leader signals and can communicate them to the band</li>
+          <li>Has understanding of the Nashville number system</li>
+          <li>Speaks up during transitions and/or flow moments in worship</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  04. PLANNING AND DEVELOPMENT                                           -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="planning-development">
+    <div class="section-label">04</div>
+    <h2>Planning &amp; Development</h2>
+
+    <!-- ── Onboarding ──────────────────────────────────────────────────────── -->
+    <div id="onboarding">
+      <div class="sub-heading">Onboarding &amp; Team Development Tracking</div>
+
+      <p>Sign-ups are available via QR code (scan with your camera app) or online at <strong>thelifechurch.com/worship</strong>.</p>
+
+      <h3 style="margin-top:1.25rem; margin-bottom:0.5rem;">Step 1 — Worship Team Interest Form</h3>
+      <ul class="content-list">
+        <li>Sign-up is automatically sent to the Campus Worship Director</li>
+        <li>Audition information is automatically emailed to the applicant</li>
+        <li>Planning Center automatically creates a card for each person within workflows</li>
+      </ul>
+
+      <h3 style="margin-top:1.25rem; margin-bottom:0.5rem;">Step 2 — Campus Worship Workflow</h3>
+      <p style="font-size:0.9rem; color:var(--muted);">Applicants are processed through the following stages:</p>
+      <ol class="steps-list">
+        <li>Receive Interest Email</li>
+        <li>Welcome Personal Connection</li>
+        <li>Audition Process</li>
+        <li>Pastoral Approval</li>
+        <li>Communicate Next Step</li>
+        <li>Axis Equip</li>
+        <li>Weekend Equip</li>
+        <li>Complete Equip / Next Step Conversation</li>
+        <li>Axis Team</li>
+        <li>Weekend Team</li>
+        <li>Worship Leader / WL Equip</li>
+        <li>Choir Only (based on location)</li>
+        <li>"No" Audition / Past Team Members</li>
+      </ol>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Workflow & Dashboard ────────────────────────────────────────────── -->
+    <div id="workflow">
+      <div class="sub-heading">Workflow &amp; Dashboard</div>
+      <ul class="content-list" style="margin-top:1rem;">
+        <li>Each campus has their own workflow for onboarding and team tracking</li>
+        <li>Within the workflow, each team member has a card that helps track their growth and next steps — updated weekly</li>
+        <li>Dashboard is a quick sheet of growth across all campuses</li>
+      </ul>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Equip ───────────────────────────────────────────────────────────── -->
+    <div id="equip">
+      <div class="sub-heading">Equip</div>
+      <p style="margin-top:1rem;">Equip is our ongoing development system in which current and potential worship team members can be trained, coached and mentored to continually grow in their skill and confidence. These take place strategically throughout the year.</p>
+      <p>During Equip, team members work on stage presence and musicianship, as well as go through team expectations and service logistics. They are paired with a coach who walks with them through their training and gets to know them personally and spiritually. First Serve is determined by the coach and Equip leaders.</p>
+      <div class="note-block">See Equip curriculum for more information.</div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Setlists ────────────────────────────────────────────────────────── -->
+    <div id="setlists">
+      <div class="sub-heading">Setlists</div>
+      <p style="margin-top:1rem;">Worship is a key part of every weekend experience at The Life Church. We are very intentional about how we create setlists and the criteria we use when building a worship set. Strong sets start with good songs, so we are strategically selective on the front end as we choose new songs for our church environment.</p>
+
+      <h3 style="margin-top:1.5rem; margin-bottom:0.75rem;">Creating a Setlist</h3>
+      <p>As with the vision statement of our church — "dynamic, spirit-filled, and diverse" — we apply these same principles to the songs we choose for a setlist.</p>
+
+      <div class="attributes-grid" style="margin-top:1rem;">
+        <div class="attr-card">
+          <strong>Dynamics</strong>
+          <ul>
+            <li>Do the songs ebb and flow throughout the list?</li>
+            <li>Start with high energy in song 1 and flow smoothly to a slow, worshipful, powerful tone in the last song</li>
+            <li>High energy = songs people can clap or jump to</li>
+            <li>Worshipful = slower tempo with big moments as well as quiet moments to rest in God's presence</li>
+          </ul>
+        </div>
+        <div class="attr-card">
+          <strong>Spirit-Filled</strong>
+          <ul>
+            <li>What are the lyrics saying? Each song's lyrics should have a God-centered, biblically based message that points people to Jesus</li>
+            <li>If a song moves us in our personal worship time with God, that can serve as an indicator it will minister to others in our church family</li>
+          </ul>
+        </div>
+        <div class="attr-card">
+          <strong>Diverse</strong>
+          <ul>
+            <li>Setlists should be diverse in tempo and style — fresh and life-giving</li>
+            <li>Variation of male-led and female-led songs when possible</li>
+            <li>Pick songs from different styles — CCM, gospel, acoustic, EDM, and other genres</li>
+          </ul>
+        </div>
+        <div class="attr-card">
+          <strong>Choosing New Songs</strong>
+          <ul>
+            <li>In a typical month, 2 new songs are plugged in</li>
+            <li>New songs run two weeks on, one week break, one week on before entering normal rotation</li>
+            <li>Consider: female leads, gospel songs, high-energy songs, what the team is listening to personally, the current spiritual season</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.75rem; margin-bottom:0.75rem;">Implementing Setlists</h3>
+      <ul class="content-list">
+        <li>Setlists are planned regionally by the worship staff — all campuses do the same setlist</li>
+        <li>Campus Worship Directors are responsible for adding setlists into Planning Center (PCO)</li>
+        <li>Ableton tracks are made by a regional support person and distributed to campuses via hard drive or Dropbox</li>
+        <li>Keys of songs — choose keys that are singable for the auditorium as well as the worship leader. All changes to keys must be confirmed at least two days before a rehearsal or service</li>
+      </ul>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Planning Center Online ──────────────────────────────────────────── -->
+    <div id="planning-center">
+      <div class="sub-heading">Planning Center Online</div>
+      <p style="margin-top:1rem;">Planning Center Online (PCO) is the system your leader will use to schedule for a service and where you can find resources for songs. Your leader will add you to PCO and you will receive a welcome email. You will need to create a login with a username and password.</p>
+
+      <div class="role-card" style="margin-top:1.25rem;">
+        <div class="role-header"><h3>PCO Features</h3></div>
+        <div class="role-body">
+          <ul>
+            <li><strong>Profile</strong> — Change password, update profile information, and add a profile picture via the icon at the top right of the website</li>
+            <li><strong>My Schedule</strong> — Click this tab at the top left to see what services you've been scheduled for</li>
+            <li><strong>Email Requests</strong> — When scheduled, you'll receive an email to Accept or Decline; click "View Plan" for more details</li>
+            <li><strong>Declining</strong> — Always give a reason when declining. "Can't" or a blank space are not acceptable. A reason can be as simple as "Family Wedding," "Work," "Sick," or "Out of town" — this helps the team plan adjustments</li>
+            <li><strong>Block Out Dates</strong> — Under "My Schedule," use "+Add blockouts" to mark future dates when you know you'll be unavailable</li>
+            <li><strong>Mobile App</strong> — Search "Planning Center Services" in the App Store or Google Play. Access your schedule, resources, and plan details from your phone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Rostering ───────────────────────────────────────────────────────── -->
+    <div id="rostering">
+      <div class="sub-heading">Rostering</div>
+      <ul class="content-list" style="margin-top:1rem;">
+        <li>Plan for diversity in age, ethnicity, and gender</li>
+        <li>Consider band/vocal strengths as well as stage presence and energy level</li>
+        <li>Rostering is done a minimum of three weeks out</li>
+      </ul>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Rehearsals ──────────────────────────────────────────────────────── -->
+    <div id="rehearsals">
+      <div class="sub-heading">Rehearsals</div>
+      <p style="margin-top:1rem;">We value excellence in all of our services and we believe one way to achieve it is through weekly rehearsals when our team can come together to prepare for the weekend worship experience. Rehearsal is about the growth and chemistry of the team — it's not just about an individual role but how our roles affect other areas, such as audio training, live production, and creative collaboration.</p>
+      <p>Rehearsals occur weekly and typically take place on a weeknight. In the Mid-South, Thursdays have proven to be the best night based on proximity to the weekend and team availability.</p>
+
+      <h3 style="margin-top:1.25rem; margin-bottom:0.5rem;">Rehearsal Goals</h3>
+      <ul class="content-list">
+        <li>Practicing new songs or special elements for the coming weekend</li>
+        <li>Working on creative ideas within songs we do regularly:
+          <ul>
+            <li>Changing up instrumentation</li>
+            <li>Altering the backing tracks</li>
+            <li>Changing the format of the song structure</li>
+            <li>Adding an instrumental</li>
+            <li>Creating an open space (quiet moments)</li>
+            <li>Dropping music out to go a capella (with or without drums)</li>
+          </ul>
+        </li>
+        <li><strong>Rehearsal Management</strong> — We honor volunteers by starting and ending on time. Come prepared and use time wisely</li>
+        <li><strong>Rehearsing transitions</strong> — Transitions can make or break a setlist:
+          <ul>
+            <li>How are we going into a song?</li>
+            <li>How are we ending that song?</li>
+            <li>What are we doing between songs?</li>
+            <li>What segment comes after this song? (Always set up the Pastor or MC well)</li>
+            <li>Talking transitions should be kept to a minimum and well thought out</li>
+            <li>All transitions must be rehearsed in the full service run-through</li>
+          </ul>
+        </li>
+        <li>Rehearsals are a great opportunity to take a chance on a new musician or worship leader — if someone has made it into EQUIP, use Thursdays to train new people and give feedback in a safe, life-giving environment</li>
+        <li><em>Mid-South Only:</em> Rehearsing worship merges — a few times a month, each campus joins the broadcast campus to have broadcast worship leaders lead all locations live while local teams play and sing</li>
+      </ul>
+
+      <div class="note-block">
+        As the campus worship director, you must see your team as a Life Group. Know the health of your team and be aware of what's happening in their lives. Some seasons may call for team building and relationship time over musical preparedness — that's okay. Use your judgment.
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Vitec ───────────────────────────────────────────────────────────── -->
+    <div id="vitec">
+      <div class="sub-heading">Vitec — Mid-South Only</div>
+
+      <h3 style="margin-top:1.5rem; margin-bottom:0.75rem;">Message Streaming</h3>
+      <div class="callout callout-broadcast">
+        <strong>Broadcast Campus (HSL)</strong>
+        Must end their songs by the end of the time clock countdown. MD will count in before firing tracks and communicate all song transitions throughout the Vitec send.
+      </div>
+      <div class="callout callout-receiving" style="margin-top:0.5rem;">
+        <strong>Receiving Campuses</strong>
+        Must go at or over time. When connecting with Vitec straight out of the last song, the Worship Leader signals the media team that they are ending and takes steps back. If there is a problem connecting within 15 seconds, the WL goes back into worship.
+      </div>
+      <div class="note-block" style="margin-top:0.75rem;">
+        If HSL is going over time or Vitec is not working, the 5 Star communicates the change to the worship leader either by adding time to the back clock or signaling to continue.
+      </div>
+
+      <h3 style="margin-top:1.75rem; margin-bottom:0.75rem;">Merge</h3>
+      <p>A worship merge happens when all receiving campus worship teams connect with the broadcast campus worship team to play the same song(s) being led by the broadcast worship leader — worshipping corporately as a church across all locations at the same time.</p>
+      <ul class="content-list">
+        <li>During run-through or rehearsal, the media team records the broadcast campus rehearsal of the song through Vitec</li>
+        <li>Audio engineer confirms all correct channels are coming through from Vitec</li>
+        <li>Each campus should receive: (1) broadcast worship leader vocal, (2) tracks from broadcast, and (3) click, guide, and MD from broadcast</li>
+        <li>Audio engineer adjusts levels in the worship team's personal mixers and house main PA as needed</li>
+        <li>Campus worship leader coordinates with media team on the transition in the setlist from LOCAL to MERGE — signaled clearly by how the local team ends the previous song or by the local MD counting in</li>
+        <li>During service, media team signals "Vitec Ready" on the confidence monitor to inform the worship leader they are ready to connect</li>
+        <li>It is the responsibility of the local Campus Worship Leader at receiving locations to carry the energy and intensity of the song; the Broadcast Worship Leader leads the song</li>
+        <li>Periodically, campuses will receive a <strong>Full Send</strong> of worship from the broadcast location — LOCAL teams still take positions on stage and are ready to take it back for end of service</li>
+      </ul>
+
+      <h3 style="margin-top:1.75rem; margin-bottom:0.75rem;">Full Send</h3>
+      <div class="callout callout-broadcast">
+        <strong>Broadcast Location</strong>
+        All audio/video originates from the broadcast location and is sent to receiving locations.
+      </div>
+      <div class="callout callout-receiving" style="margin-top:0.5rem;">
+        <strong>Receiving Locations</strong>
+        Band and vocals are in place and prepared to take it locally in case of Vitec malfunction. Vocals sing along. Lighting stays under 25% with no front wash.
+      </div>
+
+      <h3 style="margin-top:1.75rem; margin-bottom:0.75rem;">Communication</h3>
+      <ul class="content-list">
+        <li>Media signals that Vitec is ready via confidence/Front of House TV and/or whiteboard</li>
+        <li>Troubleshooting is signaled by a whiteboard and/or confidence/Front of House TV</li>
+        <li>At receiving locations, Worship Leader signals MD when ready to begin Vitec transition; MD speaks through MD mic to communicate to audio and media that Vitec can be played</li>
+        <li>At broadcast location, MD counts in before firing tracks and communicates all song transitions throughout the Vitec send</li>
+      </ul>
+    </div>
+
+  </section>
+
+</div>
+</body>
+</html>
