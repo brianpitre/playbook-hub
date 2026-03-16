@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Church — Playbook Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ─── Typography ───────────────────────────────────────────────────────── */
+    h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+    h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.15; }
+    p  { font-size: 0.97rem; }
+
+    /* ─── Hub Header ───────────────────────────────────────────────────────── */
+    .hub-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .hub-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .hub-header .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.25rem;
+    }
+    .hub-header h1 {
+      color: var(--white);
+      font-size: 2.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .hub-header .subtitle {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ─── Layout ───────────────────────────────────────────────────────────── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-heading {
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.93rem;
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ─── Playbook Grid ────────────────────────────────────────────────────── */
+    .playbook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* ─── Playbook Card ────────────────────────────────────────────────────── */
+    .playbook-card {
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--black);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      transition: border-top-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .playbook-card:hover {
+      border-top-color: var(--green);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.09);
+    }
+
+    .card-body {
+      padding: 1.3rem 1.4rem 1.1rem;
+      flex: 1;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: var(--bg-section);
+      color: var(--muted);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 0.9rem;
+      border: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      color: var(--black);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      padding: 0 1.4rem 1.4rem;
+    }
+
+    .card-link {
+      display: block;
+      text-align: center;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 0.65rem 1rem;
+      text-decoration: none;
+      border: 2px solid var(--black);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .card-link:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* ─── How to Add Section ───────────────────────────────────────────────── */
+    .add-note {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1rem 1.25rem;
+      font-size: 0.87rem;
+      color: var(--muted);
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+    .add-note strong {
+      font-style: normal;
+      font-family: var(--font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--black);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .playbook-grid { grid-template-columns: repeat(2, 1fr); }
+      .hub-header h1 { font-size: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .playbook-grid { grid-template-columns: 1fr; }
+      .hub-header { padding: 2.5rem 1.5rem 2.25rem; }
+      .page-wrap { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  HEADER                                                                 -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <header class="hub-header">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Playbook Hub</h1>
+    <p class="subtitle">Team Guides &amp; Role Playbooks</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  MAIN CONTENT                                                           -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <main class="page-wrap">
+
+    <div class="section-label">Library</div>
+    <h2 class="section-heading">Available Playbooks</h2>
+    <p class="section-intro">Select a playbook below to open it. Each guide covers role expectations, training, service schedules, and position-specific checklists.</p>
+
+    <!-- ─── Playbook Grid ──────────────────────────────────────────────────── -->
+    <!--
+      TO ADD A NEW PLAYBOOK: Copy one .playbook-card block below, paste it
+      inside .playbook-grid, and update the card-tag, card-title, card-subtitle,
+      and the href on the card-link to point to the new file.
+    -->
+    <div class="playbook-grid">
+
+      <!-- Production Playbook -->
+      <div class="playbook-card">
+        <div class="card-body">
+          <span class="card-tag">Production Team</span>
+          <div class="card-title">Production Playbook</div>
+          <div class="card-subtitle">Roles, responsibilities, and checklists for the full production team — cameras, graphics, broadcast, and more.</div>
+        </div>
+        <div class="card-footer">
+          <a href="Sample Playbooks/production-playbook.html" class="card-link">Open Playbook</a>
+        </div>
+      </div>
+
+      <!-- 5 Star Playbook -->
+      <div class="playbook-card">
+        <div class="card-body">
+          <span class="card-tag">Service Coordination</span>
+          <div class="card-title">5 Star Playbook</div>
+          <div class="card-subtitle">The complete guide for the 5 Star role — communication, service flow, checklists, and training for service coordinators.</div>
+        </div>
+        <div class="card-footer">
+          <a href="Sample Playbooks/five-star-playbook.html" class="card-link">Open Playbook</a>
+        </div>
+      </div>
+
+      <!--
+        TEMPLATE — copy and paste below to add more playbooks:
+
+        <div class="playbook-card">
+          <div class="card-body">
+            <span class="card-tag">Category</span>
+            <div class="card-title">Playbook Name</div>
+            <div class="card-subtitle">Brief description of what this playbook covers.</div>
+          </div>
+          <div class="card-footer">
+            <a href="path/to/playbook.html" class="card-link">Open Playbook</a>
+          </div>
+        </div>
+      -->
+
+    </div>
+
+    <hr class="divider" />
+
+    <div class="add-note">
+      <strong>Adding a New Playbook</strong>
+      Place the new HTML file in the <code style="font-style:normal; font-family:monospace; font-size:0.85em;">Sample Playbooks/</code> folder, then copy the card template in the source of this file and update the title, description, and link. The grid expands automatically.
+    </div>
+
+  </main>
+
+</body>
+</html>

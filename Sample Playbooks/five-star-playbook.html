@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Church — 5 Star Playbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --bg-callout-broadcast: #f2f8f3;
+      --bg-callout-receiving: #f9f9f9;
+      --border-broadcast: #589a61;
+      --border-receiving: #c4c4c4;
+      /* legacy aliases for any remaining references */
+      --navy:       #000000;
+      --navy-light: #222222;
+      --accent:     #589a61;
+      --accent-dim: #d6ecd9;
+      --radius:     4px;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ─── Typography ───────────────────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-weight: 900; line-height: 1.15; color: var(--black); font-family: var(--font); }
+
+    h1 { font-size: 2.8rem; letter-spacing: -1px; text-transform: uppercase; }
+    h2 { font-size: 1.6rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: -0.3px; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; font-weight: 700; }
+    h4 { font-size: 0.75rem; margin-bottom: 0.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+
+    p { margin-bottom: 1rem; font-size: 0.97rem; }
+    strong { font-weight: 700; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
+
+    /* ─── Layout ───────────────────────────────────────────────────────────── */
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ─── Cover ────────────────────────────────────────────────────────────── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover h1 {
+      color: var(--white);
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .cover .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── Table of Contents ────────────────────────────────────────────────── */
+    .toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.75rem 2rem;
+      margin-bottom: 3rem;
+    }
+    .toc h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gray); margin-bottom: 1rem; }
+    .toc ol { padding-left: 1.25rem; }
+    .toc li { margin-bottom: 0.4rem; font-size: 0.93rem; }
+    .toc a { color: var(--black); font-weight: 600; }
+    .toc a:hover { color: var(--green); }
+    .toc .sub { padding-left: 1rem; list-style: disc; margin-top: 0.3rem; }
+    .toc .sub li { font-size: 0.86rem; color: var(--muted); }
+    .toc .sub a { color: var(--muted); font-weight: 400; }
+    .toc .sub a:hover { color: var(--green); }
+
+    /* ─── Vision Table ─────────────────────────────────────────────────────── */
+    .vision-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .vision-table td {
+      padding: 1.2rem 1.5rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+    .vision-table tr:last-child td { border-bottom: none; }
+    .vision-table .label {
+      font-weight: 900;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      white-space: nowrap;
+      width: 130px;
+      background: var(--black);
+    }
+    .vision-table .value { color: var(--text); font-size: 0.95rem; }
+
+    /* ─── Attributes Grid ──────────────────────────────────────────────────── */
+    .attributes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .attr-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--black);
+      padding: 1.1rem 1.2rem;
+    }
+    .attr-card strong { display: block; font-size: 0.9rem; font-weight: 900; color: var(--black); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.3px; }
+    .attr-card span { font-size: 0.86rem; color: var(--muted); }
+
+    /* ─── Role Cards ───────────────────────────────────────────────────────── */
+    .role-card {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .role-card .role-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 1.4rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .role-card .role-header h3 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+    .role-card .role-body { padding: 1.3rem 1.5rem; }
+    .role-card .role-body p { font-size: 0.92rem; margin-bottom: 0.75rem; color: var(--gray); font-family: var(--font-serif); font-style: italic; font-weight: 300; }
+    .role-card ul { padding-left: 1.2rem; }
+    .role-card li { font-size: 0.91rem; margin-bottom: 0.4rem; }
+
+    /* ─── Training Table ───────────────────────────────────────────────────── */
+    .training-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.92rem;
+    }
+    .training-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .training-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .training-table tr:last-child td { border-bottom: none; }
+    .training-table tr:nth-child(even) td { background: var(--bg-section); }
+    .training-table .week { font-weight: 700; color: var(--black); white-space: nowrap; }
+
+    /* ─── Schedule Table ───────────────────────────────────────────────────── */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.93rem;
+    }
+    .schedule-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table .time {
+      font-weight: 900;
+      color: var(--green);
+      width: 80px;
+    }
+    .schedule-table .event { font-weight: 700; color: var(--black); }
+    .schedule-table .note { font-size: 0.82rem; color: var(--muted); padding-left: 0; }
+
+    /* ─── Checklist Sections ───────────────────────────────────────────────── */
+    .checklist-section {
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .checklist-section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+
+    .checklist-title {
+      background: var(--black);
+      color: var(--white);
+      padding: 1.1rem 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .checklist-title h2 {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+    .checklist-body {
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 1.5rem;
+    }
+
+    .phase {
+      margin-bottom: 2rem;
+    }
+    .phase:last-child { margin-bottom: 0; }
+
+    .phase-header {
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--white);
+      background: var(--green);
+      padding: 5px 12px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .sub-phase {
+      margin-bottom: 1.5rem;
+    }
+    .sub-phase h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+    }
+    .sub-phase .goal-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .check-list { list-style: none; padding: 0; }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.35rem 0;
+      font-size: 0.92rem;
+      border-bottom: 1px solid #f0f1f5;
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list input[type="checkbox"] {
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 15px; height: 15px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .check-list .item-text { flex: 1; }
+    .check-list .item-sub {
+      display: block;
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      padding-left: 0.2rem;
+    }
+
+    /* Service segment rows */
+    .service-segment {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid #f0f1f5;
+      font-size: 0.92rem;
+    }
+    .service-segment:last-child { border-bottom: none; }
+    .service-segment input[type="checkbox"] {
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 15px; height: 15px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .seg-label {
+      font-weight: 700;
+      color: var(--navy);
+      min-width: 150px;
+    }
+    .seg-detail { flex: 1; color: var(--text); }
+    .seg-note {
+      display: block;
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ─── Callout Blocks ───────────────────────────────────────────────────── */
+    .callout {
+      padding: 0.9rem 1.2rem;
+      margin: 0.75rem 0;
+      font-size: 0.88rem;
+    }
+    .callout-broadcast {
+      background: var(--bg-callout-broadcast);
+      border-left: 5px solid var(--green);
+    }
+    .callout-receiving {
+      background: var(--bg-section);
+      border-left: 5px solid var(--gray-light);
+    }
+    .callout strong { display: block; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.35rem; }
+    .callout-broadcast strong { color: var(--green-dark); }
+    .callout-receiving strong { color: var(--gray); }
+    .callout ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+    .callout li { margin-bottom: 0.2rem; }
+
+    /* ─── Inline note ──────────────────────────────────────────────────────── */
+    .note-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 0.8rem 1.1rem;
+      font-size: 0.87rem;
+      color: var(--text);
+      margin: 1rem 0;
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+
+    /* ─── Section Headings ─────────────────────────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── Print ────────────────────────────────────────────────────────────── */
+    @media print {
+      body { font-size: 11pt; }
+      .cover { background: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .toc { break-after: page; }
+      .checklist-section { break-before: page; }
+      .checklist-title { background: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .phase-header { background: #589a61 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .vision-table .label { background: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: inherit; }
+      input[type="checkbox"] { border: 1px solid #999; }
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      .attributes-grid { grid-template-columns: 1fr; }
+      .service-segment { flex-direction: column; gap: 0.3rem; }
+      .seg-label { min-width: unset; }
+      .cover { padding: 3rem 1.5rem; }
+      .page-wrap { padding: 0 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  COVER                                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>5 Star Playbook</h1>
+    <p class="subtitle">Service Coordination Guide</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  TABLE OF CONTENTS                                                      -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#vision">Purpose &amp; Goal</a></li>
+      <li><a href="#attributes">Key Attributes</a></li>
+      <li><a href="#responsibilities">Main Responsibilities</a></li>
+      <li><a href="#training">Training Process</a></li>
+      <li><a href="#schedule">Service Schedule</a></li>
+      <li><a href="#checklist">5 Star Checklist</a>
+        <ul class="sub">
+          <li><a href="#cl-preservice">Preservice</a></li>
+          <li><a href="#cl-touchdown">Tech Touchdown</a></li>
+          <li><a href="#cl-service">Service Flow</a></li>
+          <li><a href="#cl-postservice">Post Service</a></li>
+        </ul>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  INTRODUCTION                                                           -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="intro">
+    <div class="section-label">Introduction</div>
+    <h2>Welcome to the 5 Star Team</h2>
+    <p>
+      Every weekend at Life Church, dozens of moving parts have to come together seamlessly — pastors, MCs, production teams, worship leaders, and volunteers all operating in sync. That alignment doesn't happen on its own. It happens because of the 5 Star.
+    </p>
+    <p>
+      The 5 Star exists to execute services through proactive communication, smooth transitions, and careful management of every service detail. When you do this role well, guests experience God's presence in a distraction-free environment, and the people on stage stay focused on the message instead of logistics.
+    </p>
+    <p>
+      This playbook is your guide. It covers who you are, what the role requires, the specific steps you need to follow every single week, and the standard you're expected to bring every time you serve. Read it carefully, refer back to it often, and own it.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  PURPOSE & GOAL                                                         -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="vision">
+    <div class="section-label">Foundation</div>
+    <h2>Purpose &amp; Goal</h2>
+    <table class="vision-table">
+      <tr>
+        <td class="label">Purpose</td>
+        <td class="value">Help execute services through proactive communication, smooth transitions, and the management of service details — so every service runs with the precision and care it deserves.</td>
+      </tr>
+      <tr>
+        <td class="label">Goal</td>
+        <td class="value">Facilitate excellent services and ensure a 5-Star experience for every guest, every week.</td>
+      </tr>
+      <tr>
+        <td class="label">The Why</td>
+        <td class="value">
+          <p style="margin-bottom:0.5rem;">When the 5 Star does their job, guests can experience God's presence in a distraction-free environment. The people on stage — pastors, MCs, and worship leaders — stay focused on their role without being pulled into service detail decisions.</p>
+          <p style="margin-bottom:0;">When the 5 Star doesn't do their job, those distractions show up on stage, in the service, and in the room. This role is the connective tissue that holds the service together.</p>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  KEY ATTRIBUTES                                                         -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="attributes">
+    <div class="section-label">Standards</div>
+    <h2>Key Attributes of a 5 Star</h2>
+    <p>This role is not about filling a checklist. It demands a specific kind of person — someone who can read a room, anticipate needs, and act decisively without being asked. These are the qualities that define every strong 5 Star.</p>
+    <div class="attributes-grid">
+      <div class="attr-card">
+        <strong>Proactive</strong>
+        <span>You don't wait to be told what's needed. You read the service flow, anticipate what's coming, and position yourself and your team accordingly before problems arise.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Assertive</strong>
+        <span>You communicate clearly and with confidence. When a change needs to be made or a team needs to be redirected, you do it — directly and without hesitation.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Detail-Oriented</strong>
+        <span>You know the service inside and out. Every item, every mic, every segment. Nothing is left to chance and nothing is assumed to be handled by someone else.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Decisive</strong>
+        <span>When things change — and they will — you make a call and move. Strong decision-making under pressure is one of the most important things you bring to this role.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Fast Thinker</strong>
+        <span>You process situations quickly and respond in real time. This role does not allow for long deliberation. You need to see what's happening and act in the moment.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Socially Intelligent</strong>
+        <span>You know how to communicate with different people — pastors, volunteers, production team — in a way that lands well and moves things forward without creating friction.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Service-Savvy</strong>
+        <span>You are deeply familiar with the service flow and the culture of the church. You understand what "excellent" looks like and you hold that standard for yourself and those around you.</span>
+      </div>
+      <div class="attr-card">
+        <strong>Professional</strong>
+        <span>You carry yourself with composure and confidence. Your presentation, your communication, and your conduct all reflect the standard of the role and the team you serve.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  MAIN RESPONSIBILITIES                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="responsibilities">
+    <div class="section-label">The Role</div>
+    <h2>Main Responsibilities</h2>
+
+    <div class="role-card">
+      <div class="role-header"><h3>5 Star</h3></div>
+      <div class="role-body">
+        <p>The 5 Star is the connective tissue between the stage and production. You know the flow before anyone else does, you communicate changes before they become problems, and you make sure every person and every item is exactly where they need to be — at exactly the right time.</p>
+        <ul>
+          <li>Know the service flow thoroughly to anticipate needs before they arise</li>
+          <li>Communicate between Pastors, MCs, and Service Production Teams throughout the service</li>
+          <li>Ensure MCs are ready for their segments — in position, mic on, ready to go</li>
+          <li>Prepare all necessary items for verbals and offering: Connection Cards, Print Pieces, Mics, Podiums, Tables, Props, Fresh Start Books, and any other needed elements</li>
+          <li>Ensure MC mics are powered on and screen is lit the moment you hand them off</li>
+          <li>Be the time keeper — track time-sensitive segments and communicate changes proactively</li>
+          <li>Facilitate service adjustments based on timing or technology issues
+            <br /><span style="font-size:0.86rem; color:var(--muted);">Broadcast locations: changes of 2+ minutes must be communicated to all receiving locations</span>
+          </li>
+          <li>Communicate all adjustments and changes between services so teams are aligned</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  TRAINING PROCESS                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="training">
+    <div class="section-label">Onboarding</div>
+    <h2>Training Process</h2>
+    <p>
+      Training happens during weekend services through a structured shadowing model. The timeline adjusts based on the individual's prior experience and role familiarity, but the progression does not skip steps. No one moves to an independent 5 Star position without completing the full training process and meeting with the Location Pastor or Lead Pastor Assistant.
+    </p>
+
+    <h3 style="margin-top:1.5rem;">Broadcast Location</h3>
+    <table class="training-table">
+      <thead>
+        <tr><th>Phase</th><th>Focus</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week">Weeks 1–2</td>
+          <td><strong>I Do. You Watch.</strong></td>
+          <td>Shadow the Lead 5 Star through the full service. Observe every interaction, every handoff, every communication. Take notes. Ask questions after the service — not during.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 3</td>
+          <td><strong>Campus Visit</strong></td>
+          <td>Go and observe at a Receiving Location. Understand what they receive from the broadcast campus and how the 5 Star role functions in a receiving context.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 4</td>
+          <td><strong>You Do. I Help.</strong></td>
+          <td>Take the lead 5 Star role with the trainer alongside you. The Lead 5 Star evaluates readiness and team fit at this stage before you continue.</td>
+        </tr>
+        <tr>
+          <td class="week">Weeks 5–6</td>
+          <td><strong>You Do. I Watch.</strong></td>
+          <td>Operate fully independently. Trainer is present but hands off entirely unless an issue arises.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:1.5rem;">Receiving Location</h3>
+    <table class="training-table">
+      <thead>
+        <tr><th>Phase</th><th>Focus</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week">Weeks 1–2</td>
+          <td><strong>I Do. You Watch.</strong></td>
+          <td>Shadow the Lead 5 Star through the full service. Observe how the receiving location integrates the broadcast flow with local service elements. Take notes. Ask questions after.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 3</td>
+          <td><strong>You Do. I Help.</strong></td>
+          <td>Take the lead 5 Star role with the trainer alongside you. The Lead 5 Star evaluates readiness and team fit.</td>
+        </tr>
+        <tr>
+          <td class="week">Weeks 4–5</td>
+          <td><strong>You Do. I Watch.</strong></td>
+          <td>Operate fully independently. Trainer is present but hands off.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-block">
+      Before training is considered complete, every 5 Star must meet with the Location Pastor or Lead Pastor Assistant for a brief evaluation conversation.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  SERVICE SCHEDULE                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="schedule">
+    <div class="section-label">Timeline</div>
+    <h2>Service Schedule</h2>
+    <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1rem;">Based on a 9:00a service at the Broadcast Location. Receiving Locations follow the same general timeline unless otherwise directed by their Lead 5 Star or Location Pastor.</p>
+    <table class="schedule-table">
+      <tbody>
+        <tr>
+          <td class="time">6:30a</td>
+          <td class="event">Production &amp; Worship Call Time</td>
+        </tr>
+        <tr>
+          <td class="time">6:45a</td>
+          <td class="event">Worship Team Rehearsal Downbeat</td>
+        </tr>
+        <tr>
+          <td class="time">7:30a</td>
+          <td class="event">5 Star Call Time</td>
+          <td class="note">90 minutes prior to service</td>
+        </tr>
+        <tr>
+          <td class="time">7:45a</td>
+          <td class="event">Full Service Run-Through</td>
+        </tr>
+        <tr>
+          <td class="time">8:30a</td>
+          <td class="event">Tech Touchdown</td>
+          <td class="note">Broadcast Location: only if changes were made after run-through &nbsp;|&nbsp; Receiving Locations: required every service</td>
+        </tr>
+        <tr>
+          <td class="time">8:58a</td>
+          <td class="event">Countdown</td>
+        </tr>
+        <tr>
+          <td class="time">9:00a</td>
+          <td class="event">Service Begins</td>
+        </tr>
+        <tr>
+          <td class="time">10:30a</td>
+          <td class="event">Post Service</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  CHECKLIST                                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="checklist">
+    <div class="section-label">Checklists</div>
+    <h2>5 Star Checklist</h2>
+    <p>Use this checklist every week — not just during training. Consistency is what separates good services from excellent ones.</p>
+
+    <!-- ─────────────────────────────────────────── PRESERVICE ───────────── -->
+    <div class="checklist-section" id="cl-preservice">
+      <div class="checklist-title"><h2>Preservice</h2></div>
+      <div class="checklist-body">
+
+        <div class="phase">
+          <div class="phase-header">Before Full Service Run-Through</div>
+
+          <div class="sub-phase">
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Print flows and message notes</span></li>
+              <li><input type="checkbox"><span class="item-text">Check in with production team</span></li>
+              <li><input type="checkbox"><span class="item-text">Gather all items needed for verbals and offering
+                <span class="item-sub">Connection Card, Print Pieces, Mics, Podiums, Tables, Props, Fresh Start Book</span>
+              </span></li>
+              <li><input type="checkbox"><span class="item-text">Set up headset and confirm mics are working</span></li>
+              <li><input type="checkbox"><span class="item-text">Wipe down podium and tables</span></li>
+              <li><input type="checkbox"><span class="item-text">Place glass and water under the 5 Star chair
+                <span class="item-sub">Receiving campus only</span>
+              </span></li>
+              <li><input type="checkbox"><span class="item-text">Confirm all teams are in place and ready to start on time</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">During Full Service Run-Through</div>
+
+          <div class="sub-phase">
+            <p class="goal-note">Goal: Feel confident the first service will be excellent. Walk every segment. Catch every gap before it becomes a problem on stage.</p>
+
+            <h4>Worship</h4>
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Observe welcome, transitions, lighting, and sound
+                <span class="item-sub">Watch the clock and document any time discrepancies</span>
+              </span></li>
+            </ul>
+
+            <h4 style="margin-top:1rem;">MC Segments</h4>
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Have all MCs ready for their segments — no MC should be scrambling</span></li>
+              <li><input type="checkbox"><span class="item-text">Fill in for any missing MC spots during run-through</span></li>
+              <li><input type="checkbox"><span class="item-text">Include contextual transitions between segments</span></li>
+              <li><input type="checkbox"><span class="item-text">Watch the clock throughout — flag any segments running long or short</span></li>
+            </ul>
+
+            <h4 style="margin-top:1rem;">Special Elements</h4>
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Communicate and rehearse any special elements with the team</span></li>
+            </ul>
+
+            <h4 style="margin-top:1rem;">Message Segment</h4>
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Test mics and headset</span></li>
+              <li><input type="checkbox"><span class="item-text">Go through message notes with the pastor</span></li>
+              <li><input type="checkbox"><span class="item-text">Use comms pack to communicate with production during message</span></li>
+              <li><input type="checkbox"><span class="item-text">Walk through all message segments: Vitec, Fresh Start, Close</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">After Full Service Run-Through</div>
+
+          <div class="sub-phase">
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Communicate any updates or changes to the production team</span></li>
+              <li><input type="checkbox"><span class="item-text">Clean and vacuum backstage</span></li>
+              <li><input type="checkbox"><span class="item-text">Take out trash</span></li>
+              <li><input type="checkbox"><span class="item-text">Dust mop and vacuum the stage</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────── TECH TOUCHDOWN ────────── -->
+    <div class="checklist-section" id="cl-touchdown">
+      <div class="checklist-title"><h2>Tech Touchdown</h2></div>
+      <div class="checklist-body">
+
+        <div class="phase">
+          <p class="goal-note" style="margin-bottom:1rem;">Goal: Ensure all teams are aligned on what's happening and are prepared for backup scenarios before the service begins.</p>
+
+          <div class="callout callout-broadcast">
+            <strong>Broadcast Location</strong>
+            Tech Touchdown is only needed if changes were made after the Full Service Run-Through. If changes occurred, communicate them directly to the production team before the service.
+          </div>
+          <div class="callout callout-receiving" style="margin-top:0.5rem;">
+            <strong>Receiving Locations — Required Every Service</strong>
+            Attendees: Production Team Producer, Assistant Producer, Worship Leader, Music Director, 5 Star, Sound, Lighting.
+          </div>
+
+          <div class="sub-phase" style="margin-top:1.25rem;">
+            <h4>5 Star Leads the Touchdown</h4>
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">Walk through the full service flow, transitions, and all special elements</span></li>
+              <li><input type="checkbox"><span class="item-text">Share all known details with the group — no information left in your head alone</span></li>
+              <li><input type="checkbox"><span class="item-text">Open the floor for questions from the team</span></li>
+            </ul>
+          </div>
+
+          <div class="sub-phase">
+            <h4>Example Questions to Address</h4>
+            <ul class="check-list">
+              <li><input type="checkbox"><span class="item-text">When do keys need to go up?</span></li>
+              <li><input type="checkbox"><span class="item-text">How does the transition look between Vitec and Local?</span></li>
+              <li><input type="checkbox"><span class="item-text">What slides are going up during the message?</span></li>
+              <li><input type="checkbox"><span class="item-text">Do we need to adjust any segment times?</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="note-block">
+          For Special Events, Conferences, or Prayer Rallies: Touch base with the Lead 5 Star the day before the service, and touch base with the Pastor or Executive Assistant during the run-through.
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────── SERVICE FLOW ─────────── -->
+    <div class="checklist-section" id="cl-service">
+      <div class="checklist-title"><h2>Service Flow</h2></div>
+      <div class="checklist-body">
+
+        <div class="phase">
+          <div class="phase-header">Service</div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Welcome</span>
+            <span class="seg-detail">Mic
+              <span class="seg-note">Ensure MC mic is on and screen is lit before handing off</span>
+            </span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Ministry Time</span>
+            <span class="seg-detail">Mic
+              <span class="seg-note">Stay positioned and available during the worship set</span>
+            </span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Close Worship / Info</span>
+            <span class="seg-detail">Mic, Connection Card</span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Offering</span>
+            <span class="seg-detail">Mic, Offering Envelope (if needed)</span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Meet and Greet</span>
+            <span class="seg-detail">Final touches on stage; countdown into next segment
+              <span class="seg-note">Use this window to reset and prep the stage for the next segment</span>
+            </span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Videos</span>
+            <span class="seg-detail">Prepare stage for next segment: Podium or tall table, side table, towel, water, etc.</span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Message</span>
+            <span class="seg-detail">Watch the slides; stay positioned to communicate with production
+              <span class="seg-note">Broadcast locations: changes of 2+ minutes must be communicated to all receiving locations</span>
+            </span>
+          </div>
+
+          <div class="service-segment">
+            <input type="checkbox">
+            <span class="seg-label">Close</span>
+            <span class="seg-detail">Mic, Fresh Start Book</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────── POST SERVICE ─────────── -->
+    <div class="checklist-section" id="cl-postservice">
+      <div class="checklist-title"><h2>Post Service</h2></div>
+      <div class="checklist-body">
+
+        <div class="phase">
+          <div class="phase-header">Post Service</div>
+          <ul class="check-list">
+            <li><input type="checkbox"><span class="item-text">Discuss any tweaks or changes with Production, Pastors, and other teams</span></li>
+            <li><input type="checkbox"><span class="item-text">Communicate adjustments to the Lead 5 Star for the next service</span></li>
+            <li><input type="checkbox"><span class="item-text">Reset all items and leave the space better than you found it</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>
+</body>
+</html>
