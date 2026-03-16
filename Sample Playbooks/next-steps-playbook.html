@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Steps Team Playbook — The Life Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.7; }
+
+    h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+    h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.15; }
+    h3 { font-size: 1.05rem; font-weight: 700; }
+    p  { font-size: 0.97rem; }
+
+    /* Cover */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      position: relative;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .cover h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* TOC */
+    nav.toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem;
+    }
+    nav.toc .toc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    nav.toc ol {
+      padding-left: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem 2rem;
+    }
+    nav.toc li { font-size: 0.85rem; }
+    nav.toc a { color: var(--text); text-decoration: none; font-weight: 600; }
+    nav.toc a:hover { color: var(--green); }
+
+    /* Layout */
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Responsibilities Box */
+    .responsibilities-box {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .resp-header {
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.5rem 1rem;
+    }
+    .resp-body { padding: 1rem 1.25rem; }
+    .resp-body ul { padding-left: 1.25rem; }
+    .resp-body li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    /* Schedule Table */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+    .schedule-table th {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: center;
+      vertical-align: top;
+    }
+    .schedule-table td.time {
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* Next Steps Grid */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .step-card {
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--black);
+    }
+    .step-card-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .step-number {
+      background: var(--green);
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 900;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-card-header h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: var(--white); }
+    .step-card-body { padding: 0.9rem 1rem; }
+    .step-card-body ul { padding-left: 1.1rem; }
+    .step-card-body li { font-size: 0.85rem; margin-bottom: 0.25rem; }
+
+    /* Fresh Start Steps Table */
+    .fresh-start-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+    }
+    .fresh-start-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      vertical-align: top;
+    }
+    .fresh-start-table td.step-cell {
+      background: var(--black);
+      color: var(--white);
+      font-weight: 900;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      width: 70px;
+    }
+    .fresh-start-table td.step-cell .step-num {
+      font-size: 1.4rem;
+      display: block;
+      line-height: 1;
+    }
+    .fresh-start-table td.content-cell ul { padding-left: 1.1rem; margin-top: 0.4rem; }
+    .fresh-start-table td.content-cell li { margin-bottom: 0.25rem; }
+    .fresh-start-table td.content-cell strong { font-weight: 700; }
+
+    /* Guidelines sections */
+    .position-block {
+      margin-bottom: 1.75rem;
+    }
+    .position-block h3 {
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.35rem;
+      color: var(--black);
+    }
+    .position-block p { font-size: 0.93rem; margin-bottom: 0.5rem; }
+    .position-block ul { padding-left: 1.25rem; }
+    .position-block li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    .phase-label {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 2px 10px;
+      border-radius: 50px;
+      margin: 0.75rem 0 0.4rem;
+    }
+
+    /* Leadership Table */
+    .leadership-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+    .leadership-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+    }
+    .leadership-table td.role-cell {
+      font-weight: 900;
+      text-align: center;
+      font-size: 1rem;
+      width: 40%;
+    }
+    .leadership-table td.desc-cell {
+      font-size: 0.83rem;
+      color: var(--muted);
+      background: var(--bg-section);
+    }
+
+    /* Purpose block */
+    .purpose-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--green);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .purpose-block p { font-size: 0.93rem; margin-bottom: 0.35rem; }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .value-card {
+      background: var(--bg-section);
+      border-left: 4px solid var(--black);
+      padding: 0.75rem 1rem;
+    }
+    .value-card strong {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .value-card span { font-size: 0.85rem; color: var(--muted); }
+
+    /* Note block */
+    .note-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1rem 1.25rem;
+      font-size: 0.87rem;
+      color: var(--muted);
+      font-style: italic;
+      font-family: var(--font-serif);
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      nav.toc ol { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .page-wrap { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Next Steps Team Playbook</h1>
+    <p class="subtitle">Guest Connections &amp; Next Steps Ministry</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#welcome">Welcome</a></li>
+      <li><a href="#expectations">Expectations</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#responsibilities">Responsibilities</a></li>
+      <li><a href="#order-of-service">Order of Service</a></li>
+      <li><a href="#next-steps">Next Steps</a></li>
+      <li><a href="#guidelines">Team Guidelines</a></li>
+      <li><a href="#fresh-start-interaction">Fresh Start Interaction</a></li>
+      <li><a href="#discovery">Discovery &amp; Water Baptism</a></li>
+      <li><a href="#tips">Tips for Guests</a></li>
+      <li><a href="#leadership">Leadership Structure</a></li>
+      <li><a href="#vision">Vision &amp; Values</a></li>
+    </ol>
+  </nav>
+
+  <main class="page-wrap">
+
+    <section id="welcome">
+      <div class="section-label">Welcome</div>
+      <h2 style="margin-bottom:0.75rem;">Welcome to the Team</h2>
+      <p>We're so excited to have you on the team! All of our serve teams are vital in making people feel welcome and comfortable at our church. Please take some time to review this booklet. The information listed here is designed to equip you to host with hospitality and excellence. Our hope is that your smile, friendly face and sincere personality contribute to the life-giving atmosphere we want every person to experience at The Life Church.</p>
+      <p style="margin-top:0.75rem;">We lead more effectively when we know what is expected of us. Clarifying expectations reduces stress, brings focus to action and makes teams more productive. These expectations are laid out in three key areas: Expectations, Wins and Responsibilities.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="expectations">
+      <div class="section-label">Team Standards</div>
+      <h2 style="margin-bottom:1.25rem;">Expectations</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="responsibilities-box">
+          <div class="resp-header">Personal</div>
+          <div class="resp-body">
+            <p style="font-size:0.88rem; margin-bottom:0.5rem;">Consistently seek personal growth and development:</p>
+            <ul>
+              <li>Pursue a relationship with God strengthened by daily Bible reading and prayer.</li>
+              <li>Commit to attending one service and serving one service.</li>
+              <li>Commit to ongoing team training and actively participating in the life of the campus.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="responsibilities-box">
+          <div class="resp-header">Team</div>
+          <div class="resp-body">
+            <p style="font-size:0.88rem; margin-bottom:0.5rem;">Faithfully serve God's House and others:</p>
+            <ul>
+              <li>Show up on time, with a great attitude and meet someone new.</li>
+              <li>Stay focused on guests when serving.</li>
+              <li>Pray for your team members, leaders and pastors.</li>
+              <li>Be open to building genuine relationships with others on the team.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="wins">
+      <div class="section-label">Team Goals</div>
+      <h2 style="margin-bottom:0.75rem;">Wins</h2>
+      <p style="margin-bottom:1rem;">Every person works together to create an amazing guest experience. When one team member wins, the whole team wins! By accomplishing at least one of these things each weekend, you help the team win.</p>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;"><strong>Engage in a MEANINGFUL CONNECTION</strong> with someone new each week. This could be a first time guest or someone new to the church that you haven't met before.</li>
+        <li style="margin-bottom:0.4rem;">Help guests and attendees identify and commit to take an appropriate <strong>NEXT STEP</strong>.</li>
+        <li>Meet <strong>2–3 NEW PEOPLE</strong> each week. They could be new to the church or just new to you.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="responsibilities">
+      <div class="section-label">Commitments</div>
+      <h2 style="margin-bottom:1rem;">Responsibilities</h2>
+      <p style="margin-bottom:1rem; font-size:0.93rem;">The responsibilities outlined below clarify the "what" and "when" of each role and when executed help create productive and healthy teams.</p>
+      <div class="responsibilities-box">
+        <div class="resp-header">During the Week</div>
+        <div class="resp-body">
+          <ul>
+            <li>Read weekly Team Leader communication regarding rosters, service flow, weekend elements and upcoming events.</li>
+            <li>Use Planning Center Online to confirm or decline your rostered position for the weekend. Communicate with your Team Leader if your schedule changes.</li>
+            <li>Connect with your Team Leader weekly for updates and any information you may need to make the weekend great.</li>
+            <li>Send follow-up communication to guests that you interacted with during the weekend service <em>[Fresh Start and Discovery positions]</em>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">On the Weekend</div>
+        <div class="resp-body">
+          <ul>
+            <li>Attend a service and serve in a service.</li>
+            <li>Check in with your Team Leader upon arrival and participate in the team touchdown.</li>
+            <li>Make sure your area of the church is in excellent order and ready for guests 30 minutes before the start of service.</li>
+            <li>Dress appropriately by being neat and clean in your appearance.</li>
+            <li>Smile a lot!</li>
+            <li>Proactively initiate conversations with people you don't know and look for opportunities to serve them.</li>
+            <li>Share good reports to encourage your team.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">Ongoing — Monthly/Quarterly</div>
+        <div class="resp-body">
+          <ul>
+            <li>Quarterly 1-on-1s with your Team Leader.</li>
+            <li>Attend monthly campus all-team volunteer rallies.</li>
+            <li>Attend team trainings.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="order-of-service">
+      <div class="section-label">Timeline</div>
+      <h2 style="margin-bottom:1rem;">Order of Service</h2>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th colspan="2">Before Service</th>
+            <th colspan="3">During Service</th>
+            <th>After Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">1 hr before</td>
+            <td class="time">30 mins before</td>
+            <td class="time">21 mins</td>
+            <td class="time">40–45 mins</td>
+            <td class="time">5 mins</td>
+            <td class="time">15 mins</td>
+          </tr>
+          <tr>
+            <td>Check In</td>
+            <td>Guest Interactions</td>
+            <td>Worship Begins</td>
+            <td>Welcome / Offering / Message</td>
+            <td>Fresh Start Prayer</td>
+            <td>Service Ends / Exits</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="next-steps">
+      <div class="section-label">Pathway</div>
+      <h2 style="margin-bottom:0.75rem;">Next Steps</h2>
+      <p style="margin-bottom:1.25rem;">We encourage everyone who attends The Life Church to take four simple Next Steps. These steps help us get planted in church and grow in our relationship with God and others by getting connected and involved.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-card-header">
+            <div class="step-number">1</div>
+            <h3>Make a Fresh Start with God</h3>
+          </div>
+          <div class="step-card-body">
+            <ul>
+              <li>Pick up a Fresh Start book</li>
+              <li>Get Water Baptized</li>
+              <li>Establish a daily devotion with God</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <div class="step-number">2</div>
+            <h3>Build Life-giving Relationships</h3>
+          </div>
+          <div class="step-card-body">
+            <ul>
+              <li>Consistently attend weekend services</li>
+              <li>Join a Life Group</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <div class="step-number">3</div>
+            <h3>Discover Your Purpose</h3>
+          </div>
+          <div class="step-card-body">
+            <ul>
+              <li>Attend Discovery</li>
+              <li>Do a First Serve</li>
+              <li>Join a team</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <div class="step-number">4</div>
+            <h3>Impact the World</h3>
+          </div>
+          <div class="step-card-body">
+            <ul>
+              <li>Lead a Life Group</li>
+              <li>Enroll in Leadership Foundations</li>
+              <li>Go on a Global Missions Trip</li>
+              <li>Give generously</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="guidelines">
+      <div class="section-label">Guidelines</div>
+      <h2 style="margin-bottom:0.75rem;">Next Steps Team Guidelines</h2>
+      <p style="margin-bottom:1.25rem;">Next Steps team members are positioned in strategic locations throughout the building and are actively looking for opportunities to create <strong>meaningful connections</strong> with attendees and guests each week. We are the information hub for all things "Next Steps" (Fresh Start, Life Groups, Discovery, Water Baptism, Life Leadership) and are proactive to <strong>initiate conversations</strong> with guests/members about the appropriate next step for them.</p>
+
+      <div class="position-block">
+        <h3>Next Steps Host</h3>
+        <p>Next Steps team members serving as hosts are strategically placed near the Next Steps station, throughout the commons area and in high-traffic areas. They greet guests as they arrive and walk in and out of the church.</p>
+        <ul>
+          <li>Although there are designated Next Step stations, don't get stuck in those areas. Move throughout the building and into the auditorium.</li>
+          <li>Be on the lookout for someone you can help. Look to connect new guests with our Connection Team and help regular attendees identify their next step.</li>
+          <li>Be prepared with info cards or the Next Steps page on your phone to help provide or capture info and make it easy for someone to sign up.</li>
+        </ul>
+      </div>
+
+      <div class="position-block">
+        <h3>Fresh Start</h3>
+        <p>Next Steps team members serving in the Fresh Start area are positioned in the auditorium before service. They create meaningful connections through heartfelt conversation and authentic prayer in weekend services and with intentional follow-up throughout the week.</p>
+        <div class="phase-label">Pre-Service</div>
+        <ul>
+          <li>Each team member will be assigned a section or seating zone in the auditorium to serve as a "section host".</li>
+          <li>Once doors are opened to the auditorium, walk around your section and initiate intentional conversations with guests/attenders that sit in those sections every week. Get to know them, offer assistance if needed and talk about the next steps our church has to offer.</li>
+          <li>The goal is to meet 2–3 new people each week and get people connected into a Life Group or Discovery.</li>
+        </ul>
+        <div class="phase-label">During Service</div>
+        <ul>
+          <li>Provide <strong>front-row leadership</strong> by sitting on the front row of the section assigned, engaging in worship and responding during the message.</li>
+          <li>Provide encouragement and <strong>prayer at the altar</strong> during ministry time. Men pray with men, women pray with women. If that is not possible, do not hold hands or embrace. Ask the person their name and their prayer request, then pray a short prayer of agreement in Jesus' name.</li>
+        </ul>
+        <div class="phase-label">Post-Service</div>
+        <ul>
+          <li>All team members rostered for Fresh Start will serve at the Next Steps station(s) after the service to give out <strong>Fresh Start books</strong>, offer prayer and provide information and guidance on the next steps to those who made a Fresh Start in service.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="fresh-start-interaction">
+      <div class="section-label">Step-by-Step Guide</div>
+      <h2 style="margin-bottom:1rem;">Fresh Start Interaction</h2>
+      <table class="fresh-start-table">
+        <tbody>
+          <tr>
+            <td class="step-cell"><span class="step-num">1</span>Step</td>
+            <td class="content-cell">
+              <strong>Get ready</strong>
+              <ul>
+                <li>Make sure the Next Steps station is set up. Ensure there are Fresh Start books out and readily available, as well as pens and info cards.</li>
+                <li>Stand near the station and greet people as they exit, looking for people who may be approaching the station for a book.</li>
+                <li>Avoid engaging in conversation with other team members so that you can focus 100% on guests/attendees.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-cell"><span class="step-num">2</span>Step</td>
+            <td class="content-cell">
+              <strong>Introduce yourself!</strong> Do your best to smile and make eye contact.
+              <ul>
+                <li>Ask their name and if they made a Fresh Start.</li>
+                <li>Congratulate them on their decision and celebrate with them.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-cell"><span class="step-num">3</span>Step</td>
+            <td class="content-cell">
+              <strong>Ask questions</strong> to help identify the best way to serve them.
+              <ul>
+                <li>"Thanks for responding this week. Is this a first-time decision or have you had a relationship with God before and are rededicating your life?"</li>
+                <li>"What questions do you have about the decision you made that I can help answer today?"</li>
+                <li>Take your time depending on the response.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-cell"><span class="step-num">4</span>Step</td>
+            <td class="content-cell">
+              <strong>Exchange Info.</strong> Ask them if they have completed an info card at some point in the past. Ask to get their information today so you can follow up.
+              <ul>
+                <li>If they have not filled out a card, use the info card and check the box "I made a Fresh Start."</li>
+                <li>If they have previously filled out a card, simply get their name and phone number to add to the Fresh Start summary sheet later.</li>
+                <li>You can also use the info card to sign them up for other Next Steps.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-cell"><span class="step-num">5</span>Step</td>
+            <td class="content-cell">
+              <strong>Offer them a Fresh Start Book.</strong>
+              <ul>
+                <li>"I would love to give you a wonderful resource from our Pastor, John Siebeling."</li>
+                <li>If you don't notice a Bible in their hand, ask them if they own one. If not, encourage them to download a free Bible resource: The Bible App.</li>
+                <li>Let them know you will follow up during the week (Tuesday) to see how they are doing and coming along with the Fresh Start book.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-cell"><span class="step-num">6</span>Step</td>
+            <td class="content-cell">
+              <strong>Talk with them about Next Steps.</strong> Focus on where they are and the best next step for them.
+              <ul>
+                <li>For a new person, it may be coming back to church next week. If they mention looking for a church you can point them to Discovery.</li>
+                <li>You can also encourage Water Baptism or getting involved in a Life Group to help them meet other people.</li>
+                <li>The Next Steps brochure should be included with the Fresh Start book.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-cell"><span class="step-num">7</span>Step</td>
+            <td class="content-cell">
+              <strong>Offer to pray</strong> — Agree with the person in prayer for any needs they have.
+              <ul>
+                <li>"I would love to pray for you this week."</li>
+                <li>Be prepared to assist people with online Care and Support requests should the need for pastoral care arise.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="discovery">
+      <div class="section-label">Special Events</div>
+      <h2 style="margin-bottom:1rem;">Discovery &amp; Water Baptism</h2>
+
+      <div class="position-block">
+        <h3>Discovery <span style="font-weight:400; font-size:0.85rem; text-transform:none;">(1st Sunday of the month)</span></h3>
+        <ul>
+          <li>Assist in calling those signed up for Discovery to provide information and confirm their schedule for the upcoming class.</li>
+          <li>Assist in set-up/tear-down of Discovery room/space.</li>
+          <li>Select Next Steps team members will serve as table hosts — "host" a table of people participating in Discovery by engaging and leading conversation, answering questions and identifying each person's next step at your table.</li>
+          <li>Promote connections through both Life Groups and serving on a team.</li>
+          <li>Assist in entering data from Discovery: attendance, serve app, etc.</li>
+          <li>Follow up with Discovery participants a few days after graduation to ensure they are equipped to take a next step: Connected with Team Leader for First Serve, Connected to a Life Group, Fresh Start book/Resources, Vision Partners connection (when applicable).</li>
+        </ul>
+      </div>
+
+      <div class="position-block">
+        <h3>Water Baptism <span style="font-weight:400; font-size:0.85rem; text-transform:none;">(Quarterly)</span></h3>
+        <ul>
+          <li>Assist in calling those signed up for Water Baptism to confirm the upcoming baptism date, time of service and t-shirt size. Answer any additional questions they may have.</li>
+          <li>Assist with baptism tank and booth set up/tear down for Water Baptism service.</li>
+          <li>Assist in "Day Of" lobby and auditorium roles:</li>
+        </ul>
+        <div style="padding-left:1.5rem; margin-top:0.5rem;">
+          <ul style="list-style:none; padding:0;">
+            <li style="padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;"><strong>Check-In Host</strong> — welcome and check-in guests and provide a t-shirt and any other necessary items or info.</li>
+            <li style="padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;"><strong>Floaters</strong> — assist guests and offer hospitality.</li>
+            <li style="padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;"><strong>Lobby Host</strong> — walk guests to the restroom to change clothes or into the auditorium to the assigned seating area.</li>
+            <li style="padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;"><strong>Restroom Host</strong> — assist guests with an open stall, clean up water spills and restock.</li>
+            <li style="padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;"><strong>Line Host</strong> — assist guests through the line with gentle reminders.</li>
+            <li style="padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;"><strong>Towel Attendant</strong> — assist guests with their towels before and after they get out of the tank.</li>
+            <li style="padding:0.35rem 0; font-size:0.9rem;"><strong>Tank Attendant</strong> — assist guests with getting in and out of the tank as needed.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="tips">
+      <div class="section-label">Hospitality</div>
+      <h2 style="margin-bottom:1rem;">Tips for Interacting with Guests &amp; Attenders</h2>
+
+      <h3 style="margin-bottom:0.5rem;">Before Service</h3>
+      <ul style="padding-left:1.25rem; margin-bottom:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Be on the lookout for first-time guests — they may park in preferred parking, look lost or confused, be overdressed, or be holding a child and not know where to go.</li>
+        <li style="margin-bottom:0.4rem;">Enthusiastically welcome guests: <em>"Welcome to The Life Church!"</em> / <em>"We are so glad you are here with us!"</em></li>
+        <li style="margin-bottom:0.4rem;">Initiate conversation: <em>"How long have you been coming to The Life Church?"</em> / <em>"Is there anything we can help you find?"</em></li>
+        <li style="margin-bottom:0.4rem;">Always be on the lookout for an opportunity to create a WOW moment — offer to buy them a drink at Press Café, help them check their children into Kids Life, or introduce them to someone they might have something in common with.</li>
+        <li>Instead of pointing, we always walk with guests to their location.</li>
+      </ul>
+
+      <h3 style="margin-bottom:0.5rem;">After Service</h3>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Follow up with guests you met before service. Ask: <em>"What did you think about your experience with us today?"</em> / <em>"Did you get a chance to let us know you were here by filling out one of our info cards?"</em></li>
+        <li>Send guests off enthusiastically: <em>"Thanks for joining us today!"</em> / <em>"See you next week!"</em></li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="leadership">
+      <div class="section-label">Structure</div>
+      <h2 style="margin-bottom:0.75rem;">Leadership Support Structure</h2>
+      <p style="margin-bottom:1.25rem; font-size:0.93rem;">Everyone plays a role in the leadership of the church. From the Lead Pastors to the congregation. Our desire is that every person is connected in relationship to a leader who provides care and support as well as ongoing development.</p>
+      <table class="leadership-table" style="margin-bottom:1.25rem;">
+        <tbody>
+          <tr>
+            <td class="desc-cell">"Lead &amp; Feed" — Set the Vision, Establish Culture, Communicate</td>
+            <td class="role-cell">Lead Pastor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Campus Pastor</td>
+            <td class="desc-cell">Carry the Culture, Care for the Community, Grow the Church</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Establish the direction within a ministry area at a campus (Connection, Kids Life, Worship, Axis)</td>
+            <td class="role-cell">Campus Ministry Director</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Captain</td>
+            <td class="desc-cell">Assist Campus Ministry Director within a ministry area; Provide coaching, care &amp; development to Team Leaders at a service</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Building the team, caring for volunteers, leading the charge within a ministry area at a service</td>
+            <td class="role-cell">Team Leader &amp; Assistant Team Leads</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Team Members</td>
+            <td class="desc-cell">Execute consistently excellent and inspiring services</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="purpose-block">
+        <p><strong>Your Leader:</strong> Next Steps Team Leader</p>
+        <p><strong>Your Purpose:</strong> Assist guests and attendees of The Life Church in identifying and pursuing appropriate Next Steps.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="vision">
+      <div class="section-label">Identity</div>
+      <h2 style="margin-bottom:0.75rem;">Our Vision</h2>
+      <p style="margin-bottom:1.5rem; font-size:0.97rem; font-style:italic; font-family:var(--font-serif);">We are one church in many locations – dynamic, Spirit-filled and diverse – serving people, developing leaders and impacting generations.</p>
+      <h2 style="margin-bottom:1rem;">Our Aligning Values</h2>
+      <div class="values-grid">
+        <div class="value-card"><strong>Integrity</strong><span>We serve Jesus and his church with integrity.</span></div>
+        <div class="value-card"><strong>Diversity</strong><span>We are building a house that looks like Heaven.</span></div>
+        <div class="value-card"><strong>Hospitality</strong><span>We make room for new people.</span></div>
+        <div class="value-card"><strong>Generosity</strong><span>We give generously to invest in changed lives.</span></div>
+        <div class="value-card"><strong>Vision</strong><span>We are more focused on where we're going than where we've been.</span></div>
+        <div class="value-card"><strong>Passion</strong><span>We put our heart and soul into all we do.</span></div>
+        <div class="value-card"><strong>Excellence</strong><span>We always bring our best.</span></div>
+        <div class="value-card"><strong>Honor</strong><span>We honor all people.</span></div>
+        <div class="value-card"><strong>Prayer</strong><span>We make prayer a priority.</span></div>
+        <div class="value-card"><strong>Gratitude</strong><span>We enjoy the journey.</span></div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

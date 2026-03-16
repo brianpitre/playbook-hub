@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Team Playbook — The Life Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.7; }
+
+    h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+    h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.15; }
+    h3 { font-size: 1.05rem; font-weight: 700; }
+    p  { font-size: 0.97rem; }
+
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      position: relative;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .cover h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    nav.toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem;
+    }
+    nav.toc .toc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    nav.toc ol {
+      padding-left: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem 2rem;
+    }
+    nav.toc li { font-size: 0.85rem; }
+    nav.toc a { color: var(--text); text-decoration: none; font-weight: 600; }
+    nav.toc a:hover { color: var(--green); }
+
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .responsibilities-box {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .resp-header {
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.5rem 1rem;
+    }
+    .resp-body { padding: 1rem 1.25rem; }
+    .resp-body ul { padding-left: 1.25rem; }
+    .resp-body li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+    .schedule-table th {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: center;
+      vertical-align: top;
+    }
+    .schedule-table td.time {
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .position-block {
+      margin-bottom: 1.75rem;
+    }
+    .position-block h3 {
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.35rem;
+      color: var(--black);
+    }
+    .position-block p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .position-block ul { padding-left: 1.25rem; }
+    .position-block li { font-size: 0.88rem; margin-bottom: 0.3rem; }
+
+    .priority-badge {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+    .armed-badge {
+      display: inline-block;
+      background: #8b1a1a;
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 0.3rem;
+      vertical-align: middle;
+    }
+
+    /* Alert / special issue blocks */
+    .alert-block {
+      border-left: 4px solid var(--black);
+      background: var(--bg-section);
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .alert-block h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.35rem;
+    }
+    .alert-block p { font-size: 0.88rem; }
+
+    /* Location addendum tabs */
+    .addendum-section {
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .addendum-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .addendum-location-badge {
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .addendum-header h3 { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; color: var(--white); }
+    .addendum-body { padding: 1.25rem; }
+    .addendum-body .position-block h3 { font-size: 0.88rem; }
+
+    .leadership-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+    .leadership-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+    }
+    .leadership-table td.role-cell {
+      font-weight: 900;
+      text-align: center;
+      font-size: 1rem;
+      width: 40%;
+    }
+    .leadership-table td.desc-cell {
+      font-size: 0.83rem;
+      color: var(--muted);
+      background: var(--bg-section);
+    }
+
+    .purpose-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--green);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .purpose-block p { font-size: 0.93rem; margin-bottom: 0.35rem; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .value-card {
+      background: var(--bg-section);
+      border-left: 4px solid var(--black);
+      padding: 0.75rem 1rem;
+    }
+    .value-card strong {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .value-card span { font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      nav.toc ol { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .page-wrap { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Safety Team Playbook</h1>
+    <p class="subtitle">Security, Safety &amp; Guest Care</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#welcome">Welcome</a></li>
+      <li><a href="#expectations">Expectations</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#responsibilities">Responsibilities</a></li>
+      <li><a href="#order-of-service">Order of Service</a></li>
+      <li><a href="#guidelines">Team Guidelines</a></li>
+      <li><a href="#observation">Active Observation</a></li>
+      <li><a href="#special-issues">Special Issues</a></li>
+      <li><a href="#addendum-gtp">Addendum: GTP</a></li>
+      <li><a href="#addendum-hsl">Addendum: Houston Levee</a></li>
+      <li><a href="#addendum-hld">Addendum: Highland</a></li>
+      <li><a href="#addendum-asp">Addendum: Austin Peay</a></li>
+      <li><a href="#leadership">Leadership Structure</a></li>
+      <li><a href="#vision">Vision &amp; Values</a></li>
+    </ol>
+  </nav>
+
+  <main class="page-wrap">
+
+    <section id="welcome">
+      <div class="section-label">Welcome</div>
+      <h2 style="margin-bottom:0.75rem;">Welcome to the Team</h2>
+      <p>We're so excited to have you on the team! All of our teams are vital in making people feel welcome and comfortable at our church. The information listed here is designed to equip you to host with hospitality and excellence. Our hope is that your smile, friendly face and sincere personality can contribute to the life-giving atmosphere we desire every person to experience.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="expectations">
+      <div class="section-label">Team Standards</div>
+      <h2 style="margin-bottom:1.25rem;">Expectations</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="responsibilities-box">
+          <div class="resp-header">Personal</div>
+          <div class="resp-body">
+            <ul>
+              <li>Pursue a relationship with God strengthened by daily Bible reading and prayer.</li>
+              <li>Commit to attending one service and serving in one service.</li>
+              <li>Commit to ongoing team training and actively participating in the life of the campus.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="responsibilities-box">
+          <div class="resp-header">Team</div>
+          <div class="resp-body">
+            <ul>
+              <li>Show up on time, with a great attitude and meet someone new.</li>
+              <li>Stay focused on guests when serving.</li>
+              <li>Pray for your team members, leaders and pastors.</li>
+              <li>Be open to building genuine relationships with others on the team.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="wins">
+      <div class="section-label">Team Goals</div>
+      <h2 style="margin-bottom:0.75rem;">Wins</h2>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">All services are executed <strong>safely</strong> and without incident.</li>
+        <li>Meet <strong>2–3 NEW PEOPLE</strong> each week. They could be new to the church or just new to you.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="responsibilities">
+      <div class="section-label">Commitments</div>
+      <h2 style="margin-bottom:1rem;">Responsibilities</h2>
+      <div class="responsibilities-box">
+        <div class="resp-header">During the Week</div>
+        <div class="resp-body">
+          <ul>
+            <li>Read weekly Team Leader communication regarding rosters, service flow, weekend elements and upcoming events.</li>
+            <li>Use Planning Center Online to confirm or decline your rostered position for the weekend.</li>
+            <li>Communicate with your Team Leader if your schedule changes.</li>
+            <li>Connect with your Team Leader weekly for updates and any information you may need to make the weekend great.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">On the Weekend</div>
+        <div class="resp-body">
+          <ul>
+            <li>Attend a service and serve in a service.</li>
+            <li>Check in with your Team Leader upon arrival and participate in the team touchdown.</li>
+            <li>Make sure your area of the church is in excellent order and ready for guests 30 minutes before the start of service.</li>
+            <li>Dress appropriately by being neat and clean in your appearance.</li>
+            <li>Smile a lot!</li>
+            <li>Proactively initiate conversations with people you don't know and look for opportunities to serve them.</li>
+            <li>Share good reports to encourage your team.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">Ongoing — Monthly/Quarterly</div>
+        <div class="resp-body">
+          <ul>
+            <li>Quarterly 1-on-1s with your Team Leader.</li>
+            <li>Attend monthly campus all-team volunteer rallies.</li>
+            <li>Attend team trainings.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="order-of-service">
+      <div class="section-label">Timeline</div>
+      <h2 style="margin-bottom:1rem;">Order of Service</h2>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th colspan="2">Before Service</th>
+            <th colspan="3">During Service</th>
+            <th>After Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">1 hr before</td>
+            <td class="time">30 mins before</td>
+            <td class="time">21 mins</td>
+            <td class="time">40–45 mins</td>
+            <td class="time">5 mins</td>
+            <td class="time">15 mins</td>
+          </tr>
+          <tr>
+            <td>Check In</td>
+            <td>Guest Interactions</td>
+            <td>Worship Begins</td>
+            <td>Welcome / Offering / Message</td>
+            <td>Fresh Start Prayer</td>
+            <td>Service Ends / Exits</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="guidelines">
+      <div class="section-label">Guidelines</div>
+      <h2 style="margin-bottom:0.75rem;">Safety Team Member Guidelines</h2>
+      <p style="margin-bottom:1.25rem;">The purpose of the Safety Team is to keep the flock safe through active observation while serving with a smile and providing hospitality to members and guests. We work to ensure a safe environment for the staff and the entire Church. We always engage in love and respect for one another.</p>
+
+      <div class="position-block">
+        <h3>Positions</h3>
+        <p>There are multiple Safety Team positions at each campus. They vary by location. Positions will be assigned by the Safety Team Leader at your touchdown meeting before service. Your team leader will go over the names and locations of the positions in training.</p>
+      </div>
+
+      <div class="position-block">
+        <h3>Upon Arrival</h3>
+        <ul>
+          <li>Check-in and retrieve a radio. Bring your issued earpiece.</li>
+          <li>Each service will have a touchdown meeting to give everyone their assigned positions. After the touchdown ends, you will be dispatched to your position.</li>
+          <li>The radio should be set to the campus's security channel.</li>
+          <li>Once you have the radio and earpiece in, make a radio check with the Dispatch or Team Leader to ensure you can send and receive clearly.</li>
+          <li>Always identify your position when transmitting on the radio (i.e. "CF1, radio check").</li>
+          <li>Safety Team members act as greeters until the service begins. Once service begins, your primary role is keeping the flock safe, while serving as a greeter.</li>
+        </ul>
+      </div>
+
+      <div class="position-block">
+        <h3>During Service</h3>
+        <ul>
+          <li>Conduct yourself at all times with a spirit of excellence, a smile and a heart for God.</li>
+          <li>Be alert and communicate anything outside of the norm to ensure a safe environment for the congregation. (We should always be cordial. However, be careful to not engage in friendly conversation that prevents you from being observant.)</li>
+          <li>Provide a clean and safe environment in the areas outside the church building.</li>
+          <li>Provide and assist with emergency/medical situations.</li>
+        </ul>
+      </div>
+
+      <div class="position-block">
+        <h3>After Service</h3>
+        <ul>
+          <li>Your shift concludes when you are relieved by a replacement or Team Leader.</li>
+          <li>Return your radio to a charging cradle. Ensure the light is on and the radio is charging. Return your host badge or take it with you.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="observation">
+      <div class="section-label">Awareness</div>
+      <h2 style="margin-bottom:0.75rem;">Active Observation</h2>
+      <p style="margin-bottom:0.75rem;">Safety team members will constantly look for behavioral abnormalities when serving such as:</p>
+      <ul style="padding-left:1.25rem; margin-bottom:1.25rem;">
+        <li style="margin-bottom:0.3rem;">Heavy coat on a warm day</li>
+        <li style="margin-bottom:0.3rem;">Large bags/backpacks</li>
+        <li style="margin-bottom:0.3rem;">Nervous/agitated behavior</li>
+        <li style="margin-bottom:0.3rem;">Frequently enters and exits the auditorium</li>
+        <li style="margin-bottom:0.3rem;">Overtly friendly and asks a lot of direct questions</li>
+        <li style="margin-bottom:0.3rem;">Does not appear comfortable in their environment</li>
+        <li>Vehicles parked in front of the church exits</li>
+      </ul>
+      <p style="margin-bottom:0.75rem; font-weight:600;">If you recognize behavioral concerns or any other type of issue, use the following protocol:</p>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Before you engage, radio for backup: "This is <em>(state your position)</em>, requests assistance."</li>
+        <li style="margin-bottom:0.4rem;">As you approach the person, pray for God to intervene. Ask God for the right words to say.</li>
+        <li>Show love to the person. Ask open-ended questions and try to evaluate their situation and state of mind.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="special-issues">
+      <div class="section-label">Emergency Protocols</div>
+      <h2 style="margin-bottom:1rem;">Special Issues</h2>
+
+      <div class="alert-block">
+        <h4>Medical</h4>
+        <p>Medical personnel will provide medical treatment as required. They are responsible for assessing the medical situation and directing the Safety Team Leader on whether to contact 911. They handle a quarterly inspection of medical kits and the blow-out kit in the safe room. The Safety Team's primary responsibility is to isolate the medical event — prevent onlookers, non-medical personnel and non-family members from interfering. The Team Leader will text the Campus Pastor with a summary of the medical event.</p>
+      </div>
+
+      <div class="alert-block">
+        <h4>Lost Child or Adult</h4>
+        <p>Immediately notify the team leader and attempt to find the lost individual. Radio all safety team members about the lost individual's description and last known location. If unable to locate the lost individual, advise the onsite Law Enforcement Officer.</p>
+      </div>
+
+      <div class="alert-block">
+        <h4>Disruptive Person</h4>
+        <p>As you approach the person, pray for God to intervene. Ask God for the right words to say. Call for assistance/backup. Calmly approach the person and if necessary aid in escorting them from the premises. Whenever possible, the Law Enforcement Officer should perform the escort and will always make the call for the best next step.</p>
+      </div>
+
+      <div class="alert-block">
+        <h4>Extreme/Severe Weather</h4>
+        <p>Immediately notify the team leader and campus pastor. The safety team will help give directions and assist all guests to a safe room. Give instructions to meet in a designated shelter area such as the interior hallway or restroom that is away from windows.</p>
+      </div>
+
+      <div class="alert-block">
+        <h4>Fire</h4>
+        <p>If the fire is small, remove any individuals in the area and alert the team leader. Locate the nearest fire extinguisher and attempt to extinguish the fire. Contact the campus pastor and local fire department. In the event of a large fire, fire alarms will be activated. All safety team members will check their areas and communicate status to the team leader. If fire or smoke is present, evacuation is required — announce "evacuate the building, this is not a drill" and guide guests to evacuate quickly and safely.</p>
+      </div>
+
+      <div class="alert-block">
+        <h4>Suspicious Package / Bomb Threat</h4>
+        <p>Do not touch, tamper or move any items that look suspicious. Immediately notify the team leader and onsite Law Enforcement Officer. The safety team leader and campus pastor will alert law enforcement.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="addendum-gtp">
+      <div class="section-label">Location Guide</div>
+      <h2 style="margin-bottom:1rem;">Safety Team Addendum</h2>
+
+      <div class="addendum-section">
+        <div class="addendum-header">
+          <span class="addendum-location-badge">GTP</span>
+          <h3>Germantown Parkway Location — Positions</h3>
+        </div>
+        <div class="addendum-body">
+          <p style="font-size:0.83rem; color:var(--muted); margin-bottom:1rem;"><em>*P = Priority Position &nbsp; *A = Armed Position. All positions assigned by Service Team Leader at "touchdown" before service.</em></p>
+          <div class="position-block">
+            <h3>Service Lead <span class="priority-badge">*P</span></h3>
+            <p>Responsible to the Campus Lead for ensuring the safety of the staff and guests. Touchdowns with the team 45 minutes before service, assigns positions, disseminates pertinent information and prays for the safety of all campuses and teams. Releases the Safety team at end of service.</p>
+          </div>
+          <div class="position-block">
+            <h3>Service Lead Alternate</h3>
+            <p>In training to be the Service Lead. Maintains knowledge of each position and supports the lead as necessary.</p>
+          </div>
+          <div class="position-block">
+            <h3>Front Spine <span class="priority-badge">*P</span></h3>
+            <p>Responsible for ensuring the kitchen and office doors are secure. Greets at front doors before service begins. Once service starts, stands by the front connection desk door to control entry to the back offices. Also responsible for keeping the area clean and free of trash.</p>
+          </div>
+          <div class="position-block">
+            <h3>Mid Spine <span class="priority-badge">*P</span></h3>
+            <p>Responsible for the area from the kitchen to the bathrooms. Ensures sanctuary doors are secure during communion, fresh start and offering (called by Audit 1). Keeps café area free of trash. Ideally staffed with a medical provider.</p>
+          </div>
+          <div class="position-block">
+            <h3>Rear Spine <span class="priority-badge">*P</span></h3>
+            <p>Responsible for the restroom area to the rear parking doors. May be asked to clear the men's bathroom and stand watch while children go in. Primary role is security; also serves as greeter and keeps area clean.</p>
+          </div>
+          <div class="position-block">
+            <h3>Spleen <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Maintains physical security of the back side of the church during service. Greets people at those doors and announces when the Lead Pastor has entered the Church. Ensures no one enters the sanctuary doors during prescribed times referred to by Audit 1.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF2 — Chair Left</h3>
+            <p>Initial position is at the front doors of the auditorium as a greeter until countdown begins. Then takes a seat in the front left (looking at the stage), worshiping and praying while monitoring. Intervenes only if someone approaches the stage outside of prayer/communion time.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF1 — Chair Right <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Initial position is at the front doors of the auditorium as a greeter until countdown begins. Then takes a seat in the front right (looking at the stage). Worships and prays while monitoring. Intervenes only if someone approaches the stage outside of prayer/communion time.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF3</h3>
+            <p>Initial position is by the spleen doors greeting people. Once countdown begins, moves to seats to the right of the stage (as looking at it), in the labeled reserved seat with the black wall to the immediate right. Remains in auditorium until majority of people leave.</p>
+          </div>
+          <div class="position-block">
+            <h3>Audit 1 <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Checks out security key and radio on arrival. Initially greets by the media booth 15 minutes before service. Once countdown begins, takes position in the back of the auditorium, maintaining line of sight with CF1 and CF2. Communicates with Front Spine and Rear Spine for communion, fresh start, prayer and offering. Maintains security of the offering as it is collected and taken to the finance room.</p>
+          </div>
+          <div class="position-block">
+            <h3>Audit 2 <span class="priority-badge">*P</span></h3>
+            <p>Greeter at main sanctuary doors before service. During service, located in the back of the auditorium by the main doors. Steps outside to secure doors when Audit 1 makes the call. Maintains eye contact with CF positions and Audit 1.</p>
+          </div>
+          <div class="position-block">
+            <h3>Audit 3</h3>
+            <p>Greeter at the rear sanctuary doors before service. During service, located in the back of the auditorium by the rear doors. Maintains eye contact with CF positions.</p>
+          </div>
+          <div class="position-block">
+            <h3>Medical Position</h3>
+            <p>Ideally positioned at mid spine. May be a first responder, medic, nurse, or doctor. Responsible for assessing the medical situation and directing the Safety Lead on whether to contact 911. Handles quarterly inspection of medical kits and the blow-out kit in the safe room. If a medical emergency is announced over radio, grabs the bag and/or AED and brings it to the site.</p>
+          </div>
+          <div class="position-block">
+            <h3>Police Officer <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>GTP aims to have 3 officers at every service. Officers are priority-positioned in Front Spine, Rear Spine, Mid Spine, Auditorium, or the Spleen as needed, freeing up other safety team members.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="addendum-section" id="addendum-hsl">
+        <div class="addendum-header">
+          <span class="addendum-location-badge">HSL</span>
+          <h3>Houston Levee Location — Positions</h3>
+        </div>
+        <div class="addendum-body">
+          <p style="font-size:0.83rem; color:var(--muted); margin-bottom:1rem;"><em>*P = Priority Position &nbsp; *A = Armed Position. All positions assigned by Service Team Leader at "touchdown" before service.</em></p>
+          <p style="font-size:0.88rem; font-weight:700; margin-bottom:0.75rem;">Dispatch Responsibilities (Houston Levee)</p>
+          <ul style="padding-left:1.25rem; margin-bottom:1.25rem; font-size:0.88rem;">
+            <li style="margin-bottom:0.3rem;">Get the laptop off the shelf, plug it into the charger and log in. Set up sheet once service lead finishes.</li>
+            <li style="margin-bottom:0.3rem;">The earpiece connects to analog radio but speaks through digital radio.</li>
+            <li style="margin-bottom:0.3rem;">Complete attendance on the Safety team roster. Note on the sheet which officers are available.</li>
+            <li style="margin-bottom:0.3rem;">Be ready for radio checks and respond promptly. Relay information to team members if they miss the touchdown.</li>
+            <li style="margin-bottom:0.3rem;">During congregation's arrival, monitor all cameras on 9 or 16 views. During Praise &amp; Worship, monitor all and check through in 4s.</li>
+            <li style="margin-bottom:0.3rem;">After worship, ask for the outdoor car count (front and back) and go to Station 16 on the radio (outdoor team).</li>
+            <li style="margin-bottom:0.3rem;">During altar call, the worship team goes to the green room — ask G1/G2 for a media and green room count.</li>
+            <li style="margin-bottom:0.3rem;">"Buckets/green on move" means monitor office on spine 2 and maintain visual on the green until it's secure in the office.</li>
+            <li style="margin-bottom:0.3rem;">Monitor Kids Life Cameras throughout service. Monitor Pastors in the bistro area after service.</li>
+            <li><strong>Communication is key. Being alert to details is paramount. Notify service leads ASAP if needed.</strong></li>
+          </ul>
+          <div class="position-block">
+            <h3>Front Spine</h3>
+            <p>Stands near the doors, greets guests arriving. Follows Active Observation. Once service begins, continues looking outward and pays close attention to anyone coming in. In emergencies, holds position and guides people to exits.</p>
+          </div>
+          <div class="position-block">
+            <h3>Mid Spine <span class="priority-badge">*P</span></h3>
+            <p>Greets guests making their way to the auditorium or kids area. Follows Active Observation. In emergencies, guides people toward exits, working with Front Spine and host team.</p>
+          </div>
+          <div class="position-block">
+            <h3>Rear Spine <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Stands at the rear entrance. Follows Active Observation. In emergencies, guides people toward exits. Ensures the rear door is locked at all times.</p>
+          </div>
+          <div class="position-block">
+            <h3>Audit Positions — Commands</h3>
+            <p><strong>Audit 1 [*P]:</strong> (1) "Countdown has started" (2) "Secure Doors for Tithes and Offerings" (3) "Buckets are moving" during offering.</p>
+            <p style="margin-top:0.35rem;"><strong>Audit 2, Audit 3 [*P *A]:</strong> Observation and communication only.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF1 <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Primary responsibility: follow active observation, respond to directions from audit positions. In an emergency, protect Pastor John and Leslie and facilitate their safe removal. This is not a speaking position — do not use the radio unless there is an emergency.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF 2, CF 3 &amp; CF 4 <span class="priority-badge">*P</span></h3>
+            <p>Assigned positions between the Audit positions and the stage. CF 4 must keep a close eye on the door leading from the auditorium to behind the stage — ensure no unauthorized people get through.</p>
+          </div>
+          <div class="position-block">
+            <h3>Kids Life Spine K1 <span class="priority-badge">*P</span></h3>
+            <p>Primary responsibility is to keep the kids safe. Do not leave your position unless relieved or released by the service lead. Check the rear door on the first floor to make sure it is locked at all times (exit only).</p>
+          </div>
+          <div class="position-block">
+            <h3>Kids Life 2 — Second Floor K2</h3>
+            <p>Primary responsibility is to keep the kids safe. Do not leave your position unless relieved or released by the service lead.</p>
+          </div>
+          <div class="position-block">
+            <h3>B1/G1 <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Protects the staff in the Green Room and Pastor John while on stage. Ensures the safe room is clear and all doors are secured. This person must be an Armed Guard and always carry a weapon. When Pastor John is in the auditorium, assumes the B1 position — singular focus on the protection of Pastor John. (This position applies to every campus location.)</p>
+          </div>
+          <div class="position-block">
+            <h3>G2 <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Ensures no unauthorized personnel enters the Green Room area, posting on the inside of the door that leads to the auditorium. Assists B1/G1 in ensuring all doors are secured.</p>
+          </div>
+          <div class="position-block">
+            <h3>S1 through S4</h3>
+            <p>Sit in the upper stadium seats. Primary responsibility is to monitor auditorium movement and report potential threats to the stage to CF personnel. Sits in the highest possible seat to blend in with the crowd. Does not surrender the high ground to any potential threat.</p>
+          </div>
+          <div class="position-block">
+            <h3>Floater 1</h3>
+            <p>Floats the hallways and checks on each position (excluding the Sanctuary and Green Room) to make sure the exit doors are secured. Responds immediately to all calls for assistance from other team members.</p>
+          </div>
+          <div class="position-block">
+            <h3>Sheriff's Deputy <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Houston Levee aims to have 3 officers at every service, priority-positioned where appropriate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="addendum-section" id="addendum-hld">
+        <div class="addendum-header">
+          <span class="addendum-location-badge">HLD</span>
+          <h3>Highland Location — Positions</h3>
+        </div>
+        <div class="addendum-body">
+          <p style="font-size:0.83rem; color:var(--muted); margin-bottom:1rem;"><em>*P = Priority Position &nbsp; *A = Armed Position.</em></p>
+          <div class="position-block">
+            <h3>Service Lead / Service Lead Alternate <span class="priority-badge">*P</span></h3>
+            <p>Same responsibilities as GTP: Touchdowns 45 minutes before service, assigns positions, prays for safety of all campuses, releases team at end of service.</p>
+          </div>
+          <div class="position-block">
+            <h3>Front Spine / Mid / Café <span class="priority-badge">*P</span> / Rear Spine <span class="priority-badge">*P</span></h3>
+            <p>Each position covers their respective area, follows Active Observation, greets guests, and in emergencies guides people toward exits working with the host team.</p>
+          </div>
+          <div class="position-block">
+            <h3>Audit 1 <span class="priority-badge">*P</span> / Audit 4</h3>
+            <p><strong>Audit 1 commands:</strong> (1) "Countdown has started" (2) "Secure Doors for Tithes and Offerings" (3) "Buckets are moving." Audit 4 is observation and communication only.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF 1 <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Follows active observation, responds to direction from audit positions. In emergency, protects Pastor John and Leslie and facilitates their safe removal. Not a speaking position — do not use radio unless there is an emergency.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF 5 / Kids Life Spine <span class="priority-badge">*P</span> / Floater 1</h3>
+            <p><strong>CF 5:</strong> Assigned position inside the Auditorium closest to double doors that lead outside. <strong>Kids Life Spine:</strong> Primary responsibility is to keep the kids safe — do not leave position unless relieved. <strong>Floater 1:</strong> Floats hallways, checks positions, ensures exit doors are secured.</p>
+          </div>
+          <div class="position-block">
+            <h3>Police Officer <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Highland aims to have 3 officers at every service, priority-positioned in Rear, Mid or auditorium as needed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="addendum-section" id="addendum-asp">
+        <div class="addendum-header">
+          <span class="addendum-location-badge">ASP</span>
+          <h3>Austin Peay Location — Positions</h3>
+        </div>
+        <div class="addendum-body">
+          <p style="font-size:0.83rem; color:var(--muted); margin-bottom:1rem;"><em>*P = Priority Position &nbsp; *A = Armed Position.</em></p>
+          <div class="position-block">
+            <h3>Service Lead / Service Lead Alternate <span class="priority-badge">*P</span></h3>
+            <p>Same responsibilities as other locations: Touchdowns 45 minutes before service, assigns positions, prays, releases team at end of service.</p>
+          </div>
+          <div class="position-block">
+            <h3>Front Spine / Mid Spine / Rear Spine</h3>
+            <p><strong>Front Spine:</strong> Greets at front doors, then controls entry to back offices during service. Key issued by Service Team Leader. Keeps area free of trash.</p>
+            <p><strong>Mid Spine:</strong> Covers area from front to mid-spine. Ensures sanctuary doors are secure during communion, fresh start and giving (called by Audit 1). Keeps café area clean. Ideally staffed with a medical provider.</p>
+            <p><strong>Rear Spine:</strong> Responsible for restroom area to rear parking doors and the Kids Life area. Security primary, also serves as greeter.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF2 — Chair Left <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>15 minutes prior, greets at front doors. Once countdown begins, takes seat to the front left (looking at stage). Worships and prays while monitoring. Remains until majority of people leave. Intervenes only if someone approaches the stage outside of prayer/communion time.</p>
+          </div>
+          <div class="position-block">
+            <h3>CF1 — Chair Right <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>15 minutes prior, greets at front doors. Once countdown begins, takes seat to the front right (looking at stage). Worships and prays while monitoring. Remains until majority of people leave. Intervenes only if someone approaches the stage outside of prayer/communion time.</p>
+          </div>
+          <div class="position-block">
+            <h3>Audit 1 / Audit 2 / Audit 3</h3>
+            <p><strong>Audit 1:</strong> Checks out security key and radio. Greets by media booth 15 minutes before service. Once countdown begins, takes position in back of auditorium. Maintains line of sight with CF1 and CF2. Communicates for communion, fresh start, prayer and offering. Maintains security of the offering. <br><strong>Audit 2:</strong> Greeter at main sanctuary doors. During service, secures doors on Audit 1's call. Maintains eye contact with CF positions. <br><strong>Audit 3:</strong> Greeter at rear sanctuary doors. Maintains eye contact with CF positions during service.</p>
+          </div>
+          <div class="position-block">
+            <h3>Medical Position</h3>
+            <p>Ideally at mid spine. May be a first responder, medic, nurse, or doctor. Assesses medical situations and directs Safety Lead on whether to contact 911. Handles quarterly inspection of medical kits and blowout kit. Responds to medical emergencies with bag and/or AED.</p>
+          </div>
+          <div class="position-block">
+            <h3>Police Officers <span class="priority-badge">*P</span><span class="armed-badge">*A</span></h3>
+            <p>Austin Peay aims to have 3 officers at every service, priority-positioned as appropriate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="leadership">
+      <div class="section-label">Structure</div>
+      <h2 style="margin-bottom:0.75rem;">Leadership Support Structure</h2>
+      <table class="leadership-table" style="margin-bottom:1.25rem;">
+        <tbody>
+          <tr>
+            <td class="desc-cell">"Lead &amp; Feed" — Set the Vision, Establish Culture, Communicate</td>
+            <td class="role-cell">Lead Pastor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Campus Pastor</td>
+            <td class="desc-cell">Carry the Culture, Care for the Community, Grow the Church</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Establish the direction within a ministry area at a campus (Connection, Kids, Worship, Axis)</td>
+            <td class="role-cell">Campus Ministry Director</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Captain</td>
+            <td class="desc-cell">Assist Campus Ministry Director within a ministry area; Provide coaching, care &amp; development to Team Leaders at a service</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Building the team, caring for volunteers, lead the charge within the ministry area at a service</td>
+            <td class="role-cell">Team Leader &amp; Assistant Team Leads</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Team Members</td>
+            <td class="desc-cell">Execute consistently excellent and inspiring services</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="purpose-block">
+        <p><strong>Your Leader:</strong> Safety Team Leader</p>
+        <p><strong>Your Purpose:</strong> Care for the guests that God sends to us by providing hospitality and ensuring a safe environment on the weekends. Monitor and respond to medical and safety concerns for the staff and the entire Church.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="vision">
+      <div class="section-label">Identity</div>
+      <h2 style="margin-bottom:0.75rem;">Our Vision</h2>
+      <p style="margin-bottom:1.5rem; font-size:0.97rem; font-style:italic; font-family:var(--font-serif);">We are one church in many locations – dynamic, Spirit-filled and diverse – serving people, developing leaders and impacting generations.</p>
+      <h2 style="margin-bottom:1rem;">Our Aligning Values</h2>
+      <div class="values-grid">
+        <div class="value-card"><strong>Integrity</strong><span>We serve Jesus and his church with integrity.</span></div>
+        <div class="value-card"><strong>Diversity</strong><span>We are building a house that looks like Heaven.</span></div>
+        <div class="value-card"><strong>Hospitality</strong><span>We make room for new people.</span></div>
+        <div class="value-card"><strong>Generosity</strong><span>We give generously to invest in changed lives.</span></div>
+        <div class="value-card"><strong>Vision</strong><span>We are more focused on where we're going than where we've been.</span></div>
+        <div class="value-card"><strong>Passion</strong><span>We put our heart and soul into all we do.</span></div>
+        <div class="value-card"><strong>Excellence</strong><span>We always bring our best.</span></div>
+        <div class="value-card"><strong>Honor</strong><span>We honor all people.</span></div>
+        <div class="value-card"><strong>Prayer</strong><span>We make prayer a priority.</span></div>
+        <div class="value-card"><strong>Gratitude</strong><span>We enjoy the journey.</span></div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

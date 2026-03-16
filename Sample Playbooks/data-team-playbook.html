@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Life Church — Data Team Playbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #000000; --white: #ffffff; --green: #589a61; --green-dark: #3d7345;
+      --gray: #6d6d6d; --gray-light: #e1e1e1; --gray-bg: #f7f7f7;
+      --text: #111111; --muted: #6d6d6d; --border: #e1e1e1; --bg-section: #f7f7f7;
+      --font: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.7; }
+    h1, h2, h3, h4 { font-weight: 900; line-height: 1.15; color: var(--black); font-family: var(--font); }
+    h1 { font-size: 2.8rem; letter-spacing: -1px; text-transform: uppercase; }
+    h2 { font-size: 1.6rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: -0.3px; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; font-weight: 700; }
+    h4 { font-size: 0.75rem; margin-bottom: 0.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+    p { margin-bottom: 1rem; font-size: 0.97rem; }
+    strong { font-weight: 700; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
+    ul { padding-left: 1.4rem; margin-bottom: 1rem; }
+    ul li { font-size: 0.97rem; margin-bottom: 0.35rem; }
+    ul ul { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 0 2rem 4rem; }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .cover {
+      background: var(--black); color: var(--white);
+      padding: 5rem 3rem 4.5rem; margin-bottom: 3rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cover::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 5px; background: var(--green);
+    }
+    .cover h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 1rem; }
+    .cover .cover-tag {
+      display: inline-block; background: var(--green); color: var(--white);
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; padding: 4px 14px; border-radius: 50px; margin-bottom: 1.5rem;
+    }
+    .cover .subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+    nav.toc {
+      background: var(--bg-section); border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem; margin-bottom: 3rem;
+    }
+    nav.toc h4 { color: var(--black); margin-bottom: 0.75rem; font-size: 0.7rem; letter-spacing: 2px; }
+    nav.toc ol { padding-left: 1.2rem; }
+    nav.toc ol li { margin-bottom: 0.3rem; font-size: 0.9rem; }
+    nav.toc ol li a { color: var(--text); font-weight: 600; }
+    nav.toc ol li a:hover { color: var(--green); text-decoration: none; }
+    .section-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--green); margin-bottom: 0.4rem; }
+    .intro-block {
+      background: var(--bg-section); border-left: 5px solid var(--green);
+      padding: 1.25rem 1.5rem; margin-bottom: 2rem; font-size: 0.97rem; line-height: 1.75;
+    }
+    .responsibilities-box {
+      border: 1px solid var(--border); margin-bottom: 1.25rem;
+    }
+    .responsibilities-box .resp-header {
+      background: var(--black); color: var(--white);
+      padding: 0.6rem 1.2rem; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+    }
+    .responsibilities-box .resp-body { padding: 1rem 1.2rem; }
+    .responsibilities-box .resp-body ul { margin-bottom: 0; }
+    .schedule-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.88rem; }
+    .schedule-table th { background: var(--black); color: var(--white); padding: 0.55rem 0.75rem; text-align: center; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+    .schedule-table td { border: 1px solid var(--border); padding: 0.55rem 0.75rem; text-align: center; vertical-align: top; }
+    .schedule-table td.time { background: var(--green); color: var(--white); font-weight: 700; font-size: 0.8rem; }
+    .guidelines-block { margin-bottom: 2rem; }
+    .guidelines-block h3 { color: var(--green); font-size: 1rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.3rem; }
+    .leadership-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+    .leadership-table td { border: 1px solid var(--border); padding: 0.75rem 1rem; vertical-align: middle; }
+    .leadership-table td.role { font-weight: 900; font-size: 1rem; text-align: center; background: var(--white); }
+    .leadership-table td.desc { font-size: 0.83rem; color: var(--muted); background: var(--bg-section); }
+    .purpose-block {
+      background: var(--black); color: var(--white); padding: 1.25rem 1.5rem; margin-top: 1.5rem;
+    }
+    .purpose-block p { margin-bottom: 0.5rem; font-size: 0.93rem; color: rgba(255,255,255,0.85); }
+    .purpose-block strong { color: var(--white); }
+    .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1rem; }
+    .value-item { background: var(--bg-section); border-left: 4px solid var(--green); padding: 0.6rem 0.9rem; font-size: 0.88rem; }
+    .value-item strong { color: var(--black); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.5px; display: block; margin-bottom: 0.2rem; }
+    @media (max-width: 600px) {
+      .cover h1 { font-size: 2.2rem; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Data Team Playbook</h1>
+    <p class="subtitle">Data Entry &amp; Guest Connection</p>
+  </div>
+
+  <div class="page-wrap">
+
+    <nav class="toc">
+      <h4>Table of Contents</h4>
+      <ol>
+        <li><a href="#welcome">Welcome</a></li>
+        <li><a href="#expectations">Expectations</a></li>
+        <li><a href="#wins">Wins</a></li>
+        <li><a href="#responsibilities">Responsibilities</a></li>
+        <li><a href="#order-of-service">Order of Service</a></li>
+        <li><a href="#guidelines">Data Member Guidelines</a></li>
+        <li><a href="#leadership">Leadership Support Structure</a></li>
+        <li><a href="#vision">Vision &amp; Values</a></li>
+      </ol>
+    </nav>
+
+    <!-- Welcome -->
+    <section id="welcome">
+      <div class="section-label">Welcome</div>
+      <h2>Welcome to the Team</h2>
+      <div class="intro-block">
+        We're so excited to have you on the team! All of our teams are vital in making people feel welcome and comfortable at our church. Please take some time to review this booklet. The information listed here is designed to equip you to host with hospitality and excellence. Our hope is that your smile, friendly face and sincere personality can contribute to the life-giving atmosphere we desire every person to experience.
+      </div>
+      <p>We lead more effectively when we know what is expected of us. Clarifying expectations reduces stress, brings focus to action and makes teams more productive. These expectations are laid out in three key areas: <strong>Expectations, Wins</strong> and <strong>Responsibilities</strong>.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Expectations -->
+    <section id="expectations">
+      <div class="section-label">Section 1</div>
+      <h2>Expectations</h2>
+      <h3>Personal</h3>
+      <p>Consistently seek personal growth and development:</p>
+      <ul>
+        <li>Pursue a relationship with God strengthened by daily Bible reading and prayer.</li>
+        <li>Commit to attending one service and serving one service.</li>
+        <li>Commit to ongoing team training and actively participating in the life of the campus.</li>
+      </ul>
+      <h3 style="margin-top:1.25rem;">Team</h3>
+      <p>Faithfully serve God's House and others:</p>
+      <ul>
+        <li>Show up on time, with a great attitude and meet someone new.</li>
+        <li>Stay focused on guests when serving.</li>
+        <li>Pray for your team members, leaders and pastors.</li>
+        <li>Be open to building genuine relationships with others on the team.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Wins -->
+    <section id="wins">
+      <div class="section-label">Section 2</div>
+      <h2>Wins</h2>
+      <p>Every person works together to create an amazing guest experience. When one team member wins, the whole team wins! By accomplishing at least one of these things each weekend, you help the team win.</p>
+      <ul>
+        <li>Engage in a <strong>Meaningful Connection</strong> with someone new each week. This could be a first time guest or someone new to the church you haven't met before.</li>
+        <li><strong>Serve</strong> guests with a cheerful heart. Be present and friendly when guests start to arrive.</li>
+        <li>Meet 1–2 <strong>New People</strong> each week. They could be new to the church or just new to you.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Responsibilities -->
+    <section id="responsibilities">
+      <div class="section-label">Section 3</div>
+      <h2>Responsibilities</h2>
+      <p>The responsibilities outlined below clarify the "what" and "when" of each role and when executed will help create productive and healthy teams. Team members should be fully committed to and comfortable with the expectations below.</p>
+
+      <div class="responsibilities-box">
+        <div class="resp-header">During the Week</div>
+        <div class="resp-body">
+          <ul>
+            <li>Read weekly Team Leader communication regarding rosters, service flow, weekend elements and upcoming events.</li>
+            <li>Use Planning Center Online to confirm or decline your rostered position for the weekend. Communicate with your Team Leader if your schedule changes.</li>
+            <li>Connect with your Team Leader weekly for updates and any information you may need to make the weekend great.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="responsibilities-box">
+        <div class="resp-header">On the Weekend</div>
+        <div class="resp-body">
+          <ul>
+            <li>Attend a service and serve in a service.</li>
+            <li>Check in with your Team Leader upon arrival and participate in the team touchdown.</li>
+            <li>Make sure your area of the church is in excellent order and ready for guests 30 minutes before the start of service.</li>
+            <li>Dress appropriately by being neat and clean in your appearance.</li>
+            <li>Smile a lot!</li>
+            <li>Proactively initiate conversations with people you don't know and look for opportunities to serve them.</li>
+            <li>Share good reports to encourage your team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="responsibilities-box">
+        <div class="resp-header">Ongoing (Monthly / Quarterly)</div>
+        <div class="resp-body">
+          <ul>
+            <li>Quarterly 1-on-1s with your Team Leader.</li>
+            <li>Attend monthly campus all-team volunteer rallies.</li>
+            <li>Attend all team training sessions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Order of Service -->
+    <section id="order-of-service">
+      <div class="section-label">Section 4</div>
+      <h2>Order of Service</h2>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th colspan="2">Before Service</th>
+            <th colspan="3">During Service</th>
+            <th>After Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">1 hr before</td>
+            <td class="time">30 mins before</td>
+            <td class="time">21 mins</td>
+            <td class="time">40–45 mins</td>
+            <td class="time">5 mins</td>
+            <td class="time">15 mins</td>
+          </tr>
+          <tr>
+            <td>Check In</td>
+            <td>Guest Interactions</td>
+            <td>Worship Begins</td>
+            <td>Welcome / Offering / Message</td>
+            <td>Fresh Start Prayer</td>
+            <td>Service Ends / Exits</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Guidelines -->
+    <section id="guidelines">
+      <div class="section-label">Section 5</div>
+      <h2>Data Member Guidelines</h2>
+      <p>The Data Team's purpose is to thoroughly and accurately enter the information given to us by guests and members. We want to connect them into church life and help them receive important church communication that connects them to the exciting things happening at our church.</p>
+
+      <div class="guidelines-block">
+        <h3>Positions</h3>
+        <p>The Data Team serves in designated office areas with access to data computers. This varies by location. There are advanced and intermediate data positions. Your team lead will go over this information in training.</p>
+      </div>
+
+      <div class="guidelines-block">
+        <h3>Gathering Data</h3>
+        <ul>
+          <li>Typically, data is gathered and placed in a specific area. Our teams put their data in the weekend data basket or box. This includes but is not limited to: Volunteer Count Sheets, Connection Cards / Prayer Cards, Axis Cards, Kids Life Cards, Next Step sign up sheets, Returned mail, Fresh Start Response Cards, Discovery (First Serve sign ups, member apps, info cards), etc.</li>
+          <li>If no data has been collected or is available in the data box/basket, there are certain areas where you can collect yourself: Kids Life Guest Services and Various Host Team Areas.</li>
+        </ul>
+      </div>
+
+      <div class="guidelines-block">
+        <h3>Entering Data</h3>
+        <ul>
+          <li>We use a database called Ministry Platform. A how-to guide is provided with instructions. The guide is located in MP under bookmarks. There are binders at each computer station for easy reference.</li>
+          <li>A team member will train you on the basics. Once you familiarize yourself with the database and are more comfortable, we will train you on a more advanced level.</li>
+        </ul>
+      </div>
+
+      <div class="guidelines-block">
+        <h3>Data Confidentiality</h3>
+        <ul>
+          <li>All of the data given should remain confidential.</li>
+          <li>Do not share information with anyone.</li>
+          <li>Do not talk about prayer requests or personal information.</li>
+          <li>If you run across information that is serious in nature, please inform your Team Leader immediately and they will connect with the Captain or Campus Ministry Director.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Leadership -->
+    <section id="leadership">
+      <div class="section-label">Section 6</div>
+      <h2>Leadership Support Structure</h2>
+      <p>Everyone plays a role in the leadership of the church. From the Lead Pastors to the congregation. Our desire is that every person is connected in relationship to a leader who provides care and support as well as ongoing development.</p>
+      <table class="leadership-table">
+        <tbody>
+          <tr>
+            <td class="desc">"Lead &amp; Feed" — Set the Vision, Establish Culture, Communicate</td>
+            <td class="role">Lead Pastor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role">Campus Pastor</td>
+            <td class="desc">Carry the Culture, Care for the Community, Grow the Church</td>
+          </tr>
+          <tr>
+            <td class="desc">Establish the direction within a ministry area at a campus (ex: Connection, Kids, Worship, Axis)</td>
+            <td class="role">Campus Ministry Director</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role">Captain</td>
+            <td class="desc">Assist Campus Ministry Director within a ministry area; Provide coaching, care &amp; development to Team Leaders at a service</td>
+          </tr>
+          <tr>
+            <td class="desc">Building the team, caring for volunteers, lead the charge within the ministry area at a service</td>
+            <td class="role">Team Leader &amp; Assistant Team Leads</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role">Team Members</td>
+            <td class="desc">Execute consistently excellent and inspiring services</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="purpose-block">
+        <p><strong>Your Leader:</strong> Data Team Leader</p>
+        <p><strong>Your Purpose:</strong> Accurately enter data for members and guests to help connect them into church life. Serve with integrity and excellence and hold the information you see in confidence.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Vision & Values -->
+    <section id="vision">
+      <div class="section-label">Section 7</div>
+      <h2>Our Vision</h2>
+      <p>We are one church in many locations – dynamic, Spirit-filled and diverse – serving people, developing leaders and impacting generations.</p>
+      <h2 style="margin-top:2rem;">Our Aligning Values</h2>
+      <div class="values-grid">
+        <div class="value-item"><strong>Integrity</strong> We serve Jesus and his church with integrity.</div>
+        <div class="value-item"><strong>Diversity</strong> We are building a house that looks like Heaven.</div>
+        <div class="value-item"><strong>Hospitality</strong> We make room for new people.</div>
+        <div class="value-item"><strong>Generosity</strong> We give generously to invest in changed lives.</div>
+        <div class="value-item"><strong>Vision</strong> We are more focused on where we're going than where we've been.</div>
+        <div class="value-item"><strong>Passion</strong> We put our heart and soul into all we do.</div>
+        <div class="value-item"><strong>Excellence</strong> We always bring our best.</div>
+        <div class="value-item"><strong>Honor</strong> We honor all people.</div>
+        <div class="value-item"><strong>Prayer</strong> We make prayer a priority.</div>
+        <div class="value-item"><strong>Gratitude</strong> We enjoy the journey.</div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

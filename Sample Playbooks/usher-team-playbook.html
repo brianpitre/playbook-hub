@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usher Team Playbook — The Life Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.7; }
+
+    h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+    h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.15; }
+    h3 { font-size: 1.05rem; font-weight: 700; }
+    p  { font-size: 0.97rem; }
+
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      position: relative;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .cover h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    nav.toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem;
+    }
+    nav.toc .toc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    nav.toc ol {
+      padding-left: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem 2rem;
+    }
+    nav.toc li { font-size: 0.85rem; }
+    nav.toc a { color: var(--text); text-decoration: none; font-weight: 600; }
+    nav.toc a:hover { color: var(--green); }
+
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .responsibilities-box {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .resp-header {
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.5rem 1rem;
+    }
+    .resp-body { padding: 1rem 1.25rem; }
+    .resp-body ul { padding-left: 1.25rem; }
+    .resp-body li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+    .schedule-table th {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: center;
+      vertical-align: top;
+    }
+    .schedule-table td.time {
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .position-block { margin-bottom: 1.75rem; }
+    .position-block h3 { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .position-block p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .position-block ul { padding-left: 1.25rem; }
+    .position-block li { font-size: 0.88rem; margin-bottom: 0.3rem; }
+
+    .service-element {
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .service-element-header {
+      background: var(--bg-section);
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .service-element-body {
+      padding: 0.85rem 1rem;
+    }
+    .service-element-body ul { padding-left: 1.25rem; }
+    .service-element-body li { font-size: 0.88rem; margin-bottom: 0.3rem; }
+
+    .avoid-list {
+      background: var(--bg-section);
+      border-left: 4px solid var(--black);
+      padding: 0.85rem 1.1rem;
+      margin: 0.75rem 0;
+    }
+    .avoid-list ul { padding-left: 1.25rem; }
+    .avoid-list li { font-size: 0.88rem; margin-bottom: 0.3rem; }
+
+    .leadership-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+    .leadership-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+    }
+    .leadership-table td.role-cell {
+      font-weight: 900;
+      text-align: center;
+      font-size: 1rem;
+      width: 40%;
+    }
+    .leadership-table td.desc-cell {
+      font-size: 0.83rem;
+      color: var(--muted);
+      background: var(--bg-section);
+    }
+
+    .purpose-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--green);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .purpose-block p { font-size: 0.93rem; margin-bottom: 0.35rem; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .value-card {
+      background: var(--bg-section);
+      border-left: 4px solid var(--black);
+      padding: 0.75rem 1rem;
+    }
+    .value-card strong { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.2rem; }
+    .value-card span { font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      nav.toc ol { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .page-wrap { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Usher Team Playbook</h1>
+    <p class="subtitle">Auditorium Hosting &amp; Service Excellence</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#welcome">Welcome</a></li>
+      <li><a href="#expectations">Expectations</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#responsibilities">Responsibilities</a></li>
+      <li><a href="#order-of-service">Order of Service</a></li>
+      <li><a href="#guidelines">Team Guidelines</a></li>
+      <li><a href="#welcoming">Welcoming Environment</a></li>
+      <li><a href="#service-elements">Service Elements</a></li>
+      <li><a href="#attire">Attire</a></li>
+      <li><a href="#tips">Tips for Guests</a></li>
+      <li><a href="#leadership">Leadership Structure</a></li>
+      <li><a href="#vision">Vision &amp; Values</a></li>
+    </ol>
+  </nav>
+
+  <main class="page-wrap">
+
+    <section id="welcome">
+      <div class="section-label">Welcome</div>
+      <h2 style="margin-bottom:0.75rem;">Welcome to the Team</h2>
+      <p>We're so excited to have you on the team! All of our teams are vital in making people feel welcome and comfortable at our church. The information listed here is designed to equip you to host with hospitality and excellence. Our hope is that your smile, friendly face and sincere personality can contribute to the life-giving atmosphere we desire every person to experience.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="expectations">
+      <div class="section-label">Team Standards</div>
+      <h2 style="margin-bottom:1.25rem;">Expectations</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="responsibilities-box">
+          <div class="resp-header">Personal</div>
+          <div class="resp-body">
+            <ul>
+              <li>Pursue a relationship with God strengthened by daily Bible reading and prayer.</li>
+              <li>Commit to attending one service and serving one service.</li>
+              <li>Commit to ongoing team training and actively participating in the life of the campus.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="responsibilities-box">
+          <div class="resp-header">Team</div>
+          <div class="resp-body">
+            <ul>
+              <li>Show up on time, with a great attitude and meet someone new.</li>
+              <li>Stay focused on guests when serving.</li>
+              <li>Pray for your team members, leaders and pastors.</li>
+              <li>Be open to building genuine relationships with others on the team.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="wins">
+      <div class="section-label">Team Goals</div>
+      <h2 style="margin-bottom:0.75rem;">Wins</h2>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Create a distraction-free environment inside the auditorium so that God's Word can be shared and received with no interference.</li>
+        <li style="margin-bottom:0.4rem;">Front rows are filled before worship begins.</li>
+        <li>Meet 1 or 2 people seated in your section that you haven't met before.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="responsibilities">
+      <div class="section-label">Commitments</div>
+      <h2 style="margin-bottom:1rem;">Responsibilities</h2>
+      <div class="responsibilities-box">
+        <div class="resp-header">During the Week</div>
+        <div class="resp-body">
+          <ul>
+            <li>Read weekly Team Leader communication regarding rosters, service flow, weekend elements and upcoming events.</li>
+            <li>Use Planning Center Online to confirm or decline your rostered position for the weekend. Communicate with your Team Leader if your schedule changes.</li>
+            <li>Connect with your Team Leader weekly for updates and any information you may need to make the weekend great.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">On the Weekend</div>
+        <div class="resp-body">
+          <ul>
+            <li>Attend one service and serve in one service.</li>
+            <li>Check in with your Team Leader upon arrival and participate in the team touchdown.</li>
+            <li>Make sure your area of the church is in excellent order and ready for guests 30 minutes before the start of service.</li>
+            <li>Dress appropriately by being neat and clean in your appearance.</li>
+            <li>Smile a lot!</li>
+            <li>Proactively initiate conversations with people you don't know and look for opportunities to serve them.</li>
+            <li>Share good reports to encourage your team.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">Ongoing — Monthly/Quarterly</div>
+        <div class="resp-body">
+          <ul>
+            <li>Quarterly 1-on-1s with your Team Leader.</li>
+            <li>Attend monthly campus all-team volunteer rallies.</li>
+            <li>Attend team trainings.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="order-of-service">
+      <div class="section-label">Timeline</div>
+      <h2 style="margin-bottom:1rem;">Order of Service</h2>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th colspan="2">Before Service</th>
+            <th colspan="3">During Service</th>
+            <th>After Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">1 hr before</td>
+            <td class="time">30 mins before</td>
+            <td class="time">21 mins</td>
+            <td class="time">40–45 mins</td>
+            <td class="time">5 mins</td>
+            <td class="time">15 mins</td>
+          </tr>
+          <tr>
+            <td>Check In</td>
+            <td>Guest Interactions</td>
+            <td>Worship Begins</td>
+            <td>Welcome / Offering / Message</td>
+            <td>Fresh Start Prayer</td>
+            <td>Service Ends / Exits</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="guidelines">
+      <div class="section-label">Guidelines</div>
+      <h2 style="margin-bottom:0.75rem;">Usher Team Member Guidelines</h2>
+      <p style="margin-bottom:1.25rem;">Ushers have the privilege of serving everyone who enters the auditorium by making them feel welcome and at home. We help create an excellent and distraction-free environment by helping guests find seats, assisting with the offering and communion, setting out chairs, addressing service disruptions and any other responsibilities that pertain to service.</p>
+
+      <div class="position-block">
+        <h3>Positions</h3>
+        <p>Ushers are positioned in strategic and visible locations around the auditorium. We should stand out by our actions and eagerness to serve, not because we are wearing a host badge. We do this by using positive and expressive body language, having upbeat facial expressions and smiles and offering flashlight assistance when the auditorium is dark.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="welcoming">
+      <div class="section-label">Environment</div>
+      <h2 style="margin-bottom:1rem;">Provide a Welcoming Environment</h2>
+
+      <div class="position-block">
+        <h3>Excellence and Cleanliness</h3>
+        <ul>
+          <li>Before the beginning of every service, all elements should be checked, cleaned and restocked if needed. (Trash cans, tissue boxes, communion, offering buckets, info cards and offering envelopes in seat backs.)</li>
+          <li>Clean and reset the auditorium at the end of every service.</li>
+          <li>Personal Items that are left should be taken to the lost and found area after the last service.</li>
+        </ul>
+      </div>
+
+      <div class="position-block">
+        <h3>Seating and Traffic Flow</h3>
+        <ul>
+          <li>Greet all guests with energy and enthusiasm. Make eye contact and smile.</li>
+          <li>We seat "front-to-back" — seating guests as close to the front as they are willing to go.</li>
+          <li>We do not force people to sit in a particular seat, but we do control the opening of closed sections. Usher Team Leads will communicate when sections are to be opened.</li>
+          <li>If you notice a family coming in with a small child, seat them in the reserved family section. This allows an easy exit if their child becomes fussy. Remind them about Kids Life and give them a Kids Life card.</li>
+          <li>Accommodate those in wheelchairs and special needs by seating them in designated areas. Keep aisles clear.</li>
+          <li>Main auditorium doors are closed before each service and typically open 15 minutes before service begins. Check with your Team Leader before opening any doors.</li>
+          <li>Where applicable, doors may be utilized to direct traffic to different areas of the auditorium. The Team Leader should make the call and communicate with Door Greeters so they can help direct guests.</li>
+          <li>Doors should remain closed and movement limited during prayer moments, Fresh Start and offering.</li>
+        </ul>
+      </div>
+
+      <div class="position-block">
+        <h3>Distractions During Service</h3>
+        <ul>
+          <li>If you see or hear any distractions, advise your Team Lead. All distractions will be handled at their discretion.</li>
+          <li>A distraction is anything that takes attention away from the worship or message delivery from the platform — for example, someone playing a tambourine during worship, dancing expressively in the aisle, a baby crying, small children on a device, or someone taking a phone call.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="service-elements">
+      <div class="section-label">Service Elements</div>
+      <h2 style="margin-bottom:1rem;">Service Elements</h2>
+
+      <div class="service-element">
+        <div class="service-element-header">Communion</div>
+        <div class="service-element-body">
+          <ul>
+            <li>Communion elements are prepared before the start of each service.</li>
+            <li>At the appropriate time, the elements should be placed on the tables before ministry time begins.</li>
+            <li>Ushers are positioned around the communion stations (if needed) to help direct the flow of traffic to the elements, prayer leaders and altar. If a long line is forming in one area, direct them to another table.</li>
+            <li>At locations where doors are closed during ministry time, communion elements should be offered in the lobby or appropriate area for those who are waiting to enter the auditorium.</li>
+            <li>Pick up communion elements when ministry time is over. They should not be left out for the duration of service.</li>
+            <li>Clean communion trays and reset them for the next service, if needed.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Offering</div>
+        <div class="service-element-body">
+          <ul>
+            <li>The person assigned to buckets ensures they are counted out for each section and are ready to be distributed. The assigned person places the buckets in each section.</li>
+            <li>Ushers should be prepared with Life Church pens in hand (and offering envelopes if not in seats), ready to distribute as directed by the MC or upon request.</li>
+            <li>At the proper time, pass one bucket down each row from left to right and front to back.</li>
+            <li>Collect buckets from front to back once they have been passed. Count all buckets to ensure you have received every one.</li>
+            <li>Take buckets to the back of the auditorium to hand to a designated Usher who will bring buckets to an area to be secured by our Safety Team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Counting</div>
+        <div class="service-element-body">
+          <ul>
+            <li><strong>Head Count:</strong> Once the message begins, count the number of people in your assigned section. Advise your Team Lead of the number counted in your section.</li>
+            <li><strong>Fresh Starts:</strong> During the Fresh Start prayer, pray along in service. When the MC asks for people to raise their hands for Fresh Starts, count each raised hand in your section. Advise your Team Lead of the number counted in your section.</li>
+            <li><strong>Other:</strong> On special occasions, we may also count other things such as people standing or responding to other calls to action.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="attire">
+      <div class="section-label">Appearance</div>
+      <h2 style="margin-bottom:0.75rem;">Attire</h2>
+      <p style="margin-bottom:0.75rem;">Ushers each have a personalized name badge that is checked in and out to identify you as a host team member. We want to be visible but not stand out or be distracted by our appearance so we must be thoughtful when choosing the right outfit to wear. Think <strong>business-casual</strong>.</p>
+      <p style="margin-bottom:0.4rem; font-weight:600; font-size:0.88rem;">Please avoid:</p>
+      <div class="avoid-list">
+        <ul>
+          <li>Loud/bright colors, including neon-colored tennis shoes</li>
+          <li>Sweatpants, shorts or tracksuits</li>
+          <li>Wireless earpiece or headphones</li>
+          <li>Chewing gum — Mints are available in the Usher closet</li>
+          <li>Texting or messaging on your phone while serving</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="tips">
+      <div class="section-label">Hospitality</div>
+      <h2 style="margin-bottom:1rem;">Tips for Interacting with Guests &amp; Attenders</h2>
+
+      <h3 style="margin-bottom:0.5rem;">Before Service</h3>
+      <ul style="padding-left:1.25rem; margin-bottom:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Be on the lookout for first-time guests — they may park in preferred parking, look lost or confused, be overdressed, or be holding a child and not know where to go.</li>
+        <li style="margin-bottom:0.4rem;">Enthusiastically welcome guests: <em>"Welcome to The Life Church"</em> / <em>"We are so glad you are here with us!"</em></li>
+        <li style="margin-bottom:0.4rem;">Initiate conversation: <em>"How long have you been coming to The Life Church?"</em> / <em>"Is there anything we can help you find?"</em></li>
+        <li style="margin-bottom:0.4rem;">Always be on the lookout for an opportunity to create a WOW moment — offer to buy them a drink at Press Café, help them check their children into Kids Life, introduce them to someone they might have something in common with, or if you see that a tire is low, air it up for them.</li>
+        <li>Instead of pointing, we always walk with guests to their location.</li>
+      </ul>
+
+      <h3 style="margin-bottom:0.5rem;">After Service</h3>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Follow up with guests you met before service. Ask: <em>"What did you think about your experience with us today?"</em> / <em>"Did you get a chance to let us know you were here by filling out one of our info cards?"</em></li>
+        <li>Send guests off enthusiastically: <em>"Thanks for joining us today"</em> / <em>"See you next week"</em></li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="leadership">
+      <div class="section-label">Structure</div>
+      <h2 style="margin-bottom:0.75rem;">Leadership Support Structure</h2>
+      <table class="leadership-table" style="margin-bottom:1.25rem;">
+        <tbody>
+          <tr>
+            <td class="desc-cell">"Lead &amp; Feed" — Set the Vision, Establish Culture, Communicate</td>
+            <td class="role-cell">Lead Pastor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Campus Pastor</td>
+            <td class="desc-cell">Carry the Culture, Care for the Community, Grow the Church</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Establish the direction within a ministry area at a campus (Connection, Kids, Worship, Axis)</td>
+            <td class="role-cell">Campus Ministry Director</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Captain</td>
+            <td class="desc-cell">Assist Campus Ministry Director within a ministry area; Provide coaching, care &amp; development to Team Leaders at a service</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Building the team, caring for volunteers, lead the charge within the ministry area at a service</td>
+            <td class="role-cell">Team Leader &amp; Assistant Team Leads</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Team Members</td>
+            <td class="desc-cell">Execute consistently excellent and inspiring services</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="purpose-block">
+        <p><strong>Your Leader:</strong> Usher Team Leader</p>
+        <p><strong>Your Purpose:</strong> To serve everyone who enters the auditorium by making them feel welcome and at home. Our goal is to create a distraction-free environment inside the auditorium so that God's Word can be shared and received with no interference.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="vision">
+      <div class="section-label">Identity</div>
+      <h2 style="margin-bottom:0.75rem;">Our Vision</h2>
+      <p style="margin-bottom:1.5rem; font-size:0.97rem; font-style:italic; font-family:var(--font-serif);">We are one church in many locations – dynamic, Spirit-filled and diverse – serving people, developing leaders and impacting generations.</p>
+      <h2 style="margin-bottom:1rem;">Our Aligning Values</h2>
+      <div class="values-grid">
+        <div class="value-card"><strong>Integrity</strong><span>We serve Jesus and his church with integrity.</span></div>
+        <div class="value-card"><strong>Diversity</strong><span>We are building a house that looks like Heaven.</span></div>
+        <div class="value-card"><strong>Hospitality</strong><span>We make room for new people.</span></div>
+        <div class="value-card"><strong>Generosity</strong><span>We give generously to invest in changed lives.</span></div>
+        <div class="value-card"><strong>Vision</strong><span>We are more focused on where we're going than where we've been.</span></div>
+        <div class="value-card"><strong>Passion</strong><span>We put our heart and soul into all we do.</span></div>
+        <div class="value-card"><strong>Excellence</strong><span>We always bring our best.</span></div>
+        <div class="value-card"><strong>Honor</strong><span>We honor all people.</span></div>
+        <div class="value-card"><strong>Prayer</strong><span>We make prayer a priority.</span></div>
+        <div class="value-card"><strong>Gratitude</strong><span>We enjoy the journey.</span></div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

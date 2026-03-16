@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venue Logistics Team Playbook — The Life Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.7; }
+
+    h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+    h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.15; }
+    h3 { font-size: 1.05rem; font-weight: 700; }
+    p  { font-size: 0.97rem; }
+
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      position: relative;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .cover h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    nav.toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem;
+    }
+    nav.toc .toc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    nav.toc ol {
+      padding-left: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem 2rem;
+    }
+    nav.toc li { font-size: 0.85rem; }
+    nav.toc a { color: var(--text); text-decoration: none; font-weight: 600; }
+    nav.toc a:hover { color: var(--green); }
+
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .responsibilities-box {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .resp-header {
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.5rem 1rem;
+    }
+    .resp-body { padding: 1rem 1.25rem; }
+    .resp-body ul { padding-left: 1.25rem; }
+    .resp-body li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+    .schedule-table th {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: center;
+      vertical-align: top;
+    }
+    .schedule-table td.time {
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .position-block { margin-bottom: 1.75rem; }
+    .position-block h3 { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .position-block p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .position-block ul { padding-left: 1.25rem; }
+    .position-block li { font-size: 0.88rem; margin-bottom: 0.3rem; }
+
+    /* Two-team cards */
+    .team-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .team-card {
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--black);
+    }
+    .team-card-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.65rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .team-card-body {
+      padding: 0.9rem 1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Service element breakdown */
+    .service-element {
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .service-element-header {
+      background: var(--bg-section);
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .service-element-body {
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+    }
+
+    /* Equipment checklist grid */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .checklist-card {
+      border: 1px solid var(--border);
+    }
+    .checklist-card-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.5rem 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .checklist-card-body {
+      padding: 0.75rem 0.85rem;
+    }
+    .checklist-card-body ul {
+      padding-left: 1rem;
+      list-style: none;
+    }
+    .checklist-card-body li {
+      font-size: 0.82rem;
+      margin-bottom: 0.25rem;
+      padding-left: 0.25rem;
+    }
+    .checklist-card-body li::before {
+      content: '—';
+      color: var(--green);
+      margin-right: 0.4rem;
+    }
+
+    .leadership-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+    .leadership-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+    }
+    .leadership-table td.role-cell {
+      font-weight: 900;
+      text-align: center;
+      font-size: 1rem;
+      width: 40%;
+    }
+    .leadership-table td.desc-cell {
+      font-size: 0.83rem;
+      color: var(--muted);
+      background: var(--bg-section);
+    }
+
+    .purpose-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--green);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .purpose-block p { font-size: 0.93rem; margin-bottom: 0.35rem; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .value-card {
+      background: var(--bg-section);
+      border-left: 4px solid var(--black);
+      padding: 0.75rem 1rem;
+    }
+    .value-card strong { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.2rem; }
+    .value-card span { font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 768px) {
+      .checklist-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav.toc ol { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .checklist-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .page-wrap { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Venue Logistics Team Playbook</h1>
+    <p class="subtitle">Setup, Teardown &amp; Behind-the-Scenes Excellence</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#welcome">Welcome</a></li>
+      <li><a href="#expectations">Expectations</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#responsibilities">Responsibilities</a></li>
+      <li><a href="#order-of-service">Order of Service</a></li>
+      <li><a href="#guidelines">Team Guidelines</a></li>
+      <li><a href="#service-elements">Service Elements</a></li>
+      <li><a href="#tips">Tips for Guests</a></li>
+      <li><a href="#leadership">Leadership Structure</a></li>
+      <li><a href="#vision">Vision &amp; Values</a></li>
+      <li><a href="#addendum">Equipment Addendum</a></li>
+    </ol>
+  </nav>
+
+  <main class="page-wrap">
+
+    <section id="welcome">
+      <div class="section-label">Welcome</div>
+      <h2 style="margin-bottom:0.75rem;">Welcome to the Team</h2>
+      <p>We're so excited to have you on the team! All of our teams are vital in making people feel welcome and comfortable at our church. The information listed here is designed to equip you to host with hospitality and excellence. Our hope is that your smile, friendly face and sincere personality can contribute to the life-giving atmosphere we desire every person to experience.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="expectations">
+      <div class="section-label">Team Standards</div>
+      <h2 style="margin-bottom:1.25rem;">Expectations</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="responsibilities-box">
+          <div class="resp-header">Personal</div>
+          <div class="resp-body">
+            <ul>
+              <li>Pursue a relationship with God strengthened by daily Bible reading and prayer.</li>
+              <li>Commit to attending one service and serving one service.</li>
+              <li>Commit to ongoing team training and actively participating in the life of the campus.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="responsibilities-box">
+          <div class="resp-header">Team</div>
+          <div class="resp-body">
+            <ul>
+              <li>Show up on time, with a great attitude and meet someone new.</li>
+              <li>Stay focused on excellence when serving.</li>
+              <li>Pray for your team members, leaders and pastors.</li>
+              <li>Be open to building genuine relationships with others on the team.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="wins">
+      <div class="section-label">Team Goals</div>
+      <h2 style="margin-bottom:0.75rem;">Wins</h2>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Create an excellent five-star guest experience for weekend services.</li>
+        <li>Have meaningful connections with your team members and guests.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="responsibilities">
+      <div class="section-label">Commitments</div>
+      <h2 style="margin-bottom:1rem;">Responsibilities</h2>
+      <div class="responsibilities-box">
+        <div class="resp-header">During the Week</div>
+        <div class="resp-body">
+          <ul>
+            <li>Read weekly Team Leader communication regarding rosters, service flow, weekend elements and upcoming events.</li>
+            <li>Use Planning Center Online to confirm or decline your rostered position for the weekend. Communicate with your Team Leader if your schedule changes.</li>
+            <li>Connect with your Team Leader weekly for updates and any information you may need to make the weekend great.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">On the Weekend</div>
+        <div class="resp-body">
+          <ul>
+            <li>Attend a service and serve in a service.</li>
+            <li>Check in with your Team Leader upon arrival and participate in the team touchdown.</li>
+            <li>Make sure your area of the church is in excellent order and ready for the full service run-through 30 minutes prior.</li>
+            <li>Dress appropriately by being neat and clean in your appearance.</li>
+            <li>Smile a lot!</li>
+            <li>Proactively initiate conversations with people you don't know and look for opportunities to serve them.</li>
+            <li>Share good reports to encourage your team.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="responsibilities-box">
+        <div class="resp-header">Ongoing — Monthly/Quarterly</div>
+        <div class="resp-body">
+          <ul>
+            <li>Quarterly 1-on-1s with your Team Leader.</li>
+            <li>Attend monthly campus all-team volunteer rallies.</li>
+            <li>Attend team trainings.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="order-of-service">
+      <div class="section-label">Timeline</div>
+      <h2 style="margin-bottom:1rem;">Order of Service</h2>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th colspan="2">Before Service</th>
+            <th colspan="3">During Service</th>
+            <th>After Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">1 hr before</td>
+            <td class="time">30 mins before</td>
+            <td class="time">20–25 mins</td>
+            <td class="time">40–45 mins</td>
+            <td class="time">5 mins</td>
+            <td class="time">30 mins</td>
+          </tr>
+          <tr>
+            <td>Service Run Through Begins</td>
+            <td>Guest Interactions</td>
+            <td>Worship</td>
+            <td>Welcome / Offering / Message</td>
+            <td>Fresh Start Prayer</td>
+            <td>Service Ends / Begin Tear Down</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="guidelines">
+      <div class="section-label">Guidelines</div>
+      <h2 style="margin-bottom:0.75rem;">Venue Logistics Team Member Guidelines</h2>
+      <p style="margin-bottom:1.25rem;">Our <strong>Venue Logistics</strong> team prepares for our weekend worship services and other church gatherings by managing all behind-the-scenes logistics, room preparation and technical elements. By doing this we are creating a five-star guest experience and ensuring that each service goes smoothly.</p>
+
+      <div class="section-label" style="margin-bottom:0.5rem;">Two Teams</div>
+      <div class="team-cards">
+        <div class="team-card">
+          <div class="team-card-header">Setup Team</div>
+          <div class="team-card-body">Arrives before the service to set up all audio/visual equipment, Kids Life areas, hospitality elements, host team areas and signage, and more. Areas must be ready for the full service run-through 30 minutes before service.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-header">Teardown Team</div>
+          <div class="team-card-body">Arrives after the service to break down all areas. Teardown begins once most attendees have cleared out. Some overlap with Setup Team may occur between services.</div>
+        </div>
+      </div>
+
+      <div class="position-block">
+        <h3>Excellence and Cleanliness</h3>
+        <p>Serving is a privilege. When you put on your host badge, you represent our church, our pastors and God. We want to provide a welcoming environment for guests.</p>
+        <ul>
+          <li>Before the beginning of every service, all elements should be set up in a timely manner to ensure we are creating a five-star guest experience.</li>
+          <li>Ensure all areas are clean and excellent in appearance.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="service-elements">
+      <div class="section-label">Service Elements</div>
+      <h2 style="margin-bottom:1rem;">Service Elements We Support</h2>
+
+      <div class="service-element">
+        <div class="service-element-header">Hospitality</div>
+        <div class="service-element-body">
+          <p>Hospitality team members create a welcoming environment for guests and volunteers to have an amazing weekend experience — not by creating a space, but by building connections through hospitality! The Hospitality Team's purpose is to serve all those who enter the café, commons area and volunteer hub. We assist the hospitality team by setting up tables, banners and any other responsibilities that pertain to service.</p>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Connections</div>
+        <div class="service-element-body">
+          <p>The Connection Team exhibits hospitality and creates a welcoming and life-giving environment for everyone who comes, with a specific focus on providing first time guests with a first-class hosting experience. We assist the Connections team by setting up banners, tables and any other responsibilities that pertain to the service.</p>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Kids Life</div>
+        <div class="service-element-body">
+          <p>Kids Life team members are responsible for creating a welcoming and fun environment for all kids from babies to 5th grade. We assist the Kids Life team to create a space for children to experience a welcoming and friendly environment by setting up pipes and drapes to section off spaces for each class, setting up chairs, setting up tables and any other responsibilities that pertain to service.</p>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Next Steps</div>
+        <div class="service-element-body">
+          <p>Next Steps team members are positioned in strategic locations throughout the building and are actively looking for opportunities to create meaningful connections with attendees and guests each week. We assist the Next Steps team by helping set up banners, tables and any other responsibilities that pertain to service.</p>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Outdoor Hosts</div>
+        <div class="service-element-body">
+          <p>Outdoor Hosts are responsible for greeting guests by making them feel welcome and at home. They also help direct the flow of traffic while assisting guests as they enter and exit the parking lot. We help the Outdoor Host team by setting out outdoor signs, flags and any other responsibilities that pertain to service.</p>
+        </div>
+      </div>
+
+      <div class="service-element">
+        <div class="service-element-header">Ushers</div>
+        <div class="service-element-body">
+          <p>Ushers have the privilege of serving everyone who enters the auditorium by making them feel welcome and at home. We help the Usher team prepare the auditorium by setting out chairs, setting up communion tables and any other responsibilities that pertain to service.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="tips">
+      <div class="section-label">Guest Interaction</div>
+      <h2 style="margin-bottom:1rem;">Tips for Interacting with Guests &amp; Attenders</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="responsibilities-box">
+          <div class="resp-header">Before Service</div>
+          <div class="resp-body">
+            <ul>
+              <li>Be on the lookout for guests and attendees arriving. This is the cue that all areas should be set up and ready for service.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="responsibilities-box">
+          <div class="resp-header">After Service</div>
+          <div class="resp-body">
+            <ul>
+              <li>Be on the lookout for guests and members. Once most of the attendees have cleared out the space, you can start proceeding with teardown.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="leadership">
+      <div class="section-label">Structure</div>
+      <h2 style="margin-bottom:0.75rem;">Leadership Support Structure</h2>
+      <table class="leadership-table" style="margin-bottom:1.25rem;">
+        <tbody>
+          <tr>
+            <td class="desc-cell">"Lead &amp; Feed" — Set the Vision, Establish Culture, Communicate</td>
+            <td class="role-cell">Lead Pastor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Campus Pastor</td>
+            <td class="desc-cell">Carry the Culture, Care for the Community, Grow the Church</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Establish the direction within a ministry area at a campus (Connection, Kids, Worship, Axis)</td>
+            <td class="role-cell">Campus Ministry Director</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Captain</td>
+            <td class="desc-cell">Assist Campus Ministry Director within a ministry area; Provide coaching, care &amp; development to Team Leaders at a service</td>
+          </tr>
+          <tr>
+            <td class="desc-cell">Building the team, caring for volunteers, lead the charge within the ministry area at a service</td>
+            <td class="role-cell">Team Leader &amp; Assistant Team Leads</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="role-cell">Team Members</td>
+            <td class="desc-cell">Execute consistently excellent and inspiring services</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="purpose-block">
+        <p><strong>Your Leader:</strong> Venue Logistics Team Leader</p>
+        <p><strong>Your Purpose:</strong> To prepare for our weekend worship services and other church gatherings by managing all behind-the-scenes logistics, room preparation and technical elements. By doing this we are creating a five-star guest experience and ensuring that each service goes smoothly.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="vision">
+      <div class="section-label">Identity</div>
+      <h2 style="margin-bottom:0.75rem;">Our Vision</h2>
+      <p style="margin-bottom:1.5rem; font-size:0.97rem; font-style:italic; font-family:var(--font-serif);">We are one church in many locations – dynamic, Spirit-filled and diverse – serving people, developing leaders and impacting generations.</p>
+      <h2 style="margin-bottom:1rem;">Our Aligning Values</h2>
+      <div class="values-grid">
+        <div class="value-card"><strong>Integrity</strong><span>We serve Jesus and his church with integrity.</span></div>
+        <div class="value-card"><strong>Diversity</strong><span>We are building a house that looks like Heaven.</span></div>
+        <div class="value-card"><strong>Hospitality</strong><span>We make room for new people.</span></div>
+        <div class="value-card"><strong>Generosity</strong><span>We give generously to invest in changed lives.</span></div>
+        <div class="value-card"><strong>Vision</strong><span>We are more focused on where we're going than where we've been.</span></div>
+        <div class="value-card"><strong>Passion</strong><span>We put our heart and soul into all we do.</span></div>
+        <div class="value-card"><strong>Excellence</strong><span>We always bring our best.</span></div>
+        <div class="value-card"><strong>Honor</strong><span>We honor all people.</span></div>
+        <div class="value-card"><strong>Prayer</strong><span>We make prayer a priority.</span></div>
+        <div class="value-card"><strong>Gratitude</strong><span>We enjoy the journey.</span></div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="addendum">
+      <div class="section-label">Reference</div>
+      <h2 style="margin-bottom:1rem;">Equipment Addendum</h2>
+      <p style="margin-bottom:1.25rem; font-size:0.9rem; color:var(--muted);">Complete equipment checklists for each area. Use these lists when setting up and tearing down for each service.</p>
+
+      <div class="checklist-grid">
+        <div class="checklist-card">
+          <div class="checklist-card-header">Auditorium</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Pipe &amp; Drapes with Bases</li>
+              <li>LED Screen</li>
+              <li>Stage</li>
+              <li>Subs</li>
+              <li>Bottom Mains</li>
+              <li>Top Mains</li>
+              <li>TVs &amp; TV Stands</li>
+              <li>Inn Ear Rack</li>
+              <li>Keyboard &amp; Keyboard Stand</li>
+              <li>Drums</li>
+              <li>Avioms</li>
+              <li>Media Booth</li>
+              <li>Sound Board</li>
+              <li>FOH Snake</li>
+              <li>Chairs (including extras)</li>
+              <li>Lights</li>
+              <li>5 Star Caddy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Connections</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Signs/Banners</li>
+              <li>Table</li>
+              <li>Info Cards with Holder</li>
+              <li>Invite Cards with Holder</li>
+              <li>Pens in Pen Holder</li>
+              <li>VIP Banner</li>
+              <li>Badges</li>
+              <li>QR Code in Acrylic Frame</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Discovery</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Attendee Binders</li>
+              <li>Leader Binders</li>
+              <li>Chairs</li>
+              <li>Tables</li>
+              <li>Media Booth/Table</li>
+              <li>TV with Stand</li>
+              <li>Pens</li>
+              <li>Snacks</li>
+              <li>Waters</li>
+              <li>Serve Towels</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Hospitality</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Trash Cans</li>
+              <li>Hospitality Cart/Table</li>
+              <li>Water Dispenser</li>
+              <li>Coffee</li>
+              <li>Cups / Condiments / Lids / Sleeves / Stirrers Organizer</li>
+              <li>Mints</li>
+              <li>Syrups</li>
+              <li>Nespresso &amp; Pods</li>
+              <li>Milk</li>
+              <li>Treats</li>
+              <li>Napkins</li>
+              <li>Letter Board</li>
+              <li>Frothers</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Kids Life</div>
+          <div class="checklist-card-body">
+            <p style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.35rem;">Guest Services</p>
+            <ul style="margin-bottom:0.75rem;">
+              <li>Table</li>
+              <li>Tablet/Printer</li>
+              <li>FTG Supplies</li>
+              <li>Rosters</li>
+              <li>Banner</li>
+            </ul>
+            <p style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.35rem;">Bounce Room</p>
+            <ul style="margin-bottom:0.75rem;">
+              <li>Signage &amp; TV</li>
+              <li>Trash Cans &amp; Roster</li>
+              <li>Pipe &amp; Drapes with Bases</li>
+            </ul>
+            <p style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.35rem;">Motion Room</p>
+            <ul>
+              <li>Signage &amp; TV</li>
+              <li>Trash Cans &amp; Roster</li>
+              <li>Pipe &amp; Drapes with Bases</li>
+              <li>Rugs &amp; Lighting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Next Steps</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Table</li>
+              <li>Signs/Banner</li>
+              <li>Info Cards with Holder</li>
+              <li>Fresh Start Books with Holder</li>
+              <li>Pens in Pen Holder</li>
+              <li>Magnets for Elevator</li>
+              <li>QR Code in Acrylic Box</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Outdoor Hosts</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Signs/Banners</li>
+              <li>Flags with Stand</li>
+              <li>Cones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header">Ushers</div>
+          <div class="checklist-card-body">
+            <ul>
+              <li>Communion Tables</li>
+              <li>Communion Trays</li>
+              <li>Communion</li>
+              <li>Tissue Boxes in Holder</li>
+              <li>Anointing Oil in Bottles</li>
+              <li>Tithe Buckets &amp; Tithe Bags</li>
+              <li>Small Trash Cans</li>
+              <li>Offering Envelopes</li>
+              <li>Info Cards &amp; Invite Cards</li>
+              <li>Count Sheets</li>
+              <li>Seat Drops (if needed)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

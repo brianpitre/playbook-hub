@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan-A-Visit Playbook — The Life Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --bg-section: #f7f7f7;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.7; }
+
+    h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+    h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.15; }
+    h3 { font-size: 1.05rem; font-weight: 700; }
+    p  { font-size: 0.97rem; }
+
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4.5rem;
+      position: relative;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--green);
+    }
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .cover h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .cover .subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    nav.toc {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1.5rem 2rem;
+    }
+    nav.toc .toc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    nav.toc ol {
+      padding-left: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem 2rem;
+    }
+    nav.toc li { font-size: 0.85rem; }
+    nav.toc a { color: var(--text); text-decoration: none; font-weight: 600; }
+    nav.toc a:hover { color: var(--green); }
+
+    .page-wrap { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Step cards for PAV steps */
+    .pav-step {
+      border: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+    .pav-step-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .pav-step-num {
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .pav-step-title { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .pav-step-body { padding: 1rem 1.25rem; }
+    .pav-step-body p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .pav-step-meta {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0.25rem 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .pav-step-meta .meta-label { font-weight: 700; color: var(--black); }
+    .pav-step-meta .meta-val { color: var(--muted); }
+
+    /* Text sample blocks */
+    .text-sample {
+      background: var(--bg-section);
+      border-left: 4px solid var(--green);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.93rem;
+      color: var(--text);
+      margin: 0.5rem 0 0.75rem;
+    }
+    .text-label {
+      font-family: var(--font);
+      font-style: normal;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+    .auto-badge {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .manual-badge {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* Expectations box */
+    .responsibilities-box {
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .resp-header {
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.5rem 1rem;
+    }
+    .resp-body { padding: 1rem 1.25rem; }
+    .resp-body ul { padding-left: 1.25rem; }
+    .resp-body li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .resp-body ol { padding-left: 1.25rem; }
+    .resp-body ol li { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+    /* Quick responses */
+    .response-card {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--black);
+      margin-bottom: 1rem;
+    }
+    .response-card-header {
+      background: var(--bg-section);
+      padding: 0.5rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+    }
+    .response-card-body {
+      padding: 0.75rem 1rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.93rem;
+    }
+    .response-card-body p { margin-bottom: 0.5rem; }
+
+    .note-block {
+      background: var(--bg-section);
+      border-left: 5px solid var(--black);
+      padding: 1rem 1.25rem;
+      font-size: 0.87rem;
+      color: var(--muted);
+      font-style: italic;
+      font-family: var(--font-serif);
+      margin-bottom: 1.5rem;
+    }
+    .note-block strong {
+      font-style: normal;
+      font-family: var(--font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--black);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    @media (max-width: 640px) {
+      nav.toc ol { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .page-wrap { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-tag">The Life Church</div>
+    <h1>Plan-A-Visit Playbook</h1>
+    <p class="subtitle">Guest Engagement &amp; First Visit Experience</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#purpose">Purpose &amp; How It Works</a></li>
+      <li><a href="#steps">Plan a Visit Steps</a></li>
+      <li><a href="#expectations">Team Expectations</a></li>
+      <li><a href="#weekend">Weekend Steps</a></li>
+      <li><a href="#communication">Communication Guidelines</a></li>
+      <li><a href="#texting">Texting Samples</a></li>
+      <li><a href="#quick-responses">Quick Responses</a></li>
+      <li><a href="#situational">Situational Responses</a></li>
+    </ol>
+  </nav>
+
+  <main class="page-wrap">
+
+    <section id="purpose">
+      <div class="section-label">Overview</div>
+      <h2 style="margin-bottom:0.75rem;">Purpose &amp; How It Works</h2>
+      <p style="margin-bottom:0.85rem;">Thank you for your heart to serve our community and make visiting our church a smooth and seamless process for our guests.</p>
+      <p style="margin-bottom:0.85rem;"><strong>Purpose:</strong> To create personal and individualized engagement with a First Time Guest before they visit our church. Our goal is to ultimately create a path of engagement to help the guest take a next step. Our hope is to begin a conversation that will help answer questions and guide a first time guest through an amazing First Visit.</p>
+      <p style="margin-bottom:0.85rem;"><strong>How It Works:</strong> Guests who may be interested in visiting our church have the opportunity to Plan their Visit before they come. They may see an ad on social media, or visit the website to check out our church and are given the opportunity to engage with us ahead of time. When a guest fills out a Plan A Visit form, their information is automatically entered into our church database and added to the Plan A Visit track. We can then begin 2-way communication with them via an app called <strong>Growth Method</strong>.</p>
+      <p style="margin-bottom:0.5rem; font-size:0.9rem; color:var(--muted);">With every point of connection, we want to try to gain a response. <strong>[Response = Engagement]</strong> This will allow guests to let us know they are coming so we can prepare for them and answer any questions they may have ahead of time. They will also be able to pre-register their children into Kids Life if they choose. We encourage them to stop at our "New Here" area so that we can meet and host them.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="steps">
+      <div class="section-label">Workflow</div>
+      <h2 style="margin-bottom:1rem;">Plan a Visit Steps</h2>
+      <p style="margin-bottom:1.25rem; font-size:0.9rem; font-style:italic; color:var(--muted);">This process begins automatically once a guest completes the Plan a Visit form.</p>
+
+      <div class="pav-step">
+        <div class="pav-step-header">
+          <span class="pav-step-num">Step 1</span>
+          <span class="pav-step-title">Intro Text <span class="auto-badge">Auto</span></span>
+        </div>
+        <div class="pav-step-body">
+          <div class="pav-step-meta">
+            <span class="meta-label">Day:</span><span class="meta-val">Day form is entered</span>
+            <span class="meta-label">Time:</span><span class="meta-val">Sends automatically between 8:00 am – 8:00 pm (5 minutes after form is submitted)</span>
+          </div>
+          <div class="text-sample">
+            "Hey [[ first_name ]]! This is [[ contact_name ]] from The Life Church. I'm a part of our team and saw that you filled out a Plan Your Visit Form for our [[ campus ]] location. Just wanted to let you know we are so excited to see you at church! Quick question, how many plan to come with you?"
+          </div>
+          <p><strong>Engagement:</strong> P-A-V team member will reply to any incoming questions or messages from the guest. This is where the conversation can really begin to flourish and connections are made.</p>
+        </div>
+      </div>
+
+      <div class="pav-step">
+        <div class="pav-step-header">
+          <span class="pav-step-num">Step 2</span>
+          <span class="pav-step-title">Saturday Reminder <span class="auto-badge">Auto</span></span>
+        </div>
+        <div class="pav-step-body">
+          <div class="pav-step-meta">
+            <span class="meta-label">Day:</span><span class="meta-val">Saturday</span>
+            <span class="meta-label">Time:</span><span class="meta-val">Sends automatically between 10:00 am – 8:00 pm</span>
+          </div>
+          <div class="text-sample">
+            "Hey [[ first_name ]] - Sunday is almost here! Just wanted to see if you still plan on joining us?"
+          </div>
+          <div class="note-block">
+            <strong>Note</strong>
+            Guests will stay in Step 2 until they show up and fill out a First Time Guest Card. The system automatically advances them to Step 3 if they show up and fill out a First Time Guest card.
+          </div>
+        </div>
+      </div>
+
+      <div class="pav-step">
+        <div class="pav-step-header">
+          <span class="pav-step-num">Step 3</span>
+          <span class="pav-step-title">Monday Follow-Up <span class="manual-badge">Manual</span></span>
+        </div>
+        <div class="pav-step-body">
+          <div class="pav-step-meta">
+            <span class="meta-label">Day:</span><span class="meta-val">Monday following Sunday attendance (system auto-advances them after they fill out a First Time Guest card)</span>
+            <span class="meta-label">Time:</span><span class="meta-val">9:30 am — manual text from TLC team member</span>
+          </div>
+          <div class="text-sample">
+            "What's up [[ first_name ]]! So glad that you were able to come this weekend! I wanted to let you know that our location pastor is going to be reaching out to connect with you. So be on the lookout for a message from them. Hope you have a great week!"
+          </div>
+        </div>
+      </div>
+
+      <div class="pav-step">
+        <div class="pav-step-header">
+          <span class="pav-step-num">Step 4</span>
+          <span class="pav-step-title">Location Pastor Follow-Up</span>
+        </div>
+        <div class="pav-step-body">
+          <p>The guest is handed off to the Location Pastor, who begins their personalized follow-up journey from here.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="expectations">
+      <div class="section-label">Standards</div>
+      <h2 style="margin-bottom:1rem;">Team Member Expectations</h2>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">Be attentive and responsive to incoming communication throughout the week.</li>
+        <li style="margin-bottom:0.4rem;">Reply to messages in a timely manner (within 24 hours or less). Communication may increase in activity as we approach the weekend.</li>
+        <li style="margin-bottom:0.4rem;">Represent Christ and Life Church with integrity and life-giving communication.</li>
+        <li style="margin-bottom:0.4rem;">Proactively communicate with the Guest Experience team about guests you are expecting to attend.</li>
+        <li>Pray (privately) over each person you are interacting with, that God would move on their hearts.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="weekend">
+      <div class="section-label">Weekend</div>
+      <h2 style="margin-bottom:1rem;">Weekend Steps</h2>
+      <div class="responsibilities-box">
+        <div class="resp-header">Day of Service</div>
+        <div class="resp-body">
+          <ol>
+            <li>Be ready to receive those who planned a visit. Keep your phone near you and watch for communication alerts for anyone that might be coming.</li>
+            <li>During the team huddle, make the Guest Experience team aware if you know someone confirmed with you they would be coming. The team should have a running list, so anyone on the team can host them.</li>
+            <li>Guests should be greeted by a member of the Guest Experience and taken to the New Here area to fill out a <strong>connection card</strong>.
+              <ul style="margin-top:0.4rem;">
+                <li>Team members should write <strong>"PYV"</strong> on the top of the connect card so we can identify and make sure they are connected to the correct profile.</li>
+                <li>When someone completes the New Here form and identifies as a First Time Guest, they will receive a First Time Guest milestone in our system which will trigger the final automated step of this process.</li>
+              </ul>
+            </li>
+            <li>The guest is then added to the First Time Guest track managed by Location Pastor.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="communication">
+      <div class="section-label">Guidelines</div>
+      <h2 style="margin-bottom:1rem;">Communication Guidelines &amp; Tips</h2>
+      <ul style="padding-left:1.25rem;">
+        <li style="margin-bottom:0.4rem;">This is a designated Life Church phone number for "Plan a Visit" inquiries. Please limit calls and messages to this purpose.</li>
+        <li style="margin-bottom:0.4rem;">Please avoid sharing contact information — including phone numbers, emails, or addresses — with others.</li>
+        <li>You are connecting with people who may be entirely new to The Life Church, so please communicate thoughtfully. Avoid using acronyms or insider terms that a person unfamiliar with our environment would not understand.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="texting">
+      <div class="section-label">Templates</div>
+      <h2 style="margin-bottom:1rem;">Texting Samples</h2>
+
+      <h3 style="margin-bottom:0.5rem;">Intro Auto Text <span class="auto-badge" style="vertical-align:middle; font-size:0.65rem;">Auto</span></h3>
+      <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.35rem;">Sends automatically between 8:00 am – 8:00 pm</p>
+      <div class="text-sample">
+        "Hey [[ first_name ]]! This is [[ contact_name ]] from The Life Church. I'm a part of our team and saw that you filled out a Plan Your Visit Form for our [[ campus ]] location. Just wanted to let you know we are so excited to see you at church! Quick question, how many plan to come with you?"
+      </div>
+
+      <h3 style="margin-bottom:0.5rem; margin-top:1.25rem;">Manual Response Samples <span class="manual-badge" style="vertical-align:middle; font-size:0.65rem;">Manual</span></h3>
+      <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.5rem;"><em>When they say they are bringing kids:</em></p>
+      <div class="text-sample">
+        "{FIRST NAME} we are so glad you and your family are coming! We have an incredible Kids Life environment for babies – 5th grade that your children will love! If you want to pre-register your kids for Kids Life, you can do it with this link! Filling this out will allow you to fast track your check in process when you guys arrive on Sunday.<br><br>When you arrive on Sunday, be sure to stop by our New Here area and pick up a free gift we have for you! Do you know where our church is located?"
+      </div>
+      <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.5rem;"><em>Just adults attending:</em></p>
+      <div class="text-sample">
+        "{FIRST NAME} we are so glad you are coming! When you arrive on Sunday, be sure to stop by our New Here area and pick up a special gift we have prepared for you! Do you know where our church is located?"
+      </div>
+      <p style="font-size:0.8rem; color:var(--muted); margin-bottom:1.25rem;">*If they say no, send a Google Maps link or the address to your campus.</p>
+
+      <h3 style="margin-bottom:0.5rem;">Saturday Auto Reminder <span class="auto-badge" style="vertical-align:middle; font-size:0.65rem;">Auto</span></h3>
+      <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.35rem;">Sends automatically between 10:00 am – 8:00 pm</p>
+      <div class="text-sample">
+        "Hey [[ first_name ]] - Sunday is almost here! Just wanted to see if you still plan on joining us?"
+      </div>
+
+      <h3 style="margin-bottom:0.5rem; margin-top:1.25rem;">Monday Auto Text — if they came and filled out an info card <span class="auto-badge" style="vertical-align:middle; font-size:0.65rem;">Auto</span></h3>
+      <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.35rem;">Sends automatically at 9:30 am</p>
+      <div class="text-sample">
+        "What's up [[ first_name ]]! So glad that you were able to come this weekend! I wanted to let you know that our campus pastor is going to be reaching out to connect with you. So be on the lookout for a message from them. Hope you have a great week!"
+      </div>
+
+      <h3 style="margin-bottom:0.5rem; margin-top:1.25rem;">Monday Manual Text — if they did NOT fill out an info card <span class="manual-badge" style="vertical-align:middle; font-size:0.65rem;">Manual</span></h3>
+      <div class="text-sample">
+        "Hey _____, it's _____ again at The Life Church. I know you planned your visit with us, but I don't think we connected. I'm sorry if I missed you! Did you happen to make it to the service this Sunday?"
+      </div>
+      <div style="margin-left:1rem;">
+        <p style="font-size:0.83rem; font-weight:700; margin-bottom:0.25rem;">YES response:</p>
+        <div class="text-sample">
+          "Oh that's great! I hope you had a good experience. Did you happen to fill out an info card while you were there? If you did, you should be hearing from our Location pastor soon."
+        </div>
+        <p style="font-size:0.83rem; font-weight:700; margin-bottom:0.25rem;">NO response:</p>
+        <div class="text-sample">
+          "That's ok. We'll be ready for you whenever you decide to come. Just remember to stop by one of our New Here areas when you arrive. Our team has a gift card for you to get a free item at Press Cafe when you come, and they would love to show you around."
+        </div>
+        <p style="font-size:0.83rem; font-weight:700; margin-bottom:0.25rem;">No Response:</p>
+        <div class="text-sample">
+          "Last text I promise :) Whether or not you made it to church, please let me know if there's anything we can do for you. We'd love to serve in any way we can. Have a great day!"
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="quick-responses">
+      <div class="section-label">Ready-to-Send</div>
+      <h2 style="margin-bottom:0.75rem;">Quick Responses</h2>
+      <p style="margin-bottom:1.25rem; font-size:0.9rem; color:var(--muted);">Below are a list of quick responses you can send out based on questions or interactions with PAV guests.</p>
+
+      <div class="response-card">
+        <div class="response-card-header">Beliefs</div>
+        <div class="response-card-body">
+          <p>"We are a local church that is very Bible-centered, and we highly value community. Here is a web page with some of our core beliefs."</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">Life Groups</div>
+        <div class="response-card-body">
+          <p>"We have groups that meet regularly throughout the Memphis area in different locations. Here is a link to learn more. Let me know if I can help get you connected with one?"</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">Kids Life</div>
+        <div class="response-card-body">
+          <p>"We have a great ministry called Kids Life for babies 6 weeks through 5th graders that meets separately during the main Sunday service. They have worship, games and an age relevant message."</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">Axis Students Youth</div>
+        <div class="response-card-body">
+          <p>"Our Youth meets Wednesday evenings from 7–9 pm at the church. It's for Middle &amp; High School students 6–12th grade. It's a gathering that features fun, friends and great teaching from God's Word."</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">College / Young Adults</div>
+        <div class="response-card-body">
+          <p>"For young adults, we have a monthly gathering for 18–25 year olds that we'd love for you to join."</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">Discovery Class</div>
+        <div class="response-card-body">
+          <p>"We offer Discovery for people wanting to connect into The Life Church. In Discovery, you'll learn more about the church and how you can be part of all that God is doing here."</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">I Already Attend a Church</div>
+        <div class="response-card-body">
+          <p>"That's great. We would really encourage you to stay plugged into your church where you're at. There is great value in being planted deep into a community where we can receive from the fullness of how God made the church a life giving community. That doesn't happen when we go from church to church.</p>
+          <p>If there's a reason why you're looking to find a new church we would be glad to connect and talk about that too?"</p>
+        </div>
+      </div>
+      <div class="response-card">
+        <div class="response-card-header">LGBTQ</div>
+        <div class="response-card-body">
+          <p>"Hey! You can check out our vision and values and what we believe on our website."</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="situational">
+      <div class="section-label">Special Situations</div>
+      <h2 style="margin-bottom:0.75rem;">Situational or Need Responses</h2>
+      <p style="margin-bottom:1rem; font-size:0.93rem;">We may get requests from time to time that are needs based. While we would love to help in every situation like this, we are unable to support all requests due to the volume we receive. So don't feel like you have to be able to answer or comply to every request. If it's something we can do great, but there are lots of other resources we can point people to: <strong>www.findhelp.org</strong> [enter zip code, and they will be set up to find the help they need] and <strong>thelifechurch.com/care</strong></p>
+
+      <div class="response-card">
+        <div class="response-card-header">Request for a Ride</div>
+        <div class="response-card-body">
+          <p>"We do not currently offer ride services to the church, however, you can always attend church online at Thelifechurch.com"</p>
+        </div>
+      </div>
+
+      <h3 style="margin: 1rem 0 0.5rem;">Prayer Responses</h3>
+      <div class="text-sample">"I'm sorry to hear you're going through that. I'm praying for you now. We would love to be able to pray with you in person sometime. We have people available every weekend during our services who are full of faith and ready to join with you in faith."</div>
+      <div class="text-sample">"Sometimes we go through things in life that we don't understand. I have seen how God places community around us to walk through certain seasons. God has a purpose for you, and we'd love to walk alongside you if you'd be open to checking out The Life Church sometime. There's potential to get to know people and draw near to God with what you're facing."</div>
+      <div class="text-sample">"I totally get it. I will be praying for you. God has great things ahead. Please keep us posted on how you're doing."</div>
+      <div class="text-sample">"We will be praying for you. We serve an amazing God who cares about you a lot!"</div>
+    </section>
+
+  </main>
+</body>
+</html>
