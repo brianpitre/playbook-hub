@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camera &amp; Director Workshop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --surface-2: #1e1e1e;
+      --border: #2a2a2a;
+      --amber: #e8a030;
+      --amber-dim: #a06a18;
+      --text: #f0f0f0;
+      --muted: #888;
+      --white: #ffffff;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: #000;
+      padding: 80px 40px 70px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,.03) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,.03) 60px);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--amber);
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--amber);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+    }
+
+    /* ── TIMELINE BLOCK ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .block {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 32px;
+      position: relative;
+    }
+
+    .block::before {
+      content: '';
+      position: absolute;
+      left: 110px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .block:last-child::before {
+      height: 40px;
+    }
+
+    /* Time column */
+    .block-time {
+      padding-top: 38px;
+      text-align: right;
+      padding-right: 0;
+    }
+
+    .time-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: .03em;
+      position: relative;
+    }
+
+    .time-label::after {
+      content: '';
+      position: absolute;
+      right: -36px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--amber);
+    }
+
+    /* Content column */
+    .block-body {
+      padding: 28px 0 40px 32px;
+    }
+
+    .block-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .card-body {
+      padding: 18px 20px;
+    }
+
+    /* ── SHOT GRID ── */
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .shot-pill {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      letter-spacing: .02em;
+    }
+
+    /* ── ITEM LISTS ── */
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .item-list li::before {
+      content: '—';
+      color: var(--amber-dim);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── SONG SEQUENCE TABLE ── */
+    .sequence-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .sequence-table thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sequence-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 16px 10px 0;
+    }
+
+    .sequence-table th:last-child { padding-right: 0; }
+
+    .sequence-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+
+    .sequence-table tbody tr:last-child { border-bottom: none; }
+
+    .sequence-table td {
+      padding: 10px 16px 10px 0;
+      vertical-align: top;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .sequence-table td:first-child {
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .sequence-table td:last-child {
+      padding-right: 0;
+    }
+
+    .pace-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .pace-slow  { background: rgba(232,160,48,.12); color: var(--amber); }
+    .pace-mid   { background: rgba(100,180,255,.1);  color: #64b4ff; }
+    .pace-high  { background: rgba(255,100,100,.1);  color: #ff7070; }
+
+    /* ── MOVEMENT GRID ── */
+    .move-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .move-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+
+    .move-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .move-card-detail {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── SIMPLE BULLET ITEMS ── */
+    .setup-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .setup-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .setup-item .icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(232,160,48,.12);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ── DRILL BLOCK ── */
+    .drill-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .drill-card {
+      flex: 1;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+      text-align: center;
+    }
+
+    .drill-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .drill-card-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── DISMISS ── */
+    .dismiss-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .dismiss-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(232,160,48,.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .dismiss-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .dismiss-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .page { padding: 40px 20px 80px; }
+      .hero { padding: 50px 20px 50px; }
+      .block { grid-template-columns: 80px 1fr; gap: 0 20px; }
+      .block::before { left: 80px; }
+      .time-label::after { right: -24px; }
+      .block-body { padding-left: 20px; }
+      .shot-grid { grid-template-columns: repeat(2, 1fr); }
+      .drill-row { flex-direction: column; }
+      .sequence-table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">The Life Church</div>
+      <h1>Camera &amp;<br><span>Director</span><br>Workshop</h1>
+      <div class="hero-sub">Operator Training &nbsp;·&nbsp; Live Production</div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="page">
+    <div class="timeline">
+
+      <!-- ──────────────────────────────── 6:00p ── -->
+      <div class="block">
+        <div class="block-time">
+          <span class="time-label">6:00p</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Food &amp; Hangout</div>
+          <div class="setup-items">
+            <div class="setup-item">
+              <div class="icon">📋</div>
+              Cover punctuality — Angie
+            </div>
+            <div class="setup-item">
+              <div class="icon">🎯</div>
+              Establish vision and goals
+            </div>
+            <div class="setup-item">
+              <div class="icon">🔧</div>
+              Discuss setup for the workshop
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────── 6:30p ── -->
+      <div class="block">
+        <div class="block-time">
+          <span class="time-label">6:30p</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Everyone in the Auditorium<br><span style="font-size:14px;font-weight:500;color:var(--muted);">2 operators to each camera</span></div>
+
+          <!-- Camera Controls -->
+          <div class="card">
+            <div class="card-header">Camera Controls</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Tripod locks</li>
+                <li>Balance</li>
+                <li>Focus — Teleport</li>
+                <li>Zoom</li>
+                <li>Level</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Framing -->
+          <div class="card">
+            <div class="card-header">Framing</div>
+            <div class="card-body">
+              <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Shot Types</p>
+              <div class="shot-grid">
+                <div class="shot-pill">Super Wide<br><span style="font-size:10px;font-weight:400;color:var(--muted);">Establishing</span></div>
+                <div class="shot-pill">Wide<br><span style="font-size:10px;font-weight:400;color:var(--muted);">Master</span></div>
+                <div class="shot-pill">Full<br><span style="font-size:10px;font-weight:400;color:var(--muted);">Body</span></div>
+                <div class="shot-pill">Cowboy</div>
+                <div class="shot-pill">Medium</div>
+                <div class="shot-pill">Close-up</div>
+              </div>
+              <div style="margin-top:16px;">
+                <ul class="item-list">
+                  <li>Rule of thirds</li>
+                  <li>Leading space</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Movement -->
+          <div class="card">
+            <div class="card-header">Movement</div>
+            <div class="card-body">
+              <div class="move-grid">
+                <div class="move-card">
+                  <div class="move-card-title">Pan</div>
+                  <div class="move-card-detail">Horizontal sweep with leading space</div>
+                </div>
+                <div class="move-card">
+                  <div class="move-card-title">Tracking</div>
+                  <div class="move-card-detail">Follow subject with leading space</div>
+                </div>
+                <div class="move-card">
+                  <div class="move-card-title">Tilt</div>
+                  <div class="move-card-detail">Vertical movement</div>
+                </div>
+                <div class="move-card">
+                  <div class="move-card-title">Zoom In / Out</div>
+                  <div class="move-card-detail">Mind the speed</div>
+                </div>
+                <div class="move-card">
+                  <div class="move-card-title">Pan / Tilt Loop</div>
+                  <div class="move-card-detail">Figure 8 drill</div>
+                </div>
+                <div class="move-card">
+                  <div class="move-card-title">Music Tempo</div>
+                  <div class="move-card-detail">Adjust movement speed to match</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Director Shot Selection -->
+          <div class="card">
+            <div class="card-header">Director Shot Selection &amp; Pacing — Typical Song Sequence</div>
+            <div class="card-body">
+              <table class="sequence-table">
+                <thead>
+                  <tr>
+                    <th>Segment</th>
+                    <th>Shot Type</th>
+                    <th>Pace</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Song Intro</td>
+                    <td>Establishing</td>
+                    <td><span class="pace-badge pace-slow">Very Slow</span></td>
+                  </tr>
+                  <tr>
+                    <td>Solo Vocal</td>
+                    <td>Medium or Close-up</td>
+                    <td><span class="pace-badge pace-slow">Slow</span></td>
+                  </tr>
+                  <tr>
+                    <td>More Vocals (Verse)</td>
+                    <td>Rotate — Wide, Full, Cowboy, Medium, Close-up</td>
+                    <td><span class="pace-badge pace-mid">Mid</span></td>
+                  </tr>
+                  <tr>
+                    <td>Chorus</td>
+                    <td>Establishing or Wide → rotate like verse</td>
+                    <td><span class="pace-badge pace-mid">Mid</span></td>
+                  </tr>
+                  <tr>
+                    <td>Return to Verse</td>
+                    <td>Medium</td>
+                    <td><span class="pace-badge pace-mid">Mid</span></td>
+                  </tr>
+                  <tr>
+                    <td>Continue Pattern</td>
+                    <td>—</td>
+                    <td><span class="pace-badge pace-high">Mid–High</span></td>
+                  </tr>
+                  <tr>
+                    <td>Soft Bridge Instrumental</td>
+                    <td>Establishing, creative, dirty, rack focus</td>
+                    <td><span class="pace-badge pace-slow">Slow</span></td>
+                  </tr>
+                  <tr>
+                    <td>Bridge Solo Vocal</td>
+                    <td>Medium or Close-up</td>
+                    <td><span class="pace-badge pace-slow">Slow</span></td>
+                  </tr>
+                  <tr>
+                    <td>Building Bridge</td>
+                    <td>Wide → rotate shots</td>
+                    <td><span class="pace-badge pace-high">Mid–High</span></td>
+                  </tr>
+                  <tr>
+                    <td>Return to Chorus</td>
+                    <td>Establishing → rotation</td>
+                    <td><span class="pace-badge pace-high">High</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ending</td>
+                    <td>Wide or Establishing</td>
+                    <td><span class="pace-badge pace-slow">Very Slow</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Camera Drills -->
+          <div class="card">
+            <div class="card-header">Camera Drills</div>
+            <div class="card-body">
+              <div class="drill-row">
+                <div class="drill-card">
+                  <div class="drill-card-title">Focus</div>
+                  <div class="drill-card-sub">Drill on acquiring and holding focus</div>
+                </div>
+                <div class="drill-card">
+                  <div class="drill-card-title">Dry Calls</div>
+                  <div class="drill-card-sub">Various pacing — brief run-through</div>
+                </div>
+              </div>
+              <p style="margin-top:14px;font-size:13px;color:var(--muted);font-weight:500;">
+                <strong style="color:var(--white);">Live Song Example</strong> — Teacher directs from stage over comms while song plays
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────── 7:15p ── -->
+      <div class="block">
+        <div class="block-time">
+          <span class="time-label">7:15p</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Directors in Control Room</div>
+          <div class="card">
+            <div class="card-header">Director Rotation</div>
+            <div class="card-body">
+              <p style="font-size:14px;color:var(--text);font-weight:500;">
+                Directors in training rotate with camera operators during live song playback.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────── 8:00p ── -->
+      <div class="block">
+        <div class="block-time">
+          <span class="time-label">8:00p</span>
+        </div>
+        <div class="block-body">
+          <div class="dismiss-block">
+            <div class="dismiss-icon">✓</div>
+            <div>
+              <div class="dismiss-text">Dismiss</div>
+              <div class="dismiss-sub">End of workshop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </main>
+
+</body>
+</html>
