@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Production Pipeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --surface-2: #1e1e1e;
+      --border: #2a2a2a;
+      --amber: #e8a030;
+      --amber-dim: #a06a18;
+      --text: #f0f0f0;
+      --muted: #888;
+      --white: #ffffff;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: #000;
+      padding: 80px 40px 70px 85px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,.03) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,.03) 60px);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 860px;
+      margin: 0;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--amber);
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: var(--amber); }
+
+    .hero-sub {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 860px;
+      margin: 0;
+      padding: 60px 40px 100px 8px;
+    }
+
+    /* ── ROLE TIMELINE ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .block {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 0 16px;
+      position: relative;
+    }
+
+    .block::before {
+      content: '';
+      position: absolute;
+      left: 148px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .block:last-child::before { height: 40px; }
+
+    /* Number column */
+    .block-num {
+      padding-top: 38px;
+      padding-right: 28px;
+      text-align: right;
+    }
+
+    .num-label {
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--amber);
+      letter-spacing: -.02em;
+      position: relative;
+      line-height: 1;
+    }
+
+    .num-label::after {
+      content: '';
+      position: absolute;
+      right: -36px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--amber);
+    }
+
+    /* Content column */
+    .block-body {
+      padding: 28px 0 52px 16px;
+    }
+
+    .block-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .block-desc {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 26px;
+      line-height: 1.65;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 22px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .card-body {
+      padding: 22px 24px;
+    }
+
+    /* ── PLAIN BULLET LIST ── */
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .item-list li::before {
+      content: '—';
+      color: var(--amber-dim);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── LABELED DETAIL ROWS ── */
+    /* Used when items have a title + description structure */
+    .detail-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .detail-item {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .detail-item:first-child { padding-top: 0; }
+    .detail-item:last-child  { padding-bottom: 0; border-bottom: none; }
+
+    .detail-item-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--white);
+    }
+
+    .detail-item-text {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── PHASE BLOCKS (Video Director) ── */
+    .phase-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .phase-header {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--amber);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .phase-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .phase-body {
+      padding: 22px 24px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .page  { padding: 40px 20px 80px; }
+      .hero  { padding: 50px 20px 50px; }
+      .block { grid-template-columns: 110px 1fr; gap: 0 20px; }
+      .block::before { left: 110px; }
+      .num-label { font-size: 18px; }
+      .num-label::after { right: -24px; }
+      .block-body { padding-left: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">The Life Church</div>
+      <h1>Video<br><span>Production</span><br>Pipeline</h1>
+      <div class="hero-sub">Roles &amp; Responsibilities &nbsp;·&nbsp; Post-Production</div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="page">
+    <div class="timeline">
+
+      <!-- ──────────────────────────────── 00 — VIDEO DIRECTOR ── -->
+      <div class="block">
+        <div class="block-num">
+          <span class="num-label">00</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Video Director</div>
+          <p class="block-desc">Bridges the gap between the initial why of the project and the final how. The primary stakeholder who ensures the project meets its goals.</p>
+
+          <!-- Phase 1 -->
+          <div class="phase-block">
+            <div class="phase-header">
+              <span class="phase-badge">1</span>
+              <span class="phase-title">Project Initiation &amp; Pre-Production</span>
+            </div>
+            <div class="phase-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Creative Briefing</div>
+                  <div class="detail-item-text">Defining the big picture, target audience, and the desired goal/vision.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Script &amp; Storyboard Approval</div>
+                  <div class="detail-item-text">Reviewing the script or visual plan to ensure it aligns with the project's objectives.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Talent &amp; Location Scouting</div>
+                  <div class="detail-item-text">Making the final call on who will be on camera and where the shoot will take place to ensure the visual vibe is correct.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="phase-block">
+            <div class="phase-header">
+              <span class="phase-badge">2</span>
+              <span class="phase-title">Production Support (as needed)</span>
+            </div>
+            <div class="phase-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">On-Set Direction</div>
+                  <div class="detail-item-text">While the Production Lead handles the lights and cameras, the Director focuses on the <em>performance</em>—ensuring the subjects are comfortable and delivering the message effectively.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Creative Problem Solving</div>
+                  <div class="detail-item-text">Acting as the tie-breaker if technical challenges arise.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Accessibility</div>
+                  <div class="detail-item-text">Remaining available for the Video Editor or Motion Graphics Designer to clarify the intent of a specific scene or graphic style.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="phase-block">
+            <div class="phase-header">
+              <span class="phase-badge">3</span>
+              <span class="phase-title">Post-Production Review &amp; Delivery</span>
+            </div>
+            <div class="phase-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Director's Cut Review</div>
+                  <div class="detail-item-text">Watching the rough cut to provide feedback on pacing, tone, and whether the story is clear.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Quality Control (QC)</div>
+                  <div class="detail-item-text">Checking for small errors (typos in graphics, audio glitches) that the team might have missed.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Final Sign-off</div>
+                  <div class="detail-item-text">Giving the green light for the final render and ensuring the video is delivered in the correct formats for its intended platforms.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────── 01 — CINEMATOGRAPHER ── -->
+      <div class="block">
+        <div class="block-num">
+          <span class="num-label">01</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Cinematographer</div>
+          <p class="block-desc">Responsible for the raw ingredients. If it isn't captured correctly here, it can't be fixed in post—at least not without a headache.</p>
+
+          <!-- Cinematography & Framing -->
+          <div class="card">
+            <div class="card-header">Cinematography &amp; Framing</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Selecting focal lengths and apertures to match the desired depth of field.</li>
+                <li>Executing camera movement (gimbal, dolly, or handheld) to add energy or focus.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Lighting Design -->
+          <div class="card">
+            <div class="card-header">Lighting Design</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Setting up the primary Key, Fill, and Back lights.</li>
+                <li>Managing Practical lights (on-set lamps/fixtures) and color temperature to ensure skin tones look natural.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Audio Capture -->
+          <div class="card">
+            <div class="card-header">Audio Capture</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Placing lavalier or boom mics for clean dialogue.</li>
+                <li>Monitoring scratch audio on the camera for easier syncing later.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Photography -->
+          <div class="card">
+            <div class="card-header">Photography</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Capturing high-resolution stills for thumbnails, promotional materials, or inserts.</li>
+                <li>Studio lighting and photography for graphics design use.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- DIT & Ingest -->
+          <div class="card">
+            <div class="card-header">DIT (Digital Imaging Technician) &amp; Ingest</div>
+            <div class="card-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Ingest</div>
+                  <div class="detail-item-text">Transferring media from cards to storage.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Organization</div>
+                  <div class="detail-item-text">Naming folders and files using appropriate naming conventions.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Verification</div>
+                  <div class="detail-item-text">Using checksums to ensure no data was lost during the transfer.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────── 02 — VIDEO EDITOR ── -->
+      <div class="block">
+        <div class="block-num">
+          <span class="num-label">02</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Video Editor</div>
+          <p class="block-desc">The storyteller who takes the raw assets and finds the soul of the video.</p>
+
+          <!-- Project Initialization -->
+          <div class="card">
+            <div class="card-header">Project Initialization</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Setting up the project file structure (Footage, Audio, Assets, Renders).</li>
+                <li>Syncing multi-cam clips and external audio tracks.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Assembly & Rough Cut -->
+          <div class="card">
+            <div class="card-header">The Assembly &amp; Rough Cut</div>
+            <div class="card-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Pacing</div>
+                  <div class="detail-item-text">Selecting the best takes and laying them on the timeline to check the pacing.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">B-Roll Integration</div>
+                  <div class="detail-item-text">Layering visual coverage over talking head or VO segments to illustrate the narrative.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audio Processing -->
+          <div class="card">
+            <div class="card-header">Audio Processing</div>
+            <div class="card-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Cleanup</div>
+                  <div class="detail-item-text">Cleaning up background noise and applying EQ/Compression so voices sound natural.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Sound Design</div>
+                  <div class="detail-item-text">Layering ambient sounds and SFX to make the environment feel immersive.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Music Supervision -->
+          <div class="card">
+            <div class="card-header">Music Supervision</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Selecting tracks that match the emotional beat of the video and cutting to the beat where appropriate.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Color Correction -->
+          <div class="card">
+            <div class="card-header">Color Correction</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Matching different cameras so the look is consistent across the entire edit.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────── 03 — MOTION GRAPHICS DESIGNER ── -->
+      <div class="block">
+        <div class="block-num">
+          <span class="num-label">03</span>
+        </div>
+        <div class="block-body">
+          <div class="block-title">Motion Graphics Designer</div>
+          <p class="block-desc">Adds the professional polish and helps communicate information that isn't captured on camera.</p>
+
+          <!-- Visual Development -->
+          <div class="card">
+            <div class="card-header">Visual Development</div>
+            <div class="card-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Style Frames</div>
+                  <div class="detail-item-text">If needed, creating Style Frames (static versions of what the graphics will look like) to get approval before animating.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Brand Consistency</div>
+                  <div class="detail-item-text">Working with provided brand assets (artwork, logos, fonts, color palettes) to ensure brand consistency.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Titling & Lower Thirds -->
+          <div class="card">
+            <div class="card-header">Titling &amp; Lower Thirds</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Designing and animating names and titles for subjects appearing on screen.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Graphic Animation -->
+          <div class="card">
+            <div class="card-header">Graphic Animation</div>
+            <div class="card-body">
+              <div class="detail-items">
+                <div class="detail-item">
+                  <div class="detail-item-label">Call-outs &amp; Infographics</div>
+                  <div class="detail-item-text">Building call-outs, infographics, or other animations to explain complex concepts.</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-item-label">Easing</div>
+                  <div class="detail-item-text">Applying easing to animations to ensure movement feels natural and fluid rather than robotic.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compositing -->
+          <div class="card">
+            <div class="card-header">Compositing</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Keying green screen footage and layering with backgrounds.</li>
+                <li>Assisting with background cleanup (removing unwanted objects in the background of a shot using tracking).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Final Production -->
+          <div class="card">
+            <div class="card-header">Final Production</div>
+            <div class="card-body">
+              <ul class="item-list">
+                <li>Adding SFX for motion graphics.</li>
+                <li>Exporting final versions of videos for review by Video Director and Design Director.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </main>
+
+</body>
+</html>
