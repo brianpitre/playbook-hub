@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Production Team Retreat – NAB Las Vegas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #FFD700;
+      --hot-pink: #FF006E;
+      --electric-blue: #00F5FF;
+      --neon-green: #39FF14;
+      --deep-purple: #1A0030;
+      --dark-bg: #0A0010;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--dark-bg);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1800&q=80');
+      background-size: cover;
+      background-position: center bottom;
+      filter: brightness(0.45) saturate(1.4);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,0,16,0.2) 0%, rgba(10,0,16,0.0) 40%, rgba(10,0,16,0.85) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--electric-blue);
+      text-shadow: 0 0 20px var(--electric-blue), 0 0 40px var(--electric-blue);
+      margin-bottom: 1rem;
+      animation: flicker 3s infinite;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 18vw, 16rem);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, #FFD700 0%, #FF8C00 30%, #FF006E 60%, #FFD700 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(255,215,0,0.6));
+      animation: shimmer 4s linear infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .hero-subtitle {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 7vw, 6rem);
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-shadow: 0 0 30px var(--hot-pink), 0 0 60px var(--hot-pink);
+      margin-top: 0.3rem;
+      animation: pulsePink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulsePink {
+      0%, 100% { text-shadow: 0 0 30px var(--hot-pink), 0 0 60px var(--hot-pink); }
+      50%       { text-shadow: 0 0 50px var(--hot-pink), 0 0 100px var(--hot-pink), 0 0 140px rgba(255,0,110,0.4); }
+    }
+
+    .hero-dates {
+      margin-top: 1.5rem;
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.1rem, 3vw, 2rem);
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 0.5rem 2rem;
+      text-shadow: 0 0 15px var(--gold);
+      box-shadow: 0 0 20px rgba(255,215,0,0.4), inset 0 0 20px rgba(255,215,0,0.05);
+      animation: borderPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes borderPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.4), inset 0 0 20px rgba(255,215,0,0.05); }
+      50%       { box-shadow: 0 0 40px rgba(255,215,0,0.7), inset 0 0 30px rgba(255,215,0,0.1); }
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.4; }
+    }
+
+    /* ====== SCROLL MARQUEE ====== */
+    .marquee-wrap {
+      background: linear-gradient(90deg, var(--hot-pink), #FF8C00, var(--gold), var(--hot-pink));
+      padding: 0.6rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 18s linear infinite;
+    }
+
+    .marquee-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: #000;
+      padding: 0 2.5rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* ====== SECTION HEADER ====== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--electric-blue);
+      text-shadow: 0 0 10px var(--electric-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      background: linear-gradient(90deg, var(--gold), #FF8C00, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ====== DAY CARDS ====== */
+    .day-section {
+      margin-bottom: 4rem;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .day-badge {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      line-height: 1;
+      border: 3px solid;
+    }
+
+    .day-badge .day-name {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    .day-badge .day-num {
+      font-size: 2.2rem;
+    }
+
+    .badge-sun  { border-color: var(--gold);          color: var(--gold);          box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+    .badge-mon  { border-color: var(--electric-blue); color: var(--electric-blue); box-shadow: 0 0 20px rgba(0,245,255,0.4); }
+    .badge-tue  { border-color: var(--hot-pink);      color: var(--hot-pink);      box-shadow: 0 0 20px rgba(255,0,110,0.4); }
+    .badge-wed  { border-color: var(--neon-green);    color: var(--neon-green);    box-shadow: 0 0 20px rgba(57,255,20,0.4); }
+
+    .day-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .day-title .full-date {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.2rem;
+    }
+
+    /* ====== TIMELINE ====== */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 2px;
+    }
+
+    .timeline-sun::before  { background: linear-gradient(180deg, var(--gold), transparent); }
+    .timeline-mon::before  { background: linear-gradient(180deg, var(--electric-blue), transparent); }
+    .timeline-tue::before  { background: linear-gradient(180deg, var(--hot-pink), transparent); }
+    .timeline-wed::before  { background: linear-gradient(180deg, var(--neon-green), transparent); }
+
+    .event {
+      position: relative;
+      padding: 1rem 1.2rem 1rem 1.5rem;
+      margin-bottom: 0.75rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      border-left: 3px solid transparent;
+      transition: transform 0.2s, background 0.2s;
+      backdrop-filter: blur(4px);
+    }
+
+    .event:hover {
+      transform: translateX(6px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .event::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+
+    .event-sun  { border-left-color: rgba(255,215,0,0.5); }
+    .event-mon  { border-left-color: rgba(0,245,255,0.5); }
+    .event-tue  { border-left-color: rgba(255,0,110,0.5); }
+    .event-wed  { border-left-color: rgba(57,255,20,0.5); }
+
+    .event-sun::before  { border-color: var(--gold);          background: rgba(255,215,0,0.3); }
+    .event-mon::before  { border-color: var(--electric-blue); background: rgba(0,245,255,0.3); }
+    .event-tue::before  { border-color: var(--hot-pink);      background: rgba(255,0,110,0.3); }
+    .event-wed::before  { border-color: var(--neon-green);    background: rgba(57,255,20,0.3); }
+
+    .event-time {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+      opacity: 0.7;
+    }
+
+    .event-sun  .event-time { color: var(--gold); }
+    .event-mon  .event-time { color: var(--electric-blue); }
+    .event-tue  .event-time { color: var(--hot-pink); }
+    .event-wed  .event-time { color: var(--neon-green); }
+
+    .event-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    .event-note {
+      margin-top: 0.4rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+    }
+
+    /* ====== HIGHLIGHT CARDS ====== */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    a.highlight-card {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a.highlight-card:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    a.highlight-card:hover .hc-title {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .highlight-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .highlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    .hc-nab::before    { background: radial-gradient(circle at 50% 0%, var(--electric-blue), transparent 70%); }
+    .hc-sphere::before { background: radial-gradient(circle at 50% 0%, var(--hot-pink), transparent 70%); }
+    .hc-gordon::before { background: radial-gradient(circle at 50% 0%, var(--gold), transparent 70%); }
+    .hc-hotel::before  { background: radial-gradient(circle at 50% 0%, var(--neon-green), transparent 70%); }
+
+    .hc-nab    { border-color: rgba(0,245,255,0.3); }
+    .hc-sphere { border-color: rgba(255,0,110,0.3); }
+    .hc-gordon { border-color: rgba(255,215,0,0.3); }
+    .hc-hotel  { border-color: rgba(57,255,20,0.3); }
+
+    .highlight-card > * { position: relative; z-index: 1; }
+
+    .hc-icon {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+      display: block;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+
+    .hc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hc-nab    .hc-title { color: var(--electric-blue); text-shadow: 0 0 15px var(--electric-blue); }
+    .hc-sphere .hc-title { color: var(--hot-pink);      text-shadow: 0 0 15px var(--hot-pink); }
+    .hc-gordon .hc-title { color: var(--gold);          text-shadow: 0 0 15px var(--gold); }
+    .hc-hotel  .hc-title { color: var(--neon-green);    text-shadow: 0 0 15px var(--neon-green); }
+
+    .hc-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    /* ====== EXPENSE BANNER ====== */
+    .expense-banner {
+      background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,140,0,0.1));
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      margin: 4rem 0;
+      box-shadow: 0 0 40px rgba(255,215,0,0.2), inset 0 0 40px rgba(255,215,0,0.05);
+    }
+
+    .expense-banner h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--gold);
+      text-shadow: 0 0 20px var(--gold);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .expense-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .expense-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .expense-item .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .expense-item .value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+
+    .expense-item .value.money {
+      color: var(--gold);
+      text-shadow: 0 0 10px var(--gold);
+    }
+
+    .expense-divider {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,215,0,0.3);
+      align-self: center;
+    }
+
+    /* ====== FOOTER ====== */
+    .footer {
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .footer-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1581351721010-8cf859cb14a4?w=1600&q=80');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.25) saturate(1.3);
+    }
+
+    .footer-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--dark-bg) 0%, transparent 60%);
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-tagline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      letter-spacing: 0.06em;
+      background: linear-gradient(90deg, var(--gold), var(--hot-pink), var(--electric-blue), var(--gold));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .footer-sub {
+      margin-top: 0.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ====== DIVIDER ====== */
+    .neon-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--hot-pink), var(--gold), var(--electric-blue), transparent);
+      margin: 3rem 0;
+      box-shadow: 0 0 12px rgba(255,0,110,0.5);
+    }
+
+    /* ====== FLIGHT CARDS ====== */
+    .flights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .flight-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0,245,255,0.2);
+      border-radius: 12px;
+      padding: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .flight-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .flight-info .flight-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--electric-blue);
+      text-shadow: 0 0 10px var(--electric-blue);
+    }
+
+    .flight-info .flight-route {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .flight-info .flight-time {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.2rem;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 600px) {
+      .day-header { flex-direction: column; align-items: flex-start; }
+      .day-badge { width: 60px; height: 60px; }
+      .day-badge .day-num { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Production Team Retreat &nbsp;·&nbsp; April 19–22, 2025</p>
+      <h1 class="hero-title">Las Vegas</h1>
+      <p class="hero-subtitle">NAB Show 2025</p>
+      <div class="hero-dates">APR 19 – 22 &nbsp;·&nbsp; NEVADA</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>✦ NAB SHOW</span>
+      <span>✦ LAS VEGAS</span>
+      <span>✦ GORDON RAMSAY BURGER</span>
+      <span>✦ THE SPHERE</span>
+      <span>✦ IN-N-OUT BURGER</span>
+      <span>✦ WIZARD OF OZ</span>
+      <span>✦ LVCC</span>
+      <span>✦ PRODUCTION TEAM RETREAT</span>
+      <span>✦ NAB SHOW</span>
+      <span>✦ LAS VEGAS</span>
+      <span>✦ GORDON RAMSAY BURGER</span>
+      <span>✦ THE SPHERE</span>
+      <span>✦ IN-N-OUT BURGER</span>
+      <span>✦ WIZARD OF OZ</span>
+      <span>✦ LVCC</span>
+      <span>✦ PRODUCTION TEAM RETREAT</span>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">What's in store</p>
+      <h2 class="section-title">Trip Highlights</h2>
+    </div>
+
+    <div class="highlights-grid">
+      <a href="https://nabshow.com" target="_blank" rel="noopener" class="highlight-card hc-nab">
+        <span class="hc-icon">🎥</span>
+        <h3 class="hc-title">NAB Show</h3>
+        <p class="hc-desc">Two full days at the Las Vegas Convention Center diving into the world's biggest media & entertainment tech conference.</p>
+      </a>
+      <a href="https://www.thesphere.com/shows/wizard-of-oz-experience" target="_blank" rel="noopener" class="highlight-card hc-sphere">
+        <span class="hc-icon">🌐</span>
+        <h3 class="hc-title">The Sphere</h3>
+        <p class="hc-desc">An 8:00pm showing of <em>Wizard of Oz</em> inside the most immersive venue on the planet. Buckle up.</p>
+      </a>
+      <a href="https://www.gordonramsayrestaurants.com/en/us/gordon-ramsay-burger" target="_blank" rel="noopener" class="highlight-card hc-gordon">
+        <span class="hc-icon">🍔</span>
+        <h3 class="hc-title">Gordon Ramsay Burger</h3>
+        <p class="hc-desc">Team dinner at Hell's Kitchen favorite on Tuesday night, followed by a walk to the Sphere. Yes, chef.</p>
+      </a>
+      <a href="https://ahernhotel.com/" target="_blank" rel="noopener" class="highlight-card hc-hotel">
+        <span class="hc-icon">🏨</span>
+        <h3 class="hc-title">Ahern Hotel</h3>
+        <p class="hc-desc">Individual rooms at the Ahern Hotel Las Vegas. Your own slice of Vegas waiting for you at midnight.</p>
+      </a>
+    </div>
+
+    <div class="neon-divider"></div>
+
+    <!-- FULL ITINERARY -->
+    <div class="section-header">
+      <p class="section-label">Day by day</p>
+      <h2 class="section-title">Full Itinerary</h2>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="day-section">
+      <div class="day-header">
+        <div class="day-badge badge-sun">
+          <span class="day-name">SUN</span>
+          <span class="day-num">19</span>
+        </div>
+        <div class="day-title">
+          Travel Day
+          <span class="full-date">Sunday, April 19</span>
+        </div>
+      </div>
+      <div class="timeline timeline-sun">
+        <div class="event event-sun">
+          <div class="event-time">4:00 PM</div>
+          <div class="event-text">Arrive at MEM (Memphis International)</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">5:19 PM</div>
+          <div class="event-text">Boarding — MEM</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">5:59 PM</div>
+          <div class="event-text">✈ Flight DL1700 — Memphis → Atlanta (ATL)</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">8:27 PM</div>
+          <div class="event-text">Arrive at ATL</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">8:45 PM</div>
+          <div class="event-text">Quick dinner in the airport</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">9:15 PM</div>
+          <div class="event-text">Boarding — ATL</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">9:55 PM</div>
+          <div class="event-text">✈ Flight DL0793 — Atlanta → Las Vegas (LAS)</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">11:15 PM</div>
+          <div class="event-text">Arrive at LAS (Las Vegas Harry Reid International)</div>
+          <div class="event-note">Uber or taxi to In-N-Out Burger upon arrival 🌙</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">11:45 PM</div>
+          <div class="event-text">🍔 Midnight Snack at In-N-Out Burger</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">12:30 AM</div>
+          <div class="event-text">Uber to Ahern Hotel Las Vegas</div>
+        </div>
+        <div class="event event-sun">
+          <div class="event-time">12:35 AM</div>
+          <div class="event-text">Check in — Individual rooms</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONDAY -->
+    <div class="day-section">
+      <div class="day-header">
+        <div class="day-badge badge-mon">
+          <span class="day-name">MON</span>
+          <span class="day-num">20</span>
+        </div>
+        <div class="day-title" style="color: var(--electric-blue); text-shadow: 0 0 20px var(--electric-blue);">
+          NAB Day 1
+          <span class="full-date">Monday, April 20</span>
+        </div>
+      </div>
+      <div class="timeline timeline-mon">
+        <div class="event event-mon">
+          <div class="event-time">8:30 AM</div>
+          <div class="event-text">🍳 Breakfast at hotel</div>
+        </div>
+        <div class="event event-mon">
+          <div class="event-time">9:00 AM</div>
+          <div class="event-text">Uber to Las Vegas Convention Center</div>
+        </div>
+        <div class="event event-mon">
+          <div class="event-time">9:10 AM</div>
+          <div class="event-text">🎬 Arrive at LVCC — NAB Show</div>
+          <div class="event-note">Activities TBD · Lunch at NAB</div>
+        </div>
+        <div class="event event-mon">
+          <div class="event-time">5:00 PM</div>
+          <div class="event-text">🕔 Free Time — Vegas is yours!</div>
+          <div class="event-note">Dinner covered up to $100 per person (keep your receipt!) · Personal Uber rides</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TUESDAY -->
+    <div class="day-section">
+      <div class="day-header">
+        <div class="day-badge badge-tue">
+          <span class="day-name">TUE</span>
+          <span class="day-num">21</span>
+        </div>
+        <div class="day-title" style="color: var(--hot-pink); text-shadow: 0 0 20px var(--hot-pink);">
+          NAB Day 2 + The Sphere
+          <span class="full-date">Tuesday, April 21</span>
+        </div>
+      </div>
+      <div class="timeline timeline-tue">
+        <div class="event event-tue">
+          <div class="event-time">8:30 AM</div>
+          <div class="event-text">🍳 Breakfast at hotel</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">9:00 AM</div>
+          <div class="event-text">Uber or taxi to LVCC</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">9:10 AM</div>
+          <div class="event-text">🎬 Arrive at LVCC — NAB Show</div>
+          <div class="event-note">Activities TBD · Lunch at NAB</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">5:00 PM</div>
+          <div class="event-text">Uber to dinner at Gordon Ramsay Burger</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">5:30 PM</div>
+          <div class="event-text">🔥 Dinner at Gordon Ramsay Burger</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">7:15 PM</div>
+          <div class="event-text">🚶 Walk to Las Vegas Sphere</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">7:45 PM</div>
+          <div class="event-text">Arrive at Las Vegas Sphere</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">8:00 PM</div>
+          <div class="event-text">🌐 Wizard of Oz at The Sphere</div>
+        </div>
+        <div class="event event-tue">
+          <div class="event-time">9:30 PM</div>
+          <div class="event-text">Free time or return to hotel</div>
+          <div class="event-note">Free time Uber rides are personal costs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEDNESDAY -->
+    <div class="day-section">
+      <div class="day-header">
+        <div class="day-badge badge-wed">
+          <span class="day-name">WED</span>
+          <span class="day-num">22</span>
+        </div>
+        <div class="day-title" style="color: var(--neon-green); text-shadow: 0 0 20px var(--neon-green);">
+          Departure Day
+          <span class="full-date">Wednesday, April 22</span>
+        </div>
+      </div>
+      <div class="timeline timeline-wed">
+        <div class="event event-wed">
+          <div class="event-time">9:00 AM</div>
+          <div class="event-text">🍳 Breakfast at hotel</div>
+        </div>
+        <div class="event event-wed">
+          <div class="event-time">9:30 AM</div>
+          <div class="event-text">Uber to LAS</div>
+        </div>
+        <div class="event event-wed">
+          <div class="event-time">10:00 AM</div>
+          <div class="event-text">Arrive at LAS</div>
+        </div>
+        <div class="event event-wed">
+          <div class="event-time">11:15 AM</div>
+          <div class="event-text">Boarding</div>
+        </div>
+        <div class="event event-wed">
+          <div class="event-time">11:55 AM</div>
+          <div class="event-text">✈ Flight WN2660 — Las Vegas → Memphis (MEM)</div>
+        </div>
+        <div class="event event-wed">
+          <div class="event-time">5:15 PM</div>
+          <div class="event-text">🏠 Arrive at MEM — Welcome home!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="neon-divider"></div>
+
+    <!-- FLIGHTS SUMMARY -->
+    <div class="section-header">
+      <p class="section-label">Getting there & back</p>
+      <h2 class="section-title">Flights</h2>
+    </div>
+    <div class="flights-grid">
+      <div class="flight-card">
+        <span class="flight-icon">✈️</span>
+        <div class="flight-info">
+          <div class="flight-number">DL 1700</div>
+          <div class="flight-route">MEM → ATL</div>
+          <div class="flight-time">Sun Apr 19 · Departs 5:59 PM · Arrives 8:27 PM</div>
+        </div>
+      </div>
+      <div class="flight-card">
+        <span class="flight-icon">✈️</span>
+        <div class="flight-info">
+          <div class="flight-number">DL 0793</div>
+          <div class="flight-route">ATL → LAS</div>
+          <div class="flight-time">Sun Apr 19 · Departs 9:55 PM · Arrives 11:15 PM</div>
+        </div>
+      </div>
+      <div class="flight-card">
+        <span class="flight-icon">✈️</span>
+        <div class="flight-info">
+          <div class="flight-number">WN 2660</div>
+          <div class="flight-route">LAS → MEM</div>
+          <div class="flight-time">Wed Apr 22 · Departs 11:55 AM · Arrives 5:15 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPENSE BANNER -->
+    <div class="expense-banner">
+      <h3>💰 Expense Notes — Know Before You Go</h3>
+      <div class="expense-items">
+        <div class="expense-item">
+          <span class="label">Mon Dinner Budget</span>
+          <span class="value money">Up to $100</span>
+        </div>
+        <div class="expense-divider"></div>
+        <div class="expense-item">
+          <span class="label">Receipts Required?</span>
+          <span class="value">YES</span>
+        </div>
+        <div class="expense-divider"></div>
+        <div class="expense-item">
+          <span class="label">Personal Uber Rides</span>
+          <span class="value">Your Cost</span>
+        </div>
+        <div class="expense-divider"></div>
+        <div class="expense-item">
+          <span class="label">Hotel</span>
+          <span class="value">Covered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bg"></div>
+    <div class="footer-overlay"></div>
+    <div class="footer-content">
+      <p class="footer-tagline">What Happens in Vegas<br>Gets Turned Into Content</p>
+      <p class="footer-sub">Production Team · NAB Las Vegas · April 2025</p>
+    </div>
+  </footer>
+
+</body>
+</html>
