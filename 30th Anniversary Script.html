@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Life Church — 30th Anniversary Script</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;1,8..60,300;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --green:      #589a61;
+      --green-dark: #3d7345;
+      --green-bg:   #f2f8f3;
+      --gray:       #6d6d6d;
+      --gray-light: #e1e1e1;
+      --gray-bg:    #f7f7f7;
+      --text:       #111111;
+      --muted:      #6d6d6d;
+      --border:     #e1e1e1;
+      --font:       'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ─── Cover ────────────────────────────────────────────────────────────── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 3rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--green);
+    }
+
+    .cover-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .cover h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      text-transform: uppercase;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .cover .cover-year {
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: -4px;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      opacity: 0.15;
+      position: absolute;
+      top: 2rem; right: 3rem;
+    }
+
+    .cover-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ─── Layout ───────────────────────────────────────────────────────────── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ─── Table of Contents ────────────────────────────────────────────────── */
+    .toc {
+      background: var(--gray-bg);
+      border-left: 4px solid var(--black);
+      padding: 2rem 2.5rem;
+      margin: 2.5rem 0 3rem;
+    }
+
+    .toc-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc-counter;
+    }
+
+    .toc ol li {
+      counter-increment: toc-counter;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc ol li:last-child { border-bottom: none; }
+
+    .toc ol li::before {
+      content: counter(toc-counter, upper-roman) ".";
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--green);
+      min-width: 28px;
+    }
+
+    .toc ol li a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .toc ol li a:hover { color: var(--green); }
+
+    .toc ol li .toc-meta {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ─── Section Headers ──────────────────────────────────────────────────── */
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .script-section {
+      padding-top: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-numeral {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gray-light);
+      line-height: 1;
+      min-width: 56px;
+      text-align: right;
+    }
+
+    .section-title-block h2 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .section-title-block .section-meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── Script Elements ──────────────────────────────────────────────────── */
+
+    /* Spoken / Voice Over dialogue */
+    .dialogue {
+      background: var(--white);
+      border-left: 3px solid var(--green);
+      padding: 1rem 1.5rem;
+      margin: 1.25rem 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .dialogue .speaker {
+      font-family: var(--font);
+      font-style: normal;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Production direction / stage direction */
+    .direction {
+      background: var(--gray-bg);
+      border: 1px dashed var(--gray-light);
+      border-radius: 3px;
+      padding: 0.75rem 1.25rem;
+      margin: 1rem 0;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .direction::before {
+      content: 'DIRECTION';
+      display: block;
+      font-style: normal;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gray);
+      margin-bottom: 0.25rem;
+    }
+
+    /* B-roll note */
+    .broll {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
+      margin: 0.75rem 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      letter-spacing: 0.2px;
+    }
+
+    .broll::before {
+      content: '▶';
+      font-size: 0.6rem;
+      color: var(--green);
+      background: var(--green-bg);
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Timeline / Story beat */
+    .beat {
+      margin: 1.5rem 0;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--gray-light);
+    }
+
+    .beat-header {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .beat-header .beat-person {
+      font-weight: 500;
+      color: var(--green);
+    }
+
+    .beat ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .beat ul li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding: 0.2rem 0 0.2rem 1.25rem;
+      position: relative;
+    }
+
+    .beat ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* Feature items (Section IV) */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-card {
+      background: var(--gray-bg);
+      border-top: 3px solid var(--black);
+      padding: 1rem 1.25rem;
+    }
+
+    .feature-card h4 {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--black);
+      margin-bottom: 0.35rem;
+    }
+
+    .feature-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Pending / TBD note */
+    .tbd {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b97c2a;
+      background: #fdf6ec;
+      border: 1px solid #f0d9a8;
+      padding: 0.2rem 0.65rem;
+      border-radius: 2px;
+      margin: 0.5rem 0;
+    }
+
+    /* Plain note line */
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+      margin: 0.75rem 0;
+      font-family: var(--font-serif);
+    }
+
+    /* Question framing */
+    .question-block {
+      margin: 1.25rem 0;
+    }
+
+    .question-block .q-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .question-block .q-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .cover { padding: 3.5rem 1.5rem 3rem; }
+      .cover h1 { font-size: 2.2rem; }
+      .cover .cover-year { font-size: 3.5rem; top: 1rem; right: 1.5rem; }
+      .page-wrap { padding: 0 1.25rem 4rem; }
+      .section-numeral { font-size: 2.5rem; min-width: 42px; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── COVER ─────────────────────────────────────────────────────────────── -->
+<div class="cover">
+  <span class="cover-year">30</span>
+  <div class="cover-tag">The Life Church</div>
+  <h1>30th Anniversary<br>Script</h1>
+  <p class="cover-sub">1996 – 2026 &nbsp;·&nbsp; Video Outline</p>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ── TABLE OF CONTENTS ────────────────────────────────────────────── -->
+  <nav class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li>
+        <a href="#section-intro">Intro — Voice Over</a>
+        <span class="toc-meta">2 min</span>
+      </li>
+      <li>
+        <a href="#section-timeline">Tell the Story / Timeline</a>
+        <span class="toc-meta">1996–2026</span>
+      </li>
+      <li>
+        <a href="#section-locations">The Unfolding Picture of Locations</a>
+        <span class="toc-meta"></span>
+      </li>
+      <li>
+        <a href="#section-features">Features</a>
+        <span class="toc-meta"></span>
+      </li>
+      <li>
+        <a href="#section-interviews">Interviews</a>
+        <span class="toc-meta"></span>
+      </li>
+      <li>
+        <a href="#section-future">Future</a>
+        <span class="toc-meta"></span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ── I. INTRO ──────────────────────────────────────────────────────── -->
+  <section class="script-section" id="section-intro">
+    <div class="section-header">
+      <div class="section-numeral">I</div>
+      <div class="section-title-block">
+        <div class="section-label">Opening</div>
+        <h2>Intro — Voice Over</h2>
+        <div class="section-meta">With Music &amp; Clips &nbsp;·&nbsp; 2 Min</div>
+      </div>
+    </div>
+
+    <div class="direction">
+      Open with Leslie and Pastor John walking into church… Meeting up with the team… Praying before we walk into service — 30 Seconds
+    </div>
+
+    <div class="dialogue">
+      <div class="speaker">Pastor John — Voice Over</div>
+      Maybe the most common question I get about The Life Church is, <em>"Did I see all of this when we were just starting out 30 years ago?"</em> I'm never sure exactly what they mean when they say ALL OF THIS. Maybe they're talking about the Sunday Service crowds, or the Conferences, or maybe it's the Global Footprint we now have with locations stretching from Memphis to New York to Italy. And places in between. Maybe they're talking about the amazing team that we have.
+      <br><br>
+      Did I see it? Of course, the answer is, <em>"No!"</em>
+      <br><br>
+      If you could have seen and felt what it was like 30 years ago… Oh man… There was so much that you would have had to dig through to find the potential. But it was there. The heart was there and the vision and the hard work… No, I didn't really see all of this back then, but I always felt, even from the beginning, that God was going to do something significant.
+      <br><br>
+      Now, here we are 30 years later and Leslie and I are amazed.
+    </div>
+
+    <p class="note">Timecode mark: 1:30</p>
+
+    <div class="direction">
+      End this opening intro with a montage of worship, preaching, powerful clips and onscreen text — <strong>The Life Church: 30 Years of Faithful Ministry</strong>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── II. TIMELINE ───────────────────────────────────────────────────── -->
+  <section class="script-section" id="section-timeline">
+    <div class="section-header">
+      <div class="section-numeral">II</div>
+      <div class="section-title-block">
+        <div class="section-label">Story</div>
+        <h2>Tell the Story / Timeline</h2>
+        <div class="section-meta">1996 to 2026</div>
+      </div>
+    </div>
+
+    <!-- Nairobi to Memphis -->
+    <div class="beat">
+      <div class="beat-header">Nairobi to Memphis <span class="beat-person">— Interview: Pastor John &amp; Leslie</span></div>
+      <div class="direction" style="margin-top:.5rem;">Opening scene: Pastor Don</div>
+      <ul>
+        <li>Pastor John and Leslie telling him about the call to plant a church</li>
+        <li>Their impact in Nairobi</li>
+      </ul>
+    </div>
+
+    <!-- The Launch -->
+    <div class="beat">
+      <div class="beat-header">The Launch <span class="beat-person">— Pete &amp; Kristi</span></div>
+    </div>
+
+    <!-- Early Years -->
+    <div class="beat">
+      <div class="beat-header">The Early Years <span class="beat-person">— Pastor Dino</span></div>
+      <ul>
+        <li>Lunch conversation</li>
+        <li>Encouragement in the tough season</li>
+        <li>Invested in the church — Pastor John able to quit his job</li>
+      </ul>
+      <div class="broll">B-Roll: Pastor John carrying speaker</div>
+    </div>
+
+    <!-- Breakthrough 2000 -->
+    <div class="beat">
+      <div class="beat-header">Breakthrough in 2000 <span class="beat-person">— Rob Carter?</span></div>
+      <ul>
+        <li>40-day fast</li>
+        <li>Billboard</li>
+        <li>Germantown Parkway launch in 2002</li>
+      </ul>
+      <div class="broll">B-Roll: Fasting video</div>
+    </div>
+
+    <!-- Growth 2002–2008 -->
+    <div class="beat">
+      <div class="beat-header">Growth <span class="beat-person">2002–2008</span></div>
+      <ul>
+        <li>Moved into the building</li>
+        <li>Gaining momentum</li>
+        <li>Influence in the city</li>
+        <li>Hosted some heroes — Christine Caine, Reinhard Bonnke</li>
+        <li>Growing so much that we started to realize we were going to hit a lid and needed to add a location</li>
+      </ul>
+    </div>
+
+    <!-- Going Multi-Site -->
+    <div class="beat">
+      <div class="beat-header">Going Multi-Site <span class="beat-person">— Adam Bartlett</span></div>
+      <ul>
+        <li>Took a risk</li>
+        <li>YMCA / Collierville Location</li>
+      </ul>
+    </div>
+
+    <!-- Axis Conference -->
+    <div class="beat">
+      <div class="beat-header">Axis Conference <span class="beat-person">— Pastor Dan, Parker</span></div>
+      <ul>
+        <li>The desire to see a youth revolution</li>
+        <li>The impact of Axis Conference</li>
+      </ul>
+    </div>
+
+    <!-- Serve Trucks -->
+    <div class="beat">
+      <div class="beat-header">Serve Trucks <span class="beat-person">— Pastor Mundo</span></div>
+    </div>
+
+    <!-- Santiago -->
+    <div class="beat">
+      <div class="beat-header">Santiago Location</div>
+      <ul>
+        <li>Brief mention — first international location</li>
+      </ul>
+    </div>
+
+    <!-- Zoe Conference -->
+    <div class="beat">
+      <div class="beat-header">Zoe Conference <span class="beat-person">— Pastor Leslie</span></div>
+      <ul>
+        <li>Brief mention</li>
+      </ul>
+    </div>
+
+    <!-- Houston Levee -->
+    <div class="beat">
+      <div class="beat-header">Houston Levee Auditorium</div>
+      <ul>
+        <li>Why we needed it</li>
+        <li>The story</li>
+      </ul>
+    </div>
+
+    <!-- New York Merge -->
+    <div class="beat">
+      <div class="beat-header">New York Merge <span class="beat-person">— Wayne Francis</span></div>
+    </div>
+
+    <!-- COVID -->
+    <div class="beat">
+      <div class="beat-header">COVID <span class="tbd">TBD</span></div>
+      <ul>
+        <li>Pictures &amp; clips</li>
+        <li>Online content / growth</li>
+      </ul>
+    </div>
+
+    <!-- Crazy Expansion -->
+    <div class="beat">
+      <div class="beat-header">Crazy Expansion — External Growth</div>
+      <ul>
+        <li>Massachusetts, Italy, Nashville, DC, South Africa, Prison Locations</li>
+        <li>Leads into the unfolding of locations segment…</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── III. LOCATIONS ─────────────────────────────────────────────────── -->
+  <section class="script-section" id="section-locations">
+    <div class="section-header">
+      <div class="section-numeral">III</div>
+      <div class="section-title-block">
+        <div class="section-label">Expansion</div>
+        <h2>The Unfolding Picture of Locations</h2>
+      </div>
+    </div>
+
+    <div class="direction">
+      Voice over with thoughts about God moving us beyond Memphis…
+    </div>
+
+    <div class="direction">
+      Fun video add-ons… Location Pastors — introduced one by one
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── IV. FEATURES ───────────────────────────────────────────────────── -->
+  <section class="script-section" id="section-features">
+    <div class="section-header">
+      <div class="section-numeral">IV</div>
+      <div class="section-title-block">
+        <div class="section-label">Identity</div>
+        <h2>Features</h2>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-label">Framing Question</div>
+      <div class="q-text">What is it that makes our church special to us?</div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <h4>Worship</h4>
+        <p>Songwriting, stage, recording, rehearsal</p>
+      </div>
+      <div class="feature-card">
+        <h4>Creativity</h4>
+        <p>Pastor Leslie's drawings, designs</p>
+      </div>
+      <div class="feature-card">
+        <h4>Preaching</h4>
+        <p>Parker, Anna, Wayne</p>
+      </div>
+      <div class="feature-card">
+        <h4>Young People</h4>
+        <p>Next generation culture</p>
+      </div>
+      <div class="feature-card">
+        <h4>Diversity</h4>
+        <p>A family that reflects the city</p>
+      </div>
+      <div class="feature-card">
+        <h4>Vision</h4>
+        <p>Outreach to communities, commitment to prayer</p>
+      </div>
+    </div>
+
+    <div class="direction">
+      Possible additions: Outreach to our communities? Commitment to prayer?
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── V. INTERVIEWS ──────────────────────────────────────────────────── -->
+  <section class="script-section" id="section-interviews">
+    <div class="section-header">
+      <div class="section-numeral">V</div>
+      <div class="section-title-block">
+        <div class="section-label">The People</div>
+        <h2>Interviews</h2>
+      </div>
+    </div>
+
+    <div class="dialogue">
+      <div class="speaker">Pastor John — Transition</div>
+      Sure. It's all of that. But at the heart of it all, it's the people… It always has been and always will be about the amazing people that make The Life Church their home…
+    </div>
+
+    <div class="direction">
+      Interview section — life change / impact stories
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── VI. FUTURE ─────────────────────────────────────────────────────── -->
+  <section class="script-section" id="section-future">
+    <div class="section-header">
+      <div class="section-numeral">VI</div>
+      <div class="section-title-block">
+        <div class="section-label">Looking Ahead</div>
+        <h2>Future</h2>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-label">2nd Most Common Question</div>
+      <div class="q-text">What do I see for the future?</div>
+    </div>
+
+    <div class="direction">
+      Music cut? — Sit down with Pastor John and Leslie. Off camera, we hear the question: <em>"So what's next?"</em>
+    </div>
+
+    <div class="dialogue">
+      <div class="speaker">Pastor John &amp; Leslie</div>
+      But Leslie and I feel we are just getting started. How is it that after 30 years we feel like the best is still before us?
+    </div>
+
+    <div class="direction">
+      Clips of new building dedication and construction
+    </div>
+
+    <div class="direction">
+      Clips of new Bible School
+    </div>
+
+  </section>
+
+</div><!-- /.page-wrap -->
+</body>
+</html>
